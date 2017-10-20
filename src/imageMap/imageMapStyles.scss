@@ -1,0 +1,32 @@
+.imageMap {
+  height: 100%;
+  width: 100%;
+  padding: 20px;
+  background-color: #fff;
+  box-sizing: border-box;
+  .imageMapField {
+    position: relative;
+    width: 500px;
+    height: 500px;
+    background-color: #eee;
+    z-index: 5;
+    .imageBox {
+      position: relative;
+      z-index: 10;
+      .del {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 1rem;
+        background-color: red;
+      }
+      .edi {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 1rem;
+        background-color: blue;
+      }
+    }
+  }
+}
