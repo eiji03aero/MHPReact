@@ -10,6 +10,7 @@ module.exports = {
     path: path.resolve(__dirname, 'out'),
     filename: '[name].js'
   },
+  devtool: 'source-map',
   module: {
     rules: [
       {
@@ -21,8 +22,8 @@ module.exports = {
         }
       },
       {
-        test: /\.scss$/,
-        loaders: ['css-loader', 'sass-loader']
+        test: /\.s?css$/,
+        loaders: ['style-loader', 'css-loader', 'sass-loader']
       },
     ]
   }

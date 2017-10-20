@@ -7,9 +7,16 @@ export default class ServiceSidebar extends Component {
   render () {
     return (
       <div className="serviceSidebar">
-        { renderSidebarElem }
+        { this.renderSidebarElem() }
       </div>
     )
+  }
+  renderSidebarElem () {
+    const Elements = [1,2,3]
+    const returnElements = Elements.map((x) => {
+      return <SidebarElem name={x} key={x} />
+    })
+    return returnElements
   }
 }
 
@@ -28,10 +35,3 @@ class SidebarElem extends Component {
   }
 }
 
-const renderSidebarElem = () => {
-  const Elements = [1,2,3]
-  const returnElements = Elements.map((x) => {
-    return <SidebarElem name={x} />
-  })
-  return returnElements
-}
