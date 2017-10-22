@@ -4,7 +4,9 @@ import ServiceSidebar from './shared/ServiceSidebar.js'
 import WelcomePage from './welcome/WelcomePage.js'
 import CommentLists from './comments/CommentLists.js'
 import ImageMap from './imageMap/ImageMap.js'
+import Wiki from './wiki/Wiki.js'
 
+import './basicStyles.scss'
 import './App.scss'
 
 export default class App extends Component {
@@ -15,15 +17,14 @@ export default class App extends Component {
     return (
       <Router>
         <div className="serviceField">
-          <div className="serviceSidebar">
-            <p><Link to="/">Welcome</Link></p>
-            <p><Link to="/comments">Comments</Link></p>
-            <p><Link to="/imagemap">image map</Link></p>
+          <div className="serviceLeft">
+            <ServiceSidebar />
           </div>
           <div className="serviceMain">
             <Route exact path="/" component={ WelcomePage } />
             <Route path="/comments" component={ CommentLists } />
             <Route path="/imagemap" component={ ImageMap } />
+            <Route path="/wiki" component={ Wiki } />
           </div>
         </div>
       </Router>
