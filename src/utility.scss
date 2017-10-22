@@ -1,0 +1,21 @@
+._flx {
+  display: flex;
+}
+
+._row {
+  flex-flow: row wrap;
+}
+
+._col {
+  flex-flow: column wrap;
+}
+
+._jc {
+  justify-content: center;
+  align-items: center;
+}
+
+._hid {
+  display: none;
+}
+

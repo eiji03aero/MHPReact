@@ -10,15 +10,24 @@ export default class ServiceSidebar extends Component {
   render () {
     return (
       <div className="serviceSidebar">
-        <div className="sideBarLogoWrap">
-          <div className="sideBarLogo"/>
+        <div className="sidebarLogoWrap">
+          <div className="sidebarLogo"/>
         </div>
-        <p><Link to="/">Welcome</Link></p>
-        <p><Link to="/comments">Comments</Link></p>
-        <p><Link to="/imagemap">Image map</Link></p>
-        <p><Link to="/wiki">Wiki</Link></p>
+        <div className="sidebarMenus">
+          <SidebarElem link="/" icon="home" title="Home" />
+        </div>
       </div>
     )
   }
 }
 
+const SidebarElem = (props) => {
+  return (
+    <div className="sidebarElem">
+      <Link to={props.link}>
+        <i className="mdi mdi-onDark mdi-36">{props.icon}</i>
+        <p>{props.title}</p>
+      </Link>
+    </div>
+  )
+}
