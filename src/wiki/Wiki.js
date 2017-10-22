@@ -8,7 +8,6 @@ export default class Wiki extends React.Component {
   render () {
     return (
       <div>
-        here comes Wiki component
         <WikiList />
       </div>
     )

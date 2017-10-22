@@ -7,6 +7,8 @@ import ImageMap from './imageMap/ImageMap.js'
 import Wiki from './wiki/Wiki.js'
 
 import './basicStyles.scss'
+import './utility.scss'
+import './mdi.scss'
 import './App.scss'
 
 export default class App extends Component {
@@ -16,7 +18,7 @@ export default class App extends Component {
   render () {
     return (
       <Router>
-        <div className="serviceField">
+        <div className="serviceField _flx">
           <div className="serviceLeft">
             <ServiceSidebar />
           </div>

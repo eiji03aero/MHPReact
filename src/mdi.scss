@@ -1,0 +1,37 @@
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://example.com/MaterialIcons-Regular.eot); /* For IE6-8 */
+  src: local('Material Icons'),
+    local('MaterialIcons-Regular'),
+    url(https://example.com/MaterialIcons-Regular.woff2) format('woff2'),
+    url(https://example.com/MaterialIcons-Regular.woff) format('woff'),
+    url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
+}
+
+.mdi {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  color: #333;
+  line-height: 1;
+  text-transform: none;
+  -webkit-font-smoothing:  antialiased;        /* for WebKit */
+  text-rendering:          optimizeLegibility; /* for Chrome、Safari */
+  -moz-osx-font-smoothing: grayscale;          /* for Firefox */
+  font-feature-settings:   'liga';             /* for IE */
+}
+
+.mdi.mdi-onDark {
+  color: #eee;
+}
+
+.mdi.mdi-18 { font-size: 18px; }
+.mdi.mdi-24 { font-size: 24px; }
+.mdi.mdi-36 { font-size: 36px; }
+.mdi.mdi-48 { font-size: 48px; }

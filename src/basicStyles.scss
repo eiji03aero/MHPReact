@@ -7,6 +7,8 @@ html, body {
 }
 
 h1,h2,h3,h4,h5,h6,p,span,a,input[text],textarea {
+  padding: 0;
+  margin: 0;
   font-family: avenir;
   font-weight: 350;
 }
@@ -14,6 +16,6 @@ h1,h2,h3,h4,h5,h6,p,span,a,input[text],textarea {
 a {
   color: #80d8f7;
   &:visited {
-    color: #8B9EF8;
+    color: #80d8f7;
   }
 }
