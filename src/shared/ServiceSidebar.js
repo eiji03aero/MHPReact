@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+
+import './serviceSidebar.scss'
 
 export default class ServiceSidebar extends Component {
   constructor (props) {
@@ -7,29 +10,13 @@ export default class ServiceSidebar extends Component {
   render () {
     return (
       <div className="serviceSidebar">
-        { this.renderSidebarElem() }
-      </div>
-    )
-  }
-  renderSidebarElem () {
-    const Elements = [1,2,3]
-    const returnElements = Elements.map((x) => {
-      return <SidebarElem name={x} key={x} />
-    })
-    return returnElements
-  }
-}
-
-class SidebarElem extends Component {
-  constructor (props) {
-    super(props)
-  }
-  render () {
-    return (
-      <div className="sidebarElem">
-        <a href="/">
-          {this.props.name}
-        </a>
+        <div className="sideBarLogoWrap">
+          <div className="sideBarLogo"/>
+        </div>
+        <p><Link to="/">Welcome</Link></p>
+        <p><Link to="/comments">Comments</Link></p>
+        <p><Link to="/imagemap">Image map</Link></p>
+        <p><Link to="/wiki">Wiki</Link></p>
       </div>
     )
   }

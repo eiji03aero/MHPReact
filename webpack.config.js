@@ -7,7 +7,7 @@ module.exports = {
     app: './src/index.js'
   },
   output: {
-    path: path.resolve(__dirname, 'out'),
+    path: path.resolve(__dirname, 'public'),
     filename: '[name].js'
   },
   devtool: 'source-map',
@@ -25,6 +25,10 @@ module.exports = {
         test: /\.s?css$/,
         loaders: ['style-loader', 'css-loader', 'sass-loader']
       },
+      {
+        test: /\.(jpe?g|png)$/,
+        loaders: ['file-loader?name=assets/images/[name].[ext]']
+      }
     ]
   }
 }
