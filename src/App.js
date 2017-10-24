@@ -7,8 +7,8 @@ import ImageMap from './imageMap/ImageMap.js'
 import Wiki from './wiki/Wiki.js'
 
 import './basicStyles.scss'
-import './utility.scss'
-import './mdi.scss'
+import './admin/utility.scss'
+import './admin/mdi.scss'
 import './App.scss'
 
 export default class App extends Component {

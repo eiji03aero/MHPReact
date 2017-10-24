@@ -14,7 +14,10 @@ export default class ServiceSidebar extends Component {
           <div className="sidebarLogo"/>
         </div>
         <div className="sidebarMenus">
-          <SidebarElem link="/" icon="home" title="Home" />
+          <SidebarElem link="/"         icon="home"    title="Home"     />
+          <SidebarElem link="/comments" icon="comment" title="comments" />
+          <SidebarElem link="/imagemap" icon="image"   title="Imagemap" />
+          <SidebarElem link="/wiki"     icon="web"     title="Wiki"     />
         </div>
       </div>
     )
