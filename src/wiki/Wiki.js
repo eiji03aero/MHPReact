@@ -9,6 +9,7 @@ export default class Wiki extends React.Component {
     return (
       <div>
         <WikiList />
+        oh yes
       </div>
     )
   }

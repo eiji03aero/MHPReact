@@ -26393,6 +26393,8 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
@@ -26404,6 +26406,83 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var compose = function compose() {
+  for (var _len = arguments.length, fns = Array(_len), _key = 0; _key < _len; _key++) {
+    fns[_key] = arguments[_key];
+  }
+
+  return function (arg) {
+    return fns.reduce(function (composed, f) {
+      return f(composed);
+    }, arg);
+  };
+};
+
+var oneSecond = function oneSecond() {
+  return 1000;
+};
+var getCurrentTime = function getCurrentTime() {
+  return new Date();
+};
+var clear = function clear() {
+  return console.clear();
+};
+var log = function log(message) {
+  return console.log(message);
+};
+
+var serializeClockTime = function serializeClockTime(date) {
+  return {
+    hours: date.getHours(),
+    minutes: date.getMinutes(),
+    seconds: date.getSeconds()
+  };
+};
+
+var civilianHours = function civilianHours(clockTime) {
+  return _extends({}, clockTime, {
+    hours: clockTime.hours > 12 ? clockTime.hours - 12 : clockTime.hours
+  });
+};
+
+var appendAMPM = function appendAMPM(clockTime) {
+  return _extends({}, clockTime, {
+    ampm: clockTime.hours > 12 ? 'PM' : 'AM'
+  });
+};
+
+var display = function display(target) {
+  return function (message) {
+    return target(message);
+  };
+};
+
+var formatClock = function formatClock(format) {
+  return function (time) {
+    return format.replace('hh', time.hours).replace('mm', time.minutes).replace('ss', time.seconds).replace('tt', time.ampm);
+  };
+};
+
+var prependZero = function prependZero(key) {
+  return function (clockTime) {
+    return _extends({}, clockTime, _defineProperty({}, key, clockTime[key] < 10 ? "0" + clockTime[key] : clockTime[key]));
+  };
+};
+
+var convertToCivilianTime = function convertToCivilianTime(clockTime) {
+  return compose(appendAMPM, civilianHours)(clockTime);
+};
+
+var doubleDigits = function doubleDigits(civilianTime) {
+  return compose(prependZero("hours"), prependZero("minutes"), prependZero("seconds"))(civilianTime);
+};
+
+var startTicking = function startTicking() {
+  return setInterval(compose(clear, getCurrentTime, serializeClockTime, convertToCivilianTime, doubleDigits, formatClock('hh:mm:ss tt'), display(log)), oneSecond());
+};
 
 var WelcomePage = function (_Component) {
   _inherits(WelcomePage, _Component);
@@ -26417,6 +26496,7 @@ var WelcomePage = function (_Component) {
   _createClass(WelcomePage, [{
     key: 'render',
     value: function render() {
+      startTicking();
       return _react2.default.createElement(
         'div',
         null,
