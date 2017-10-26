@@ -4,6 +4,8 @@ import WikiList from './WikiList.js'
 import WikiShow from './WikiShow.js'
 import WikiEdit from './WikiEdit.js'
 
+import './wiki.scss'
+
 export default class Wiki extends React.Component {
   constructor (props) {
     super(props)
@@ -11,9 +13,12 @@ export default class Wiki extends React.Component {
   render () {
     return (
       <Router>
-        <div>
-          <WikiShow />
-          <WikiEdit />
+        <div className="wiki">
+          <div className="wikiHeader">
+            <Link to="/wiki/new">Create new</Link>
+          </div>
+          <Route exact path="/wiki" component={ WikiList } />
+          <Route path="/wiki/:name" component={ WikiEdit } />
         </div>
       </Router>
     )

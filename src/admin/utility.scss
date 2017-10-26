@@ -1,5 +1,10 @@
 ._flx {
   display: flex;
+  width: 100%;
+}
+
+._flx-1 {
+  flex: 1;
 }
 
 ._row {
@@ -19,3 +24,8 @@
   display: none;
 }
 
+._bg_cover {
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}

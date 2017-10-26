@@ -1,0 +1,41 @@
+.wiki {
+  height: 100%;
+}
+
+.wikiItem {
+  .itemLeft {
+    width: 100px;
+    height: 100px;
+    .itemThumbnail {
+      width: 100px;
+      height: 100px;
+      background: url(../logoReact.png);
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+  }
+  .itemMain {
+    .itemOperational {
+      a {
+        margin-right: .5rem;
+      }
+    }
+  }
+}
+
+.wikiEdit {
+  height: 100%;
+}
+
+.wikiEditForm {
+  height: 100%;
+  text-align: center;
+  background-color: #eee;
+}
+
+.wikiShow {
+  height: 100%;
+  background-color: #aaa;
+  text-align: center;
+}
