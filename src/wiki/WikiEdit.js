@@ -6,7 +6,7 @@ import WikiShow from './WikiShow.js'
 export default class WikiEdit extends React.Component {
   constructor (props) {
     super(props)
-    const name = this.props.name
+    const { name } = this.props.match.params
     this.state = {
       name
     }
@@ -14,7 +14,7 @@ export default class WikiEdit extends React.Component {
   render () {
     return (
       <div className="wikiEdit _flx">
-        <WikiEditForm name={this.state.name}/>
+        <WikiEditForm name={this.state.name} />
         <WikiShow />
       </div>
     )

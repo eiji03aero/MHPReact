@@ -35,8 +35,8 @@ app.post('/api/post/:wikiname', (req,res) => {
       return
     }
     body = req.body.body
-    if (doc.length === 0) {
-      db.insert({ name: wikiname, body })
+    if (!doc) {
+      collection('mhp').insert({ name: wikiname, body })
     } else {
       collection('mhp').update({ name: wikiname }, {$set: { body: body } }, { upsert: true }) 
     }

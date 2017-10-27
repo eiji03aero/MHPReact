@@ -24,9 +24,9 @@
     "webpack": "^3.6.0"
   },
   "scripts": {
-    "start": "node ./server.js",
+    "start": "node ./server.js & mongod",
     "build": "webpack",
-    "dev": "node ./server.js & webpack -w"
+    "dev": "node ./server.js & webpack -w & mongod"
   },
   "main": "index.js",
   "repository": {

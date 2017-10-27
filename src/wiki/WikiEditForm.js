@@ -11,6 +11,12 @@ export default class WikiEditForm extends React.Component {
     }
   }
   componentWillMount () {
+    if (this.state.name === 'new') {
+      this.setState({
+        loaded: true
+      })
+      return
+    }
     request
       .get(`/api/get/${this.state.name}`)
       .end((err,res) => {
@@ -24,7 +30,7 @@ export default class WikiEditForm extends React.Component {
   save () {
     const wikiname = this.state.name
     request
-      .post(`/api/put/${wikiname}`)
+      .post(`/api/post/${wikiname}`)
       .type('form')
       .send({
         name: wikiname,
@@ -37,6 +43,9 @@ export default class WikiEditForm extends React.Component {
         }
         this.setState({ jump: `/wiki/${wikiname}` })
       })
+  }
+  nameChanged (e) {
+    this.setState({ name: e.target.value })
   }
   bodyChanged (e) {
     this.setState({ body: e.target.value })
@@ -52,10 +61,9 @@ export default class WikiEditForm extends React.Component {
     if (this.state.jump !== '') {
       return <Redirect to={this.state.jump} />
     }
-    const name = this.state.name
     return (
       <div className="wikiEditForm _flx-1">
-        <h1><a href={`/wiki/${name}`}>{name}</a></h1>
+        <input type="text" value={this.state.name} onChange={e => this.nameChanged(e)}/><br />
         <textarea rows={12} cols={60}
           onChange={e => this.bodyChanged(e)}
           value={this.state.body}
