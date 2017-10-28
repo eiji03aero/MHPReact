@@ -18,7 +18,7 @@ export default class WikiEditForm extends React.Component {
       return
     }
     request
-      .get(`/api/get/${this.state.name}`)
+      .get(`/api/wiki/get/${this.state.name}`)
       .end((err,res) => {
         if (err) return
         this.setState({
@@ -29,19 +29,20 @@ export default class WikiEditForm extends React.Component {
   }
   save () {
     const wikiname = this.state.name
+    const body = this.state.body
     request
-      .post(`/api/post/${wikiname}`)
+      .post(`/api/wiki/post/${wikiname}`)
       .type('form')
       .send({
         name: wikiname,
-        body: this.state.body
+        body: body
       })
       .end((err,data) => {
         if (err) {
-          console.log(err)
+          console.log(err, 'could not find it')
           return
         }
-        this.setState({ jump: `/wiki/${wikiname}` })
+        console.log(data)
       })
   }
   nameChanged (e) {

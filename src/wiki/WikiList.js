@@ -1,8 +1,25 @@
 import React from 'react'
+import request from 'superagent'
 
 import './wiki.scss'
 
+const wikiListUrl ='/api/wiki/show'
+
 export default class WikiList extends React.Component {
+  constructor (props) {
+    super(props)
+  }
+  componentWillMount () {
+    request
+      .get(wikiListUrl)
+      .end((err,res) => {
+        if (err) {
+          console.log(err)
+          return
+        }
+        console.log(data)
+      })
+  }
   render () {
     return (
       <div className="wikiList">
