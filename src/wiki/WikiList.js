@@ -27,6 +27,7 @@ export default class WikiList extends React.Component {
   render () {
     return (
       <div className="wikiList">
+        <p><Link to="/wiki/edit/new">Create new</Link></p>
         { this.renderWikiItems() }
       </div>
     )

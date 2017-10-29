@@ -2,8 +2,9 @@ import React from 'react'
 import request from 'superagent'
 import { Redirect } from 'react-router-dom'
 import { nameStore, bodyStore } from './flux/wikiStores.js'
+import WikiEditHeader from './WikiEditHeader.js'
 import WikiEditForm from './WikiEditForm.js'
-import { WikiShow } from './WikiShow.js'
+import WikiShow from './WikiShow.js'
 
 export default class WikiEdit extends React.Component {
   constructor (props) {
@@ -26,8 +27,9 @@ export default class WikiEdit extends React.Component {
       this.setState({ name: '' })
       return
     }
+    const queryName = this.state.name
     request
-      .get(`/api/wiki/get/${this.state.name}`)
+      .get(`/api/wiki/get/${queryName}`)
       .end((err,res) => {
         if (err) return
         this.setState({
@@ -36,14 +38,14 @@ export default class WikiEdit extends React.Component {
       })
   }
   save () {
-    const wikiname = this.state.name
-    const body = this.state.body
+    const saveName = this.state.name
+    const saveBody = this.state.body
     request
-      .post(`/api/wiki/post/${wikiname}`)
+      .post(`/api/wiki/post/${saveName}`)
       .type('form')
       .send({
-        name: wikiname,
-        body: body
+        name: saveName,
+        body: saveBody
       })
       .end((err,data) => {
         if (err) {
@@ -57,15 +59,14 @@ export default class WikiEdit extends React.Component {
     if (this.state.jump !== '') {
       return <Redirect to={this.state.jump} />
     }
+    const propName = this.state.name
+    const propBody = this.state.body
     return (
       <div className="wikiEdit">
+        <WikiEditHeader name={propName} />
         <div className="wikiEditor _flx">
-          <WikiEditForm
-            name={this.state.name}
-            body={this.state.body} />
-          <WikiShow
-            name={this.state.name}
-            body={this.state.body} />
+          <WikiEditForm body={propBody} />
+          <WikiShow body={propBody} />
         </div>
         <div className="wikiEditFooter">
           <button onClick={() => this.save()}>Save</button>

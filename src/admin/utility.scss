@@ -24,10 +24,25 @@
   display: none;
 }
 
+._nobdr {
+  border: none;
+}
+
 ._bg_cover {
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+._fs-16 {
+  font-size: 16px;
+}
+
+._fs-20 {
+  font-size: 20px;
+}
+._fs-36 {
+  font-size: 36px;
 }
 
 .loading-wrap {

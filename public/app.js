@@ -3778,54 +3778,99 @@ module.exports = isObject;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.WikiShow = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _wikiParser = __webpack_require__(107);
+
+var _wikiParser2 = _interopRequireDefault(_wikiParser);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var WikiShow = exports.WikiShow = function WikiShow(props) {
-  return _react2.default.createElement(
-    "div",
-    { className: "wikiShow _flx-1" },
-    _react2.default.createElement(
-      "h2",
-      null,
-      props.name
-    ),
-    _react2.default.createElement(
-      "p",
-      null,
-      props.body
-    )
-  );
-};
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-// export default class WikiShow extends React.Component {
-//   constructor (props) {
-//     super(props)
-//     this.state = {
-//       name: '',
-//       body: ''
-//     }
-//   }
-//   componentWillReceiveProps (nextProps) {
-//     this.setState({
-//       name: nextProps.name,
-//       body: nextProps.body
-//     })
-//   }
-//   render () {
-//     return (
-//       <div className="wikiShow _flx-1">
-//         <h2>{ this.state.name }</h2>
-//         <p>{ this.state.body }</p>
-//       </div>
-//     )
-//   }
-// }
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var WikiShow = function (_React$Component) {
+  _inherits(WikiShow, _React$Component);
+
+  function WikiShow(props) {
+    _classCallCheck(this, WikiShow);
+
+    var _this = _possibleConstructorReturn(this, (WikiShow.__proto__ || Object.getPrototypeOf(WikiShow)).call(this, props));
+
+    _this.state = {
+      body: _this.props.body
+    };
+    return _this;
+  }
+
+  _createClass(WikiShow, [{
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(nextProps) {
+      this.setState({
+        body: nextProps.body
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var body = this.state.body;
+      var html = this.convertText(body);
+      return _react2.default.createElement(
+        'div',
+        { className: 'wikiShow _flx-1' },
+        html
+      );
+    }
+  }, {
+    key: 'convertText',
+    value: function convertText(src) {
+      var nodes = _wikiParser2.default.parse(src);
+      var lines = nodes.map(function (e, i) {
+        if (e.tag === 'ul') {
+          var lis = e.items.map(function (s, j) {
+            return _react2.default.createElement(
+              'li',
+              { key: 'node' + i + '_' + j },
+              s
+            );
+          });
+          return _react2.default.createElement(
+            'ul',
+            { key: 'node' + i },
+            lis
+          );
+        }
+        if (e.tag === 'a') {
+          return _react2.default.createElement(
+            'div',
+            { key: 'node' + i },
+            _react2.default.createElement(
+              'a',
+              { href: '/wiki/' + e.label },
+              'to ',
+              e.label
+            )
+          );
+        }
+        return _react2.default.createElement(e.tag, { key: 'node' + i }, e.label);
+      });
+      console.log(lines);
+      return lines;
+    }
+  }]);
+
+  return WikiShow;
+}(_react2.default.Component);
+
+exports.default = WikiShow;
 
 /***/ }),
 /* 41 */
@@ -3839,7 +3884,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.wikiDispatcher = undefined;
 
-var _flux = __webpack_require__(109);
+var _flux = __webpack_require__(110);
 
 var wikiDispatcher = exports.wikiDispatcher = new _flux.Dispatcher();
 
@@ -3898,7 +3943,7 @@ var _App = __webpack_require__(59);
 
 var _App2 = _interopRequireDefault(_App);
 
-var _registerServiceWorker = __webpack_require__(122);
+var _registerServiceWorker = __webpack_require__(123);
 
 var _registerServiceWorker2 = _interopRequireDefault(_registerServiceWorker);
 
@@ -24114,13 +24159,13 @@ var _Wiki = __webpack_require__(100);
 
 var _Wiki2 = _interopRequireDefault(_Wiki);
 
-__webpack_require__(114);
+__webpack_require__(115);
 
-__webpack_require__(116);
+__webpack_require__(117);
 
-__webpack_require__(118);
+__webpack_require__(119);
 
-__webpack_require__(120);
+__webpack_require__(121);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -38257,11 +38302,11 @@ var _WikiShow = __webpack_require__(40);
 
 var _WikiShow2 = _interopRequireDefault(_WikiShow);
 
-var _WikiEdit = __webpack_require__(107);
+var _WikiEdit = __webpack_require__(108);
 
 var _WikiEdit2 = _interopRequireDefault(_WikiEdit);
 
-__webpack_require__(112);
+__webpack_require__(113);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -38289,15 +38334,7 @@ var Wiki = function (_React$Component) {
         _react2.default.createElement(
           'div',
           { className: 'wiki' },
-          _react2.default.createElement(
-            'div',
-            { className: 'wikiHeader' },
-            _react2.default.createElement(
-              _reactRouterDom.Link,
-              { to: '/wiki/edit/new' },
-              'Create new'
-            )
-          ),
+          _react2.default.createElement('div', { className: 'wikiHeader' }),
           _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/wiki', component: _WikiList2.default }),
           _react2.default.createElement(_reactRouterDom.Route, { path: '/wiki/edit/:name', component: _WikiEdit2.default })
         )
@@ -38378,6 +38415,15 @@ var WikiList = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         { className: 'wikiList' },
+        _react2.default.createElement(
+          'p',
+          null,
+          _react2.default.createElement(
+            _reactRouterDom.Link,
+            { to: '/wiki/edit/new' },
+            'Create new'
+          )
+        ),
         this.renderWikiItems()
       );
     }
@@ -39508,6 +39554,973 @@ module.exports = function shouldRetry(err, res) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+/*
+ * Generated by PEG.js 0.10.0.
+ *
+ * http://pegjs.org/
+ */
+
+
+
+function peg$subclass(child, parent) {
+  function ctor() {
+    this.constructor = child;
+  }
+  ctor.prototype = parent.prototype;
+  child.prototype = new ctor();
+}
+
+function peg$SyntaxError(message, expected, found, location) {
+  this.message = message;
+  this.expected = expected;
+  this.found = found;
+  this.location = location;
+  this.name = "SyntaxError";
+
+  if (typeof Error.captureStackTrace === "function") {
+    Error.captureStackTrace(this, peg$SyntaxError);
+  }
+}
+
+peg$subclass(peg$SyntaxError, Error);
+
+peg$SyntaxError.buildMessage = function (expected, found) {
+  var DESCRIBE_EXPECTATION_FNS = {
+    literal: function literal(expectation) {
+      return "\"" + literalEscape(expectation.text) + "\"";
+    },
+
+    "class": function _class(expectation) {
+      var escapedParts = "",
+          i;
+
+      for (i = 0; i < expectation.parts.length; i++) {
+        escapedParts += expectation.parts[i] instanceof Array ? classEscape(expectation.parts[i][0]) + "-" + classEscape(expectation.parts[i][1]) : classEscape(expectation.parts[i]);
+      }
+
+      return "[" + (expectation.inverted ? "^" : "") + escapedParts + "]";
+    },
+
+    any: function any(expectation) {
+      return "any character";
+    },
+
+    end: function end(expectation) {
+      return "end of input";
+    },
+
+    other: function other(expectation) {
+      return expectation.description;
+    }
+  };
+
+  function hex(ch) {
+    return ch.charCodeAt(0).toString(16).toUpperCase();
+  }
+
+  function literalEscape(s) {
+    return s.replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\0/g, '\\0').replace(/\t/g, '\\t').replace(/\n/g, '\\n').replace(/\r/g, '\\r').replace(/[\x00-\x0F]/g, function (ch) {
+      return '\\x0' + hex(ch);
+    }).replace(/[\x10-\x1F\x7F-\x9F]/g, function (ch) {
+      return '\\x' + hex(ch);
+    });
+  }
+
+  function classEscape(s) {
+    return s.replace(/\\/g, '\\\\').replace(/\]/g, '\\]').replace(/\^/g, '\\^').replace(/-/g, '\\-').replace(/\0/g, '\\0').replace(/\t/g, '\\t').replace(/\n/g, '\\n').replace(/\r/g, '\\r').replace(/[\x00-\x0F]/g, function (ch) {
+      return '\\x0' + hex(ch);
+    }).replace(/[\x10-\x1F\x7F-\x9F]/g, function (ch) {
+      return '\\x' + hex(ch);
+    });
+  }
+
+  function describeExpectation(expectation) {
+    return DESCRIBE_EXPECTATION_FNS[expectation.type](expectation);
+  }
+
+  function describeExpected(expected) {
+    var descriptions = new Array(expected.length),
+        i,
+        j;
+
+    for (i = 0; i < expected.length; i++) {
+      descriptions[i] = describeExpectation(expected[i]);
+    }
+
+    descriptions.sort();
+
+    if (descriptions.length > 0) {
+      for (i = 1, j = 1; i < descriptions.length; i++) {
+        if (descriptions[i - 1] !== descriptions[i]) {
+          descriptions[j] = descriptions[i];
+          j++;
+        }
+      }
+      descriptions.length = j;
+    }
+
+    switch (descriptions.length) {
+      case 1:
+        return descriptions[0];
+
+      case 2:
+        return descriptions[0] + " or " + descriptions[1];
+
+      default:
+        return descriptions.slice(0, -1).join(", ") + ", or " + descriptions[descriptions.length - 1];
+    }
+  }
+
+  function describeFound(found) {
+    return found ? "\"" + literalEscape(found) + "\"" : "end of input";
+  }
+
+  return "Expected " + describeExpected(expected) + " but " + describeFound(found) + " found.";
+};
+
+function peg$parse(input, options) {
+  options = options !== void 0 ? options : {};
+
+  var peg$FAILED = {},
+      peg$startRuleFunctions = { start: peg$parsestart },
+      peg$startRuleFunction = peg$parsestart,
+      peg$c0 = "*",
+      peg$c1 = peg$literalExpectation("*", false),
+      peg$c2 = peg$anyExpectation(),
+      peg$c3 = function peg$c3(label) {
+    return { tag: "h2", label: label };
+  },
+      peg$c4 = function peg$c4(items) {
+    return { tag: "ul", items: items };
+  },
+      peg$c5 = "-",
+      peg$c6 = peg$literalExpectation("-", false),
+      peg$c7 = /^[^\n]/,
+      peg$c8 = peg$classExpectation(["\n"], true, false),
+      peg$c9 = "\n",
+      peg$c10 = peg$literalExpectation("\n", false),
+      peg$c11 = function peg$c11(label) {
+    return label;
+  },
+      peg$c12 = ">",
+      peg$c13 = peg$literalExpectation(">", false),
+      peg$c14 = function peg$c14(label) {
+    return { tag: "blockquate", label: label };
+  },
+      peg$c15 = "@",
+      peg$c16 = peg$literalExpectation("@", false),
+      peg$c17 = function peg$c17(label) {
+    return { tag: "a", label: label };
+  },
+      peg$c18 = function peg$c18(label) {
+    return { tag: "p", label: label };
+  },
+      peg$c19 = function peg$c19() {
+    return { tag: "p", label: '' };
+  },
+      peg$currPos = 0,
+      peg$savedPos = 0,
+      peg$posDetailsCache = [{ line: 1, column: 1 }],
+      peg$maxFailPos = 0,
+      peg$maxFailExpected = [],
+      peg$silentFails = 0,
+      peg$result;
+
+  if ("startRule" in options) {
+    if (!(options.startRule in peg$startRuleFunctions)) {
+      throw new Error("Can't start parsing from rule \"" + options.startRule + "\".");
+    }
+
+    peg$startRuleFunction = peg$startRuleFunctions[options.startRule];
+  }
+
+  function text() {
+    return input.substring(peg$savedPos, peg$currPos);
+  }
+
+  function location() {
+    return peg$computeLocation(peg$savedPos, peg$currPos);
+  }
+
+  function expected(description, location) {
+    location = location !== void 0 ? location : peg$computeLocation(peg$savedPos, peg$currPos);
+
+    throw peg$buildStructuredError([peg$otherExpectation(description)], input.substring(peg$savedPos, peg$currPos), location);
+  }
+
+  function error(message, location) {
+    location = location !== void 0 ? location : peg$computeLocation(peg$savedPos, peg$currPos);
+
+    throw peg$buildSimpleError(message, location);
+  }
+
+  function peg$literalExpectation(text, ignoreCase) {
+    return { type: "literal", text: text, ignoreCase: ignoreCase };
+  }
+
+  function peg$classExpectation(parts, inverted, ignoreCase) {
+    return { type: "class", parts: parts, inverted: inverted, ignoreCase: ignoreCase };
+  }
+
+  function peg$anyExpectation() {
+    return { type: "any" };
+  }
+
+  function peg$endExpectation() {
+    return { type: "end" };
+  }
+
+  function peg$otherExpectation(description) {
+    return { type: "other", description: description };
+  }
+
+  function peg$computePosDetails(pos) {
+    var details = peg$posDetailsCache[pos],
+        p;
+
+    if (details) {
+      return details;
+    } else {
+      p = pos - 1;
+      while (!peg$posDetailsCache[p]) {
+        p--;
+      }
+
+      details = peg$posDetailsCache[p];
+      details = {
+        line: details.line,
+        column: details.column
+      };
+
+      while (p < pos) {
+        if (input.charCodeAt(p) === 10) {
+          details.line++;
+          details.column = 1;
+        } else {
+          details.column++;
+        }
+
+        p++;
+      }
+
+      peg$posDetailsCache[pos] = details;
+      return details;
+    }
+  }
+
+  function peg$computeLocation(startPos, endPos) {
+    var startPosDetails = peg$computePosDetails(startPos),
+        endPosDetails = peg$computePosDetails(endPos);
+
+    return {
+      start: {
+        offset: startPos,
+        line: startPosDetails.line,
+        column: startPosDetails.column
+      },
+      end: {
+        offset: endPos,
+        line: endPosDetails.line,
+        column: endPosDetails.column
+      }
+    };
+  }
+
+  function peg$fail(expected) {
+    if (peg$currPos < peg$maxFailPos) {
+      return;
+    }
+
+    if (peg$currPos > peg$maxFailPos) {
+      peg$maxFailPos = peg$currPos;
+      peg$maxFailExpected = [];
+    }
+
+    peg$maxFailExpected.push(expected);
+  }
+
+  function peg$buildSimpleError(message, location) {
+    return new peg$SyntaxError(message, null, null, location);
+  }
+
+  function peg$buildStructuredError(expected, found, location) {
+    return new peg$SyntaxError(peg$SyntaxError.buildMessage(expected, found), expected, found, location);
+  }
+
+  function peg$parsestart() {
+    var s0, s1;
+
+    s0 = [];
+    s1 = peg$parsesentence();
+    while (s1 !== peg$FAILED) {
+      s0.push(s1);
+      s1 = peg$parsesentence();
+    }
+
+    return s0;
+  }
+
+  function peg$parsesentence() {
+    var s0;
+
+    s0 = peg$parsetitle();
+    if (s0 === peg$FAILED) {
+      s0 = peg$parselist();
+      if (s0 === peg$FAILED) {
+        s0 = peg$parseblockquate();
+        if (s0 === peg$FAILED) {
+          s0 = peg$parselink();
+          if (s0 === peg$FAILED) {
+            s0 = peg$parsenop();
+            if (s0 === peg$FAILED) {
+              s0 = peg$parsetext();
+              if (s0 === peg$FAILED) {
+                s0 = peg$parseeos();
+              }
+            }
+          }
+        }
+      }
+    }
+
+    return s0;
+  }
+
+  function peg$parsetitle() {
+    var s0, s1, s2, s3, s4, s5, s6;
+
+    s0 = peg$currPos;
+    if (input.charCodeAt(peg$currPos) === 42) {
+      s1 = peg$c0;
+      peg$currPos++;
+    } else {
+      s1 = peg$FAILED;
+      if (peg$silentFails === 0) {
+        peg$fail(peg$c1);
+      }
+    }
+    if (s1 !== peg$FAILED) {
+      s2 = peg$currPos;
+      s3 = [];
+      s4 = peg$currPos;
+      s5 = peg$currPos;
+      peg$silentFails++;
+      s6 = peg$parseEOL();
+      peg$silentFails--;
+      if (s6 === peg$FAILED) {
+        s5 = void 0;
+      } else {
+        peg$currPos = s5;
+        s5 = peg$FAILED;
+      }
+      if (s5 !== peg$FAILED) {
+        if (input.length > peg$currPos) {
+          s6 = input.charAt(peg$currPos);
+          peg$currPos++;
+        } else {
+          s6 = peg$FAILED;
+          if (peg$silentFails === 0) {
+            peg$fail(peg$c2);
+          }
+        }
+        if (s6 !== peg$FAILED) {
+          s5 = [s5, s6];
+          s4 = s5;
+        } else {
+          peg$currPos = s4;
+          s4 = peg$FAILED;
+        }
+      } else {
+        peg$currPos = s4;
+        s4 = peg$FAILED;
+      }
+      if (s4 !== peg$FAILED) {
+        while (s4 !== peg$FAILED) {
+          s3.push(s4);
+          s4 = peg$currPos;
+          s5 = peg$currPos;
+          peg$silentFails++;
+          s6 = peg$parseEOL();
+          peg$silentFails--;
+          if (s6 === peg$FAILED) {
+            s5 = void 0;
+          } else {
+            peg$currPos = s5;
+            s5 = peg$FAILED;
+          }
+          if (s5 !== peg$FAILED) {
+            if (input.length > peg$currPos) {
+              s6 = input.charAt(peg$currPos);
+              peg$currPos++;
+            } else {
+              s6 = peg$FAILED;
+              if (peg$silentFails === 0) {
+                peg$fail(peg$c2);
+              }
+            }
+            if (s6 !== peg$FAILED) {
+              s5 = [s5, s6];
+              s4 = s5;
+            } else {
+              peg$currPos = s4;
+              s4 = peg$FAILED;
+            }
+          } else {
+            peg$currPos = s4;
+            s4 = peg$FAILED;
+          }
+        }
+      } else {
+        s3 = peg$FAILED;
+      }
+      if (s3 !== peg$FAILED) {
+        s2 = input.substring(s2, peg$currPos);
+      } else {
+        s2 = s3;
+      }
+      if (s2 !== peg$FAILED) {
+        s3 = peg$parseEOL();
+        if (s3 !== peg$FAILED) {
+          peg$savedPos = s0;
+          s1 = peg$c3(s2);
+          s0 = s1;
+        } else {
+          peg$currPos = s0;
+          s0 = peg$FAILED;
+        }
+      } else {
+        peg$currPos = s0;
+        s0 = peg$FAILED;
+      }
+    } else {
+      peg$currPos = s0;
+      s0 = peg$FAILED;
+    }
+
+    return s0;
+  }
+
+  function peg$parselist() {
+    var s0, s1;
+
+    s0 = peg$currPos;
+    s1 = peg$parselist_item();
+    if (s1 !== peg$FAILED) {
+      peg$savedPos = s0;
+      s1 = peg$c4(s1);
+    }
+    s0 = s1;
+
+    return s0;
+  }
+
+  function peg$parselist_item() {
+    var s0, s1, s2, s3, s4;
+
+    s0 = peg$currPos;
+    if (input.charCodeAt(peg$currPos) === 45) {
+      s1 = peg$c5;
+      peg$currPos++;
+    } else {
+      s1 = peg$FAILED;
+      if (peg$silentFails === 0) {
+        peg$fail(peg$c6);
+      }
+    }
+    if (s1 !== peg$FAILED) {
+      s2 = peg$currPos;
+      s3 = [];
+      if (peg$c7.test(input.charAt(peg$currPos))) {
+        s4 = input.charAt(peg$currPos);
+        peg$currPos++;
+      } else {
+        s4 = peg$FAILED;
+        if (peg$silentFails === 0) {
+          peg$fail(peg$c8);
+        }
+      }
+      while (s4 !== peg$FAILED) {
+        s3.push(s4);
+        if (peg$c7.test(input.charAt(peg$currPos))) {
+          s4 = input.charAt(peg$currPos);
+          peg$currPos++;
+        } else {
+          s4 = peg$FAILED;
+          if (peg$silentFails === 0) {
+            peg$fail(peg$c8);
+          }
+        }
+      }
+      if (s3 !== peg$FAILED) {
+        s2 = input.substring(s2, peg$currPos);
+      } else {
+        s2 = s3;
+      }
+      if (s2 !== peg$FAILED) {
+        if (input.charCodeAt(peg$currPos) === 10) {
+          s3 = peg$c9;
+          peg$currPos++;
+        } else {
+          s3 = peg$FAILED;
+          if (peg$silentFails === 0) {
+            peg$fail(peg$c10);
+          }
+        }
+        if (s3 !== peg$FAILED) {
+          peg$savedPos = s0;
+          s1 = peg$c11(s2);
+          s0 = s1;
+        } else {
+          peg$currPos = s0;
+          s0 = peg$FAILED;
+        }
+      } else {
+        peg$currPos = s0;
+        s0 = peg$FAILED;
+      }
+    } else {
+      peg$currPos = s0;
+      s0 = peg$FAILED;
+    }
+
+    return s0;
+  }
+
+  function peg$parseblockquate() {
+    var s0, s1, s2, s3, s4, s5, s6;
+
+    s0 = peg$currPos;
+    if (input.charCodeAt(peg$currPos) === 62) {
+      s1 = peg$c12;
+      peg$currPos++;
+    } else {
+      s1 = peg$FAILED;
+      if (peg$silentFails === 0) {
+        peg$fail(peg$c13);
+      }
+    }
+    if (s1 !== peg$FAILED) {
+      s2 = peg$currPos;
+      s3 = [];
+      s4 = peg$currPos;
+      s5 = peg$currPos;
+      peg$silentFails++;
+      s6 = peg$parseEOL();
+      peg$silentFails--;
+      if (s6 === peg$FAILED) {
+        s5 = void 0;
+      } else {
+        peg$currPos = s5;
+        s5 = peg$FAILED;
+      }
+      if (s5 !== peg$FAILED) {
+        if (input.length > peg$currPos) {
+          s6 = input.charAt(peg$currPos);
+          peg$currPos++;
+        } else {
+          s6 = peg$FAILED;
+          if (peg$silentFails === 0) {
+            peg$fail(peg$c2);
+          }
+        }
+        if (s6 !== peg$FAILED) {
+          s5 = [s5, s6];
+          s4 = s5;
+        } else {
+          peg$currPos = s4;
+          s4 = peg$FAILED;
+        }
+      } else {
+        peg$currPos = s4;
+        s4 = peg$FAILED;
+      }
+      if (s4 !== peg$FAILED) {
+        while (s4 !== peg$FAILED) {
+          s3.push(s4);
+          s4 = peg$currPos;
+          s5 = peg$currPos;
+          peg$silentFails++;
+          s6 = peg$parseEOL();
+          peg$silentFails--;
+          if (s6 === peg$FAILED) {
+            s5 = void 0;
+          } else {
+            peg$currPos = s5;
+            s5 = peg$FAILED;
+          }
+          if (s5 !== peg$FAILED) {
+            if (input.length > peg$currPos) {
+              s6 = input.charAt(peg$currPos);
+              peg$currPos++;
+            } else {
+              s6 = peg$FAILED;
+              if (peg$silentFails === 0) {
+                peg$fail(peg$c2);
+              }
+            }
+            if (s6 !== peg$FAILED) {
+              s5 = [s5, s6];
+              s4 = s5;
+            } else {
+              peg$currPos = s4;
+              s4 = peg$FAILED;
+            }
+          } else {
+            peg$currPos = s4;
+            s4 = peg$FAILED;
+          }
+        }
+      } else {
+        s3 = peg$FAILED;
+      }
+      if (s3 !== peg$FAILED) {
+        s2 = input.substring(s2, peg$currPos);
+      } else {
+        s2 = s3;
+      }
+      if (s2 !== peg$FAILED) {
+        s3 = peg$parseEOL();
+        if (s3 !== peg$FAILED) {
+          peg$savedPos = s0;
+          s1 = peg$c14(s2);
+          s0 = s1;
+        } else {
+          peg$currPos = s0;
+          s0 = peg$FAILED;
+        }
+      } else {
+        peg$currPos = s0;
+        s0 = peg$FAILED;
+      }
+    } else {
+      peg$currPos = s0;
+      s0 = peg$FAILED;
+    }
+
+    return s0;
+  }
+
+  function peg$parselink() {
+    var s0, s1, s2, s3, s4;
+
+    s0 = peg$currPos;
+    if (input.charCodeAt(peg$currPos) === 64) {
+      s1 = peg$c15;
+      peg$currPos++;
+    } else {
+      s1 = peg$FAILED;
+      if (peg$silentFails === 0) {
+        peg$fail(peg$c16);
+      }
+    }
+    if (s1 !== peg$FAILED) {
+      s2 = peg$currPos;
+      s3 = [];
+      if (peg$c7.test(input.charAt(peg$currPos))) {
+        s4 = input.charAt(peg$currPos);
+        peg$currPos++;
+      } else {
+        s4 = peg$FAILED;
+        if (peg$silentFails === 0) {
+          peg$fail(peg$c8);
+        }
+      }
+      if (s4 !== peg$FAILED) {
+        while (s4 !== peg$FAILED) {
+          s3.push(s4);
+          if (peg$c7.test(input.charAt(peg$currPos))) {
+            s4 = input.charAt(peg$currPos);
+            peg$currPos++;
+          } else {
+            s4 = peg$FAILED;
+            if (peg$silentFails === 0) {
+              peg$fail(peg$c8);
+            }
+          }
+        }
+      } else {
+        s3 = peg$FAILED;
+      }
+      if (s3 !== peg$FAILED) {
+        s2 = input.substring(s2, peg$currPos);
+      } else {
+        s2 = s3;
+      }
+      if (s2 !== peg$FAILED) {
+        if (input.charCodeAt(peg$currPos) === 10) {
+          s3 = peg$c9;
+          peg$currPos++;
+        } else {
+          s3 = peg$FAILED;
+          if (peg$silentFails === 0) {
+            peg$fail(peg$c10);
+          }
+        }
+        if (s3 !== peg$FAILED) {
+          peg$savedPos = s0;
+          s1 = peg$c17(s2);
+          s0 = s1;
+        } else {
+          peg$currPos = s0;
+          s0 = peg$FAILED;
+        }
+      } else {
+        peg$currPos = s0;
+        s0 = peg$FAILED;
+      }
+    } else {
+      peg$currPos = s0;
+      s0 = peg$FAILED;
+    }
+
+    return s0;
+  }
+
+  function peg$parsetext() {
+    var s0, s1, s2, s3, s4, s5;
+
+    s0 = peg$currPos;
+    s1 = peg$currPos;
+    s2 = [];
+    s3 = peg$currPos;
+    s4 = peg$currPos;
+    peg$silentFails++;
+    s5 = peg$parseEOL();
+    peg$silentFails--;
+    if (s5 === peg$FAILED) {
+      s4 = void 0;
+    } else {
+      peg$currPos = s4;
+      s4 = peg$FAILED;
+    }
+    if (s4 !== peg$FAILED) {
+      if (input.length > peg$currPos) {
+        s5 = input.charAt(peg$currPos);
+        peg$currPos++;
+      } else {
+        s5 = peg$FAILED;
+        if (peg$silentFails === 0) {
+          peg$fail(peg$c2);
+        }
+      }
+      if (s5 !== peg$FAILED) {
+        s4 = [s4, s5];
+        s3 = s4;
+      } else {
+        peg$currPos = s3;
+        s3 = peg$FAILED;
+      }
+    } else {
+      peg$currPos = s3;
+      s3 = peg$FAILED;
+    }
+    if (s3 !== peg$FAILED) {
+      while (s3 !== peg$FAILED) {
+        s2.push(s3);
+        s3 = peg$currPos;
+        s4 = peg$currPos;
+        peg$silentFails++;
+        s5 = peg$parseEOL();
+        peg$silentFails--;
+        if (s5 === peg$FAILED) {
+          s4 = void 0;
+        } else {
+          peg$currPos = s4;
+          s4 = peg$FAILED;
+        }
+        if (s4 !== peg$FAILED) {
+          if (input.length > peg$currPos) {
+            s5 = input.charAt(peg$currPos);
+            peg$currPos++;
+          } else {
+            s5 = peg$FAILED;
+            if (peg$silentFails === 0) {
+              peg$fail(peg$c2);
+            }
+          }
+          if (s5 !== peg$FAILED) {
+            s4 = [s4, s5];
+            s3 = s4;
+          } else {
+            peg$currPos = s3;
+            s3 = peg$FAILED;
+          }
+        } else {
+          peg$currPos = s3;
+          s3 = peg$FAILED;
+        }
+      }
+    } else {
+      s2 = peg$FAILED;
+    }
+    if (s2 !== peg$FAILED) {
+      s1 = input.substring(s1, peg$currPos);
+    } else {
+      s1 = s2;
+    }
+    if (s1 !== peg$FAILED) {
+      s2 = peg$parseEOL();
+      if (s2 !== peg$FAILED) {
+        peg$savedPos = s0;
+        s1 = peg$c18(s1);
+        s0 = s1;
+      } else {
+        peg$currPos = s0;
+        s0 = peg$FAILED;
+      }
+    } else {
+      peg$currPos = s0;
+      s0 = peg$FAILED;
+    }
+
+    return s0;
+  }
+
+  function peg$parsenop() {
+    var s0, s1, s2;
+
+    s0 = peg$currPos;
+    s1 = [];
+    if (input.charCodeAt(peg$currPos) === 10) {
+      s2 = peg$c9;
+      peg$currPos++;
+    } else {
+      s2 = peg$FAILED;
+      if (peg$silentFails === 0) {
+        peg$fail(peg$c10);
+      }
+    }
+    if (s2 !== peg$FAILED) {
+      while (s2 !== peg$FAILED) {
+        s1.push(s2);
+        if (input.charCodeAt(peg$currPos) === 10) {
+          s2 = peg$c9;
+          peg$currPos++;
+        } else {
+          s2 = peg$FAILED;
+          if (peg$silentFails === 0) {
+            peg$fail(peg$c10);
+          }
+        }
+      }
+    } else {
+      s1 = peg$FAILED;
+    }
+    if (s1 !== peg$FAILED) {
+      peg$savedPos = s0;
+      s1 = peg$c19();
+    }
+    s0 = s1;
+
+    return s0;
+  }
+
+  function peg$parseeos() {
+    var s0, s1, s2, s3;
+
+    s0 = peg$currPos;
+    s1 = peg$currPos;
+    s2 = [];
+    if (input.length > peg$currPos) {
+      s3 = input.charAt(peg$currPos);
+      peg$currPos++;
+    } else {
+      s3 = peg$FAILED;
+      if (peg$silentFails === 0) {
+        peg$fail(peg$c2);
+      }
+    }
+    if (s3 !== peg$FAILED) {
+      while (s3 !== peg$FAILED) {
+        s2.push(s3);
+        if (input.length > peg$currPos) {
+          s3 = input.charAt(peg$currPos);
+          peg$currPos++;
+        } else {
+          s3 = peg$FAILED;
+          if (peg$silentFails === 0) {
+            peg$fail(peg$c2);
+          }
+        }
+      }
+    } else {
+      s2 = peg$FAILED;
+    }
+    if (s2 !== peg$FAILED) {
+      s1 = input.substring(s1, peg$currPos);
+    } else {
+      s1 = s2;
+    }
+    if (s1 !== peg$FAILED) {
+      peg$savedPos = s0;
+      s1 = peg$c18(s1);
+    }
+    s0 = s1;
+
+    return s0;
+  }
+
+  function peg$parseEOL() {
+    var s0, s1, s2;
+
+    s0 = peg$currPos;
+    if (input.charCodeAt(peg$currPos) === 10) {
+      s1 = peg$c9;
+      peg$currPos++;
+    } else {
+      s1 = peg$FAILED;
+      if (peg$silentFails === 0) {
+        peg$fail(peg$c10);
+      }
+    }
+    if (s1 !== peg$FAILED) {
+      if (input.charCodeAt(peg$currPos) === 10) {
+        s2 = peg$c9;
+        peg$currPos++;
+      } else {
+        s2 = peg$FAILED;
+        if (peg$silentFails === 0) {
+          peg$fail(peg$c10);
+        }
+      }
+      if (s2 !== peg$FAILED) {
+        s1 = [s1, s2];
+        s0 = s1;
+      } else {
+        peg$currPos = s0;
+        s0 = peg$FAILED;
+      }
+    } else {
+      peg$currPos = s0;
+      s0 = peg$FAILED;
+    }
+
+    return s0;
+  }
+
+  peg$result = peg$startRuleFunction();
+
+  if (peg$result !== peg$FAILED && peg$currPos === input.length) {
+    return peg$result;
+  } else {
+    if (peg$result !== peg$FAILED && peg$currPos < input.length) {
+      peg$fail(peg$endExpectation());
+    }
+
+    throw peg$buildStructuredError(peg$maxFailExpected, peg$maxFailPos < input.length ? input.charAt(peg$maxFailPos) : null, peg$maxFailPos < input.length ? peg$computeLocation(peg$maxFailPos, peg$maxFailPos + 1) : peg$computeLocation(peg$maxFailPos, peg$maxFailPos));
+  }
+}
+
+module.exports = {
+  SyntaxError: peg$SyntaxError,
+  parse: peg$parse
+};
+
+/***/ }),
+/* 108 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 
 
 Object.defineProperty(exports, "__esModule", {
@@ -39526,13 +40539,19 @@ var _superagent2 = _interopRequireDefault(_superagent);
 
 var _reactRouterDom = __webpack_require__(9);
 
-var _wikiStores = __webpack_require__(108);
+var _wikiStores = __webpack_require__(109);
 
-var _WikiEditForm = __webpack_require__(111);
+var _WikiEditHeader = __webpack_require__(124);
+
+var _WikiEditHeader2 = _interopRequireDefault(_WikiEditHeader);
+
+var _WikiEditForm = __webpack_require__(112);
 
 var _WikiEditForm2 = _interopRequireDefault(_WikiEditForm);
 
 var _WikiShow = __webpack_require__(40);
+
+var _WikiShow2 = _interopRequireDefault(_WikiShow);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -39575,7 +40594,8 @@ var WikiEdit = function (_React$Component) {
         this.setState({ name: '' });
         return;
       }
-      _superagent2.default.get('/api/wiki/get/' + this.state.name).end(function (err, res) {
+      var queryName = this.state.name;
+      _superagent2.default.get('/api/wiki/get/' + queryName).end(function (err, res) {
         if (err) return;
         _this2.setState({
           body: res.body.data.body
@@ -39587,11 +40607,11 @@ var WikiEdit = function (_React$Component) {
     value: function save() {
       var _this3 = this;
 
-      var wikiname = this.state.name;
-      var body = this.state.body;
-      _superagent2.default.post('/api/wiki/post/' + wikiname).type('form').send({
-        name: wikiname,
-        body: body
+      var saveName = this.state.name;
+      var saveBody = this.state.body;
+      _superagent2.default.post('/api/wiki/post/' + saveName).type('form').send({
+        name: saveName,
+        body: saveBody
       }).end(function (err, data) {
         if (err) {
           console.log(err);
@@ -39608,18 +40628,17 @@ var WikiEdit = function (_React$Component) {
       if (this.state.jump !== '') {
         return _react2.default.createElement(_reactRouterDom.Redirect, { to: this.state.jump });
       }
+      var propName = this.state.name;
+      var propBody = this.state.body;
       return _react2.default.createElement(
         'div',
         { className: 'wikiEdit' },
+        _react2.default.createElement(_WikiEditHeader2.default, { name: propName }),
         _react2.default.createElement(
           'div',
           { className: 'wikiEditor _flx' },
-          _react2.default.createElement(_WikiEditForm2.default, {
-            name: this.state.name,
-            body: this.state.body }),
-          _react2.default.createElement(_WikiShow.WikiShow, {
-            name: this.state.name,
-            body: this.state.body })
+          _react2.default.createElement(_WikiEditForm2.default, { body: propBody }),
+          _react2.default.createElement(_WikiShow2.default, { body: propBody })
         ),
         _react2.default.createElement(
           'div',
@@ -39642,7 +40661,7 @@ var WikiEdit = function (_React$Component) {
 exports.default = WikiEdit;
 
 /***/ }),
-/* 108 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39672,7 +40691,7 @@ _wikiDispatcher.wikiDispatcher.register(function (payload) {
 });
 
 /***/ }),
-/* 109 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -39684,11 +40703,11 @@ _wikiDispatcher.wikiDispatcher.register(function (payload) {
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
-module.exports.Dispatcher = __webpack_require__(110);
+module.exports.Dispatcher = __webpack_require__(111);
 
 
 /***/ }),
-/* 110 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39926,7 +40945,7 @@ module.exports = Dispatcher;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 111 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39970,11 +40989,6 @@ var WikiEditForm = function (_React$Component) {
   }
 
   _createClass(WikiEditForm, [{
-    key: 'nameChanged',
-    value: function nameChanged(e) {
-      _wikiActions.Actions.changeName(e.target.value);
-    }
-  }, {
     key: 'bodyChanged',
     value: function bodyChanged(e) {
       _wikiActions.Actions.changeBody(e.target.value);
@@ -39995,13 +41009,8 @@ var WikiEditForm = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         { className: 'wikiEditForm _flx-1' },
-        _react2.default.createElement('input', { type: 'text',
-          value: this.state.name,
-          onChange: function onChange(e) {
-            return _this2.nameChanged(e);
-          } }),
-        _react2.default.createElement('br', null),
-        _react2.default.createElement('textarea', { rows: 12, cols: 60,
+        _react2.default.createElement('textarea', { className: 'editorTextarea _nobdr _fs-16',
+          rows: 12, cols: 60,
           value: this.state.body,
           onChange: function onChange(e) {
             return _this2.bodyChanged(e);
@@ -40017,13 +41026,13 @@ var WikiEditForm = function (_React$Component) {
 exports.default = WikiEditForm;
 
 /***/ }),
-/* 112 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(113);
+var content = __webpack_require__(114);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -40048,7 +41057,7 @@ if(false) {
 }
 
 /***/ }),
-/* 113 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(7)(undefined);
@@ -40056,19 +41065,19 @@ exports = module.exports = __webpack_require__(7)(undefined);
 
 
 // module
-exports.push([module.i, ".wiki {\n  height: 100%; }\n\n.wikiItem .itemLeft {\n  width: 100px;\n  height: 100px; }\n  .wikiItem .itemLeft .itemThumbnail {\n    width: 100px;\n    height: 100px;\n    background: url(" + __webpack_require__(37) + ");\n    background-size: contain;\n    background-repeat: no-repeat;\n    background-position: center; }\n\n.wikiItem .itemMain .itemOperational a {\n  margin-right: .5rem; }\n\n.wikiEdit {\n  height: 95%; }\n  .wikiEdit .wikiEditor {\n    height: calc(100% - 80px); }\n  .wikiEdit .wikiEditFooter {\n    width: 100%;\n    height: 80px;\n    background-color: #aaa;\n    text-align: right; }\n\n.wikiEditForm {\n  height: 100%;\n  text-align: center;\n  background-color: #eee; }\n\n.wikiShow {\n  height: 100%;\n  background-color: #ccc;\n  text-align: center; }\n", ""]);
+exports.push([module.i, ".wiki {\n  height: 100%; }\n\n.wikiItem .itemLeft {\n  width: 100px;\n  height: 100px; }\n  .wikiItem .itemLeft .itemThumbnail {\n    width: 100px;\n    height: 100px;\n    background: url(" + __webpack_require__(37) + ");\n    background-size: contain;\n    background-repeat: no-repeat;\n    background-position: center; }\n\n.wikiItem .itemMain .itemOperational a {\n  margin-right: .5rem; }\n\n.wikiEdit {\n  position: relative;\n  height: 100%; }\n  .wikiEdit .wikiEditHeader {\n    padding: .5rem; }\n    .wikiEdit .wikiEditHeader .editorTitle {\n      width: 100%;\n      box-sizing: border-box; }\n  .wikiEdit .wikiEditor {\n    height: 85%;\n    padding: .5rem;\n    border: 1px solid #eee; }\n  .wikiEdit .wikiEditFooter {\n    position: absolute;\n    bottom: 0;\n    left: 0;\n    width: 100%;\n    height: 50px;\n    background-color: #aaa;\n    text-align: right; }\n\n.wikiEditForm {\n  height: 100%;\n  text-align: center;\n  background-color: #eee;\n  box-sizing: border-box; }\n  .wikiEditForm .editorTextarea {\n    width: 100%;\n    height: 100%;\n    box-sizing: border-box; }\n\n.wikiShow {\n  height: 100%;\n  padding: .5rem;\n  border-left: 1px solid #eee;\n  text-align: left; }\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 114 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(115);
+var content = __webpack_require__(116);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -40093,7 +41102,7 @@ if(false) {
 }
 
 /***/ }),
-/* 115 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(7)(undefined);
@@ -40101,19 +41110,19 @@ exports = module.exports = __webpack_require__(7)(undefined);
 
 
 // module
-exports.push([module.i, "html, body {\n  width: 100%;\n  height: 100%;\n  padding: 0;\n  margin: 0;\n  box-sizing: border-box;\n  font-family: avenir; }\n\nh1, h2, h3, h4, h5, h6, p, span, a, input[text], textarea {\n  padding: 0;\n  margin: 0;\n  font-weight: 400; }\n\na {\n  color: #80d8f7;\n  text-decoration: none; }\n  a:visited {\n    color: #80d8f7; }\n", ""]);
+exports.push([module.i, "html, body {\n  width: 100%;\n  height: 100%;\n  padding: 0;\n  margin: 0;\n  box-sizing: border-box;\n  font-family: avenir; }\n  html div, body div {\n    box-sizing: border-box; }\n\nh1, h2, h3, h4, h5, h6, p, span, a, input[type=\"text\"], textarea {\n  padding: 0;\n  margin: 0;\n  font-weight: 300; }\n\na {\n  color: #80d8f7;\n  text-decoration: none; }\n  a:visited {\n    color: #80d8f7; }\n\ninput[type=\"text\"], textarea {\n  border: 1px solid #ccc; }\n\ntextarea {\n  padding: .5rem; }\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 116 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(117);
+var content = __webpack_require__(118);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -40138,7 +41147,7 @@ if(false) {
 }
 
 /***/ }),
-/* 117 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(7)(undefined);
@@ -40146,19 +41155,19 @@ exports = module.exports = __webpack_require__(7)(undefined);
 
 
 // module
-exports.push([module.i, "._flx {\n  display: flex;\n  width: 100%; }\n\n._flx-1 {\n  flex: 1; }\n\n._row {\n  flex-flow: row wrap; }\n\n._col {\n  flex-flow: column wrap; }\n\n._jc {\n  justify-content: center;\n  align-items: center; }\n\n._hid {\n  display: none; }\n\n._bg_cover {\n  background-size: contain;\n  background-position: center;\n  background-repeat: no-repeat; }\n\n.loading-wrap {\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  position: absolute;\n  background-color: rgba(0, 0, 0, 0.3);\n  z-index: 100; }\n", ""]);
+exports.push([module.i, "._flx {\n  display: flex;\n  width: 100%; }\n\n._flx-1 {\n  flex: 1; }\n\n._row {\n  flex-flow: row wrap; }\n\n._col {\n  flex-flow: column wrap; }\n\n._jc {\n  justify-content: center;\n  align-items: center; }\n\n._hid {\n  display: none; }\n\n._nobdr {\n  border: none; }\n\n._bg_cover {\n  background-size: contain;\n  background-position: center;\n  background-repeat: no-repeat; }\n\n._fs-16 {\n  font-size: 16px; }\n\n._fs-20 {\n  font-size: 20px; }\n\n._fs-36 {\n  font-size: 36px; }\n\n.loading-wrap {\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  position: absolute;\n  background-color: rgba(0, 0, 0, 0.3);\n  z-index: 100; }\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 118 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(119);
+var content = __webpack_require__(120);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -40183,7 +41192,7 @@ if(false) {
 }
 
 /***/ }),
-/* 119 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(7)(undefined);
@@ -40197,13 +41206,13 @@ exports.push([module.i, "@charset \"UTF-8\";\n@font-face {\n  font-family: 'Mate
 
 
 /***/ }),
-/* 120 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(121);
+var content = __webpack_require__(122);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -40228,7 +41237,7 @@ if(false) {
 }
 
 /***/ }),
-/* 121 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(7)(undefined);
@@ -40236,13 +41245,13 @@ exports = module.exports = __webpack_require__(7)(undefined);
 
 
 // module
-exports.push([module.i, "#root {\n  width: 100%;\n  height: 100%; }\n\n.serviceField {\n  width: 100%;\n  height: 100%;\n  box-sizing: border-box;\n  position: relative; }\n\n.serviceLeft {\n  height: 100%;\n  width: 80px;\n  box-sizing: border-box; }\n\n.serviceMain {\n  flex: 1;\n  height: 100%;\n  padding: 0 1rem;\n  box-sizing: border-box; }\n  .serviceMain .serviceHeader {\n    height: 55px; }\n  .serviceMain .serviceContent {\n    height: calc(100% - 55px); }\n", ""]);
+exports.push([module.i, "#root {\n  width: 100%;\n  height: 100%; }\n\n.serviceField {\n  width: 100%;\n  height: 100%;\n  box-sizing: border-box;\n  position: relative; }\n\n.serviceLeft {\n  height: 100%;\n  width: 80px;\n  box-sizing: border-box; }\n\n.serviceMain {\n  flex: 1;\n  height: 100%;\n  box-sizing: border-box; }\n  .serviceMain .serviceHeader {\n    height: 55px;\n    padding: .5rem;\n    border-bottom: 1px solid #eee; }\n  .serviceMain .serviceContent {\n    height: calc(100% - 55px); }\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 122 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40348,6 +41357,86 @@ function unregister() {
   }
 }
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+
+/***/ }),
+/* 124 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _wikiActions = __webpack_require__(42);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var WikiEditHeader = function (_React$Component) {
+  _inherits(WikiEditHeader, _React$Component);
+
+  function WikiEditHeader(props) {
+    _classCallCheck(this, WikiEditHeader);
+
+    var _this = _possibleConstructorReturn(this, (WikiEditHeader.__proto__ || Object.getPrototypeOf(WikiEditHeader)).call(this, props));
+
+    _this.state = {
+      name: _this.props.name
+    };
+    return _this;
+  }
+
+  _createClass(WikiEditHeader, [{
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(nextProps) {
+      this.setState({
+        name: nextProps.name
+      });
+    }
+  }, {
+    key: 'handleChange',
+    value: function handleChange(e) {
+      _wikiActions.Actions.changeName(e.target.value);
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      return _react2.default.createElement(
+        'div',
+        { className: 'wikiEditHeader' },
+        _react2.default.createElement(
+          'p',
+          null,
+          'Title'
+        ),
+        _react2.default.createElement('input', { className: 'editorTitle _fs-36',
+          value: this.state.name,
+          onChange: function onChange(e) {
+            return _this2.handleChange(e);
+          } })
+      );
+    }
+  }]);
+
+  return WikiEditHeader;
+}(_react2.default.Component);
+
+exports.default = WikiEditHeader;
 
 /***/ })
 /******/ ]);
