@@ -1,34 +1,49 @@
 import React from 'react'
+import WikiParser from './parser/wikiParser.js'
 
-export const WikiShow = (props) => {
-  return (
-    <div className="wikiShow _flx-1">
-      <h2>{ props.name }</h2>
-      <p>{ props.body}</p>
-    </div>
-  )
+export default class WikiShow extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      body: this.props.body
+    }
+  }
+  componentWillReceiveProps (nextProps) {
+    this.setState({
+      body: nextProps.body
+    })
+  }
+  render () {
+    const body = this.state.body
+    const html = this.convertText(body)
+    return (
+      <div className="wikiShow _flx-1">
+        { html }
+      </div>
+    )
+  }
+  convertText (src) {
+    const nodes = WikiParser.parse(src)
+    const lines = nodes.map((e,i) => {
+      if (e.tag === 'ul') {
+        const lis = e.items.map(
+          (s,j) => <li key={`node${i}_${j}`}>{s}</li>
+        )
+        return <ul key={`node${i}`}>{lis}</ul>
+      }
+      if (e.tag === 'a') {
+        return (
+          <div key={`node${i}`}>
+            <a href={`/wiki/${e.label}`}>to {e.label}</a>
+          </div>
+        )
+      }
+      return React.createElement(
+        e.tag, { key: `node${i}`}, e.label
+      )
+    })
+    console.log(lines)
+    return lines
+  }
 }
 
-// export default class WikiShow extends React.Component {
-//   constructor (props) {
-//     super(props)
-//     this.state = {
-//       name: '',
-//       body: ''
-//     }
-//   }
-//   componentWillReceiveProps (nextProps) {
-//     this.setState({
-//       name: nextProps.name,
-//       body: nextProps.body
-//     })
-//   }
-//   render () {
-//     return (
-//       <div className="wikiShow _flx-1">
-//         <h2>{ this.state.name }</h2>
-//         <p>{ this.state.body }</p>
-//       </div>
-//     )
-//   }
-// } 

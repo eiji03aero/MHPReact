@@ -11,9 +11,6 @@ export default class WikiEditForm extends React.Component {
       body: body,
     }
   }
-  nameChanged (e) {
-    Actions.changeName(e.target.value)
-  }
   bodyChanged (e) {
     Actions.changeBody(e.target.value)
   }
@@ -26,10 +23,8 @@ export default class WikiEditForm extends React.Component {
   render () {
     return (
       <div className="wikiEditForm _flx-1">
-        <input type="text" 
-          value={this.state.name}
-          onChange={e => this.nameChanged(e)} /><br />
-        <textarea rows={12} cols={60}
+        <textarea className="editorTextarea _nobdr _fs-16"
+          rows={12} cols={60}
           value={this.state.body}
           onChange={e => this.bodyChanged(e)} /><br />
       </div>

@@ -5,12 +5,15 @@ html, body {
   margin: 0;
   box-sizing: border-box;
   font-family: avenir;
+  div {
+    box-sizing: border-box;
+  }
 }
 
-h1,h2,h3,h4,h5,h6,p,span,a,input[text],textarea {
+h1,h2,h3,h4,h5,h6,p,span,a,input[type="text"],textarea {
   padding: 0;
   margin: 0;
-  font-weight: 400;
+  font-weight: 300;
 }
 
 a {
@@ -19,4 +22,12 @@ a {
   &:visited {
     color: #80d8f7;
   }
+}
+
+input[type="text"], textarea {
+  border: 1px solid #ccc;
+}
+
+textarea {
+  padding: .5rem;
 }
