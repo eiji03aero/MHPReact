@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 const collection = require('../mongoDataBase.js')
+const Wiki = require('../models/wikiModel.js')
 const COL = ('mhp')
 
 router.get('/show', (req,res) => {
