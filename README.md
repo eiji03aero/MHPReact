@@ -1,5 +1,5 @@
-##My Home Page React!
+## My Home Page React!
 
-##Database
+## Database
 make db first
   -> use mhp
