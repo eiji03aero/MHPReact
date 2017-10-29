@@ -1,25 +1,23 @@
 const express    = require('express')
 const path       = require('path')
 const bodyParser = require('body-parser')
-const cors       = require('cors')
 
 const app        = express()
 const portNo     = 3000
 
-const api = require('./routes/api.js')
+const apiWiki = require('./routes/apiWiki.js')
 
 // Middlewares
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.urlencoded({ extended: true }))
-app.use(cors())
 
-// Automatically response
+// Automatically respond to serve public dir
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'))
 })
 
 // Routings
-app.use('/api', api)
+app.use('/api/wiki', apiWiki)
 
 // Error Handling
 app.use((err, req, res, next) => {

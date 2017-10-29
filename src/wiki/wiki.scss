@@ -26,6 +26,15 @@
 
 .wikiEdit {
   height: 95%;
+  .wikiEditor {
+    height: calc(100% - 80px);
+  }
+  .wikiEditFooter {
+    width: 100%;
+    height: 80px;
+    background-color: #aaa;
+    text-align: right;
+  }
 }
 
 .wikiEditForm {
@@ -36,6 +45,6 @@
 
 .wikiShow {
   height: 100%;
-  background-color: #aaa;
+  background-color: #ccc;
   text-align: center;
 }

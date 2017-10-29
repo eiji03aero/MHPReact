@@ -4,10 +4,9 @@ const router = express.Router()
 const collection = require('../mongoDataBase.js')
 const COL = ('mhp')
 
-router.get('/wiki/show', (req,res) => {
-  collection(COL).find({}, (err,docs) => {
+router.get('/show', (req,res) => {
+  collection(COL).find().toArray((err,docs) => {
     if (err) {
-      console.log('smth happened')
       res.json({ status: false, err: err })
       return
     }
@@ -16,8 +15,7 @@ router.get('/wiki/show', (req,res) => {
   })
 })
 
-
-router.get('/wiki/get/:wikiname', (req,res) => {
+router.get('/get/:wikiname', (req,res) => {
   const wikiname = req.params.wikiname
   collection(COL).findOne({ name: wikiname }, (err,doc) => {
     if (err) {
@@ -29,7 +27,7 @@ router.get('/wiki/get/:wikiname', (req,res) => {
   })
 })
 
-router.post('/wiki/post/:wikiname', (req,res) => {
+router.post('/post/:wikiname', (req,res) => {
   const wikiname = req.params.wikiname
   let body
   collection(COL).findOne({ name: wikiname }, (err,doc) => {
