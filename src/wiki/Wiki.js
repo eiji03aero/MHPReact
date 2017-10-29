@@ -15,10 +15,10 @@ export default class Wiki extends React.Component {
       <Router>
         <div className="wiki">
           <div className="wikiHeader">
-            <Link to="/wiki/form/new">Create new</Link>
+            <Link to="/wiki/edit/new">Create new</Link>
           </div>
           <Route exact path="/wiki" component={ WikiList } />
-          <Route path="/wiki/form/:name" component={ WikiEdit } />
+          <Route path="/wiki/edit/:name" component={ WikiEdit } />
         </div>
       </Router>
     )

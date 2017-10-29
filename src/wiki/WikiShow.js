@@ -2,10 +2,9 @@ import React from 'react'
 
 export const WikiShow = (props) => {
   return (
-    <div classname="wikiShow _flx-1">
+    <div className="wikiShow _flx-1">
       <h2>{ props.name }</h2>
       <p>{ props.body}</p>
-      <p>iine!</p>
     </div>
   )
 }

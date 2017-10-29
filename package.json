@@ -25,7 +25,7 @@
   "scripts": {
     "start": "node ./server.js & mongod",
     "build": "webpack",
-    "dev": "node ./server.js & webpack -w & mongod"
+    "dev": "node ./server.js & webpack -w"
   },
   "main": "index.js",
   "repository": {

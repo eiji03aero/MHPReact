@@ -1,7 +1,8 @@
 import React from 'react'
 import request from 'superagent'
+import { Link } from 'react-router-dom'
 
-const wikiListUrl ='/api/wiki/show/list'
+const wikiListUrl ='/api/wiki/show'
 
 export default class WikiList extends React.Component {
   constructor (props) {
@@ -50,7 +51,7 @@ const WikiItem = (props) => {
           <p>{ props.body }</p>
         </div>
         <div className="itemOperational">
-          <a href="#">edit</a>
+          <Link to={`/wiki/edit/${props.name}`}>edit</Link>
           <a href="#">del</a>
         </div>
       </div>
