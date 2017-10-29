@@ -1,13 +1,14 @@
 import React from 'react'
 import request from 'superagent'
 
-import './wiki.scss'
-
-const wikiListUrl ='/api/wiki/show'
+const wikiListUrl ='/api/wiki/show/list'
 
 export default class WikiList extends React.Component {
   constructor (props) {
     super(props)
+    this.state = {
+      lists: []
+    }
   }
   componentWillMount () {
     request
@@ -17,26 +18,27 @@ export default class WikiList extends React.Component {
           console.log(err)
           return
         }
-        console.log(data)
+        this.setState({
+          lists: res.body.data
+        })
       })
   }
   render () {
     return (
       <div className="wikiList">
-        { this.renderWikiItems(3) }
+        { this.renderWikiItems() }
       </div>
     )
   }
-  renderWikiItems (num) {
-    const items = []
-    for (let i=0; i < num; i += 1) {
-      items.push(<WikiItem key={i} />)
-    }
-    return items 
+  renderWikiItems () {
+    const wikiLists = this.state.lists.map((wiki) => {
+      return <WikiItem key={wiki._id} name={wiki.name} body={wiki.body} />
+    })
+    return wikiLists
   }
 }
 
-const WikiItem = () => {
+const WikiItem = (props) => {
   return (
     <div className="wikiItem _flx">
       <div className="itemLeft">
@@ -44,8 +46,8 @@ const WikiItem = () => {
       </div>
       <div className="itemMain">
         <div className="itemInfo">
-          <h3>here comes title</h3>
-          <p>i will describe what is in this one later</p>
+          <h3>{ props.name }</h3>
+          <p>{ props.body }</p>
         </div>
         <div className="itemOperational">
           <a href="#">edit</a>

@@ -6,17 +6,15 @@ export default class WikiEditForm extends React.Component {
   constructor (props) {
     super(props)
     const name = this.props.name
+    const body = this.props.body
     this.state = {
-      name, body: '', loaded: false, jump: ''
+      name: name,
+      body: body,
+      jump: ''
     }
   }
   componentWillMount () {
-    if (this.state.name === 'new') {
-      this.setState({
-        loaded: true
-      })
-      return
-    }
+    if (this.state.name === 'new') return
     request
       .get(`/api/wiki/get/${this.state.name}`)
       .end((err,res) => {
@@ -47,28 +45,24 @@ export default class WikiEditForm extends React.Component {
   }
   nameChanged (e) {
     this.setState({ name: e.target.value })
+    this.props.onNameChanged(e.target.value)
   }
   bodyChanged (e) {
     this.setState({ body: e.target.value })
+    this.props.onBodyChanged(e.target.value)
   }
   render () {
-    if (!this.state.loaded) {
-      return (
-        <div className="wikiEditForm _flx-1">
-          <p>loading...</p>
-        </div>
-      )
-    }
     if (this.state.jump !== '') {
       return <Redirect to={this.state.jump} />
     }
     return (
       <div className="wikiEditForm _flx-1">
-        <input type="text" value={this.state.name} onChange={e => this.nameChanged(e)}/><br />
+        <input type="text" 
+          value={this.state.name}
+          onChange={e => this.nameChanged(e)} /><br />
         <textarea rows={12} cols={60}
-          onChange={e => this.bodyChanged(e)}
           value={this.state.body}
-        /><br />
+          onChange={e => this.bodyChanged(e)} /><br />
         <button onClick={e => this.save()}>Save</button>
       </div>
     )
