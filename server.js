@@ -10,9 +10,13 @@ const portNo     = 3000
 const mongodbUrl = 'mongodb://localhost/mhp'
 
 const apiWiki = require('./routes/apiWiki.js')
+const apiApp  = require('./routes/apiApp.js')
 
 // Port setting
 app.set('port', process.env.port || 3000)
+
+// Some basics
+app.set('view engine', 'ejs')
 
 // Middlewares
 app.use(logger('dev'))
@@ -20,22 +24,11 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.urlencoded({ extended: true }))
 
 // Automatically respond to serve public dir
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'))
-})
+app.get('/', (req, res) => { res.sendFile(path.join(__dirname, 'public', 'index.html')) })
 
 // Routings
 app.use('/api/wiki', apiWiki)
-const Wiki = require('./models/wikiModel.js')
-app.get('/modeltest', (req,res) => {
-  Wiki.findOne({}, (err,doc) => {
-    if (err) {
-      console.error(errr)
-      res.send(err)
-    }
-    res.send(doc)
-  })
-})
+app.use('/api/App', apiApp)
 
 // catch 404 error
 app.use((err, req, res, next) => {

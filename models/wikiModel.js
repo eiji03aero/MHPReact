@@ -1,9 +1,9 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const Wiki = new Schema({
-  wikiname: { type: String, require: true, unique: true },
-  wikibody: { type: String, require: true }
+const wikiSchema = new Schema({
+  title: { type: String, require: true, unique: true },
+  body: { type: String, require: true }
 })
 
-module.exports = mongoose.model('Wiki', Wiki)
+module.exports = mongoose.model('Wiki', wikiSchema)
