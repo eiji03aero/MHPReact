@@ -24189,18 +24189,8 @@ var App = function (_Component) {
   }
 
   _createClass(App, [{
-    key: 'handleClick',
-    value: function handleClick() {
-      _superagent2.default.get('/api/App/posttest').end(function (err, res) {
-        if (err) return;
-        console.log(res);
-      });
-    }
-  }, {
     key: 'render',
     value: function render() {
-      var _this2 = this;
-
       return _react2.default.createElement(
         _reactRouterDom.BrowserRouter,
         null,
@@ -24214,7 +24204,7 @@ var App = function (_Component) {
           ),
           _react2.default.createElement(
             'div',
-            { className: 'serviceMain' },
+            { className: 'serviceMain u-flex--col u-flex--1' },
             _react2.default.createElement(
               'div',
               { className: 'serviceHeader' },
@@ -24222,14 +24212,7 @@ var App = function (_Component) {
             ),
             _react2.default.createElement(
               'div',
-              { className: 'serviceContent' },
-              _react2.default.createElement(
-                'button',
-                { onClick: function onClick() {
-                    return _this2.handleClick();
-                  } },
-                'test'
-              ),
+              { className: 'serviceContent u-flex--1' },
               _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _WelcomePage2.default }),
               _react2.default.createElement(_reactRouterDom.Route, { path: '/comments', component: _CommentLists2.default }),
               _react2.default.createElement(_reactRouterDom.Route, { path: '/imagemap', component: _ImageMap2.default }),
@@ -27330,7 +27313,7 @@ var ServiceSidebar = function (_Component) {
           'div',
           { className: 'sidebarMenus' },
           _react2.default.createElement(SidebarElem, { link: '/', icon: 'home', title: 'Home' }),
-          _react2.default.createElement(SidebarElem, { link: '/comments', icon: 'comment', title: 'comments' }),
+          _react2.default.createElement(SidebarElem, { link: '/comments', icon: 'comment', title: 'Comments' }),
           _react2.default.createElement(SidebarElem, { link: '/imagemap', icon: 'image', title: 'Imagemap' }),
           _react2.default.createElement(SidebarElem, { link: '/wiki', icon: 'web', title: 'Wiki' })
         )
@@ -27344,22 +27327,26 @@ var ServiceSidebar = function (_Component) {
 exports.default = ServiceSidebar;
 
 
-var SidebarElem = function SidebarElem(props) {
+var SidebarElem = function SidebarElem(_ref) {
+  var link = _ref.link,
+      icon = _ref.icon,
+      title = _ref.title;
+
   return _react2.default.createElement(
-    'div',
-    { className: 'sidebarElem' },
+    _reactRouterDom.Link,
+    { to: link },
     _react2.default.createElement(
-      _reactRouterDom.Link,
-      { to: props.link },
+      'div',
+      { className: 'sidebarElem' },
       _react2.default.createElement(
         'i',
         { className: 'mdi mdi-onDark mdi-36' },
-        props.icon
+        icon
       ),
       _react2.default.createElement(
         'p',
         null,
-        props.title
+        title
       )
     )
   );
@@ -27405,7 +27392,7 @@ exports = module.exports = __webpack_require__(7)(undefined);
 
 
 // module
-exports.push([module.i, "@keyframes rotate {\n  0% {\n    transform: rotate(0deg); }\n  100% {\n    transform: rotate(360deg); } }\n\n.serviceSidebar {\n  height: 100%;\n  background-color: #333; }\n  .serviceSidebar .sidebarLogoWrap {\n    width: 100%;\n    height: 80px;\n    padding: 15px;\n    box-sizing: border-box; }\n    .serviceSidebar .sidebarLogoWrap .sidebarLogo {\n      width: 50px;\n      height: 45px;\n      background: url(" + __webpack_require__(39) + ");\n      background-position: center;\n      background-size: contain;\n      background-repeat: no-repeat;\n      animation: 10s linear 0s rotate infinite; }\n  .serviceSidebar .sidebarMenus .sidebarElem {\n    width: 100%;\n    height: 55px;\n    padding: .5rem 0;\n    text-align: center; }\n    .serviceSidebar .sidebarMenus .sidebarElem:hover {\n      transition: all .5s ease 0s;\n      background-color: #006494; }\n    .serviceSidebar .sidebarMenus .sidebarElem a {\n      display: inline-block;\n      width: 100%;\n      height: 100%;\n      color: #eee; }\n      .serviceSidebar .sidebarMenus .sidebarElem a p {\n        position: relative;\n        top: -10px; }\n", ""]);
+exports.push([module.i, "@keyframes rotate {\n  0% {\n    transform: rotate(0deg); }\n  100% {\n    transform: rotate(360deg); } }\n\n.serviceSidebar {\n  height: 100%;\n  background-color: #333; }\n  .serviceSidebar .sidebarLogoWrap {\n    height: 80px;\n    padding: 1rem;\n    box-sizing: border-box; }\n    .serviceSidebar .sidebarLogoWrap .sidebarLogo {\n      width: 3rem;\n      height: 3rem;\n      background: url(" + __webpack_require__(39) + ");\n      background-position: center;\n      background-size: contain;\n      background-repeat: no-repeat;\n      animation: 10s linear 0s rotate infinite; }\n  .serviceSidebar .sidebarMenus a .sidebarElem {\n    color: #fff;\n    text-align: center; }\n    .serviceSidebar .sidebarMenus a .sidebarElem:hover {\n      transition: all .5s ease 0s;\n      background-color: #006494; }\n    .serviceSidebar .sidebarMenus a .sidebarElem i {\n      padding-top: .5rem; }\n    .serviceSidebar .sidebarMenus a .sidebarElem p {\n      padding-bottom: .5rem;\n      line-height: 1; }\n", ""]);
 
 // exports
 
@@ -41211,7 +41198,7 @@ exports = module.exports = __webpack_require__(7)(undefined);
 
 
 // module
-exports.push([module.i, "html, body {\n  width: 100%;\n  height: 100%;\n  padding: 0;\n  margin: 0;\n  box-sizing: border-box;\n  font-family: avenir; }\n  html div, body div {\n    box-sizing: border-box; }\n\nh1, h2, h3, h4, h5, h6, p, span, a, input[type=\"text\"], textarea {\n  padding: 0;\n  margin: 0;\n  font-weight: 300; }\n\na {\n  color: #80d8f7;\n  text-decoration: none; }\n  a:visited {\n    color: #80d8f7; }\n\ninput[type=\"text\"], textarea {\n  border: 1px solid #ccc; }\n\ntextarea {\n  padding: .5rem; }\n", ""]);
+exports.push([module.i, "html {\n  font-size: 16px; }\n\nhtml, body {\n  width: 100%;\n  height: 100%;\n  padding: 0;\n  margin: 0;\n  box-sizing: border-box;\n  font-family: avenir; }\n  html div, body div {\n    box-sizing: border-box; }\n\nh1, h2, h3, h4, h5, h6, p, span, a, input[type=\"text\"], textarea {\n  padding: 0;\n  margin: 0;\n  font-weight: 300; }\n\na {\n  color: #80d8f7;\n  text-decoration: none; }\n  a:visited {\n    color: #80d8f7; }\n\ninput[type=\"text\"], textarea {\n  border: 1px solid #ccc; }\n\ntextarea {\n  padding: .5rem; }\n", ""]);
 
 // exports
 
@@ -41256,7 +41243,7 @@ exports = module.exports = __webpack_require__(7)(undefined);
 
 
 // module
-exports.push([module.i, "._flx {\n  display: flex;\n  width: 100%; }\n\n._flx-1 {\n  flex: 1; }\n\n._row {\n  flex-flow: row wrap; }\n\n._col {\n  flex-flow: column wrap; }\n\n._jc {\n  justify-content: center;\n  align-items: center; }\n\n._hid {\n  display: none; }\n\n._nobdr {\n  border: none; }\n\n._bg_cover {\n  background-size: contain;\n  background-position: center;\n  background-repeat: no-repeat; }\n\n._fs-16 {\n  font-size: 16px; }\n\n._fs-20 {\n  font-size: 20px; }\n\n._fs-36 {\n  font-size: 36px; }\n\n.loading-wrap {\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  position: absolute;\n  background-color: rgba(0, 0, 0, 0.3);\n  z-index: 100; }\n", ""]);
+exports.push([module.i, "._flx {\n  display: flex;\n  width: 100%; }\n\n.u-flex--col {\n  display: flex;\n  flex-direction: column;\n  width: 100%; }\n\n.u-flex--1 {\n  flex: 1; }\n\n._row {\n  flex-flow: row wrap; }\n\n._col {\n  flex-flow: column wrap; }\n\n._jc {\n  justify-content: center;\n  align-items: center; }\n\n._hid {\n  display: none; }\n\n._nobdr {\n  border: none; }\n\n._bg_cover {\n  background-size: contain;\n  background-position: center;\n  background-repeat: no-repeat; }\n\n._fs-16 {\n  font-size: 16px; }\n\n._fs-20 {\n  font-size: 20px; }\n\n._fs-36 {\n  font-size: 36px; }\n\n.loading-wrap {\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  position: absolute;\n  background-color: rgba(0, 0, 0, 0.3);\n  z-index: 100; }\n", ""]);
 
 // exports
 
@@ -41346,7 +41333,7 @@ exports = module.exports = __webpack_require__(7)(undefined);
 
 
 // module
-exports.push([module.i, "#root {\n  width: 100%;\n  height: 100%; }\n\n.serviceField {\n  width: 100%;\n  height: 100%;\n  box-sizing: border-box;\n  position: relative; }\n\n.serviceLeft {\n  height: 100%;\n  width: 80px;\n  box-sizing: border-box; }\n\n.serviceMain {\n  flex: 1;\n  height: 100%;\n  box-sizing: border-box; }\n  .serviceMain .serviceHeader {\n    height: 55px;\n    padding: .5rem;\n    border-bottom: 1px solid #eee; }\n  .serviceMain .serviceContent {\n    height: calc(100% - 55px); }\n", ""]);
+exports.push([module.i, "#root {\n  width: 100%;\n  height: 100%; }\n\n.serviceField {\n  width: 100%;\n  height: 100%;\n  position: relative; }\n\n.serviceLeft {\n  height: 100%; }\n\n.serviceMain .serviceHeader {\n  height: 55px;\n  padding: .5rem;\n  border-bottom: 1px solid #eee; }\n", ""]);
 
 // exports
 

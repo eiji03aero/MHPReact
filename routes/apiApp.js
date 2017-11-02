@@ -1,9 +1,9 @@
 const express = require('express')
 const router = express.Router()
 
-const Wiki = require('../models/wikiModel.js')
+const Wiki = require('../models/Wiki.js')
 
-router.get('/posttest', (req,res) => {
+router.get('/show', (req,res) => {
   const newWiki = new Wiki()
 
   Wiki.title = 'test'

@@ -6,8 +6,7 @@ const bodyParser = require('body-parser')
 const logger     = require('morgan')
 
 const app        = express()
-const portNo     = 3000
-const mongodbUrl = 'mongodb://localhost/mhp'
+const { mongodb } = require('./config/config.js')
 
 const apiWiki = require('./routes/apiWiki.js')
 const apiApp  = require('./routes/apiApp.js')
@@ -28,7 +27,7 @@ app.get('/', (req, res) => { res.sendFile(path.join(__dirname, 'public', 'index.
 
 // Routings
 app.use('/api/wiki', apiWiki)
-app.use('/api/App', apiApp)
+app.use('/api/app', apiApp)
 
 // catch 404 error
 app.use((err, req, res, next) => {
@@ -60,5 +59,8 @@ app.use((err, req, res, next) => {
 // Start listening
 http.createServer(app).listen(app.get('port'), () => {
   console.log(`express server started listening on ${app.get('port')}`)
-  mongoose.connect(mongodbUrl, { useMongoClient: true })
+  mongoose.connect(mongodb.url, mongodb.options, (err) => {
+    if (err) return console.log(err)
+    console.log('mongodb is ready to use now')
+  })
 })

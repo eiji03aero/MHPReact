@@ -18,14 +18,6 @@ export default class App extends Component {
   constructor (props) {
     super(props)
   }
-  handleClick () {
-    request
-      .get('/api/App/posttest')
-      .end((err,res) => {
-        if (err) return
-        console.log(res)
-      })
-  }
   render () {
     return (
       <Router>
@@ -33,12 +25,11 @@ export default class App extends Component {
           <div className="serviceLeft">
             <ServiceSidebar />
           </div>
-          <div className="serviceMain">
+          <div className="serviceMain u-flex--col u-flex--1">
             <div className="serviceHeader">
               <ServiceHeader />
             </div>
-            <div className="serviceContent">
-              <button onClick={() => this.handleClick()}>test</button>
+            <div className="serviceContent u-flex--1">
               <Route exact path="/" component={ WelcomePage } />
               <Route path="/comments" component={ CommentLists } />
               <Route path="/imagemap" component={ ImageMap } />

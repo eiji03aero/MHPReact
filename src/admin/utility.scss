@@ -3,7 +3,13 @@
   width: 100%;
 }
 
-._flx-1 {
+.u-flex--col {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.u-flex--1 {
   flex: 1;
 }
 
