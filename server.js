@@ -8,14 +8,16 @@ const logger     = require('morgan')
 const app        = express()
 const { mongodb } = require('./config/config.js')
 
-const apiWiki = require('./routes/apiWiki.js')
 const apiApp  = require('./routes/apiApp.js')
+const apiWiki = require('./routes/apiWiki.js')
+const apiComment = require('./routes/apiComment.js')
 
 // Port setting
 app.set('port', process.env.port || 3000)
 
 // Some basics
-app.set('view engine', 'ejs')
+app.set('view engine', 'pug')
+app.set('views', path.join(__dirname, 'public', 'views'))
 
 // Middlewares
 app.use(logger('dev'))
@@ -26,8 +28,9 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.get('/', (req, res) => { res.sendFile(path.join(__dirname, 'public', 'index.html')) })
 
 // Routings
-app.use('/api/wiki', apiWiki)
 app.use('/api/app', apiApp)
+app.use('/api/wiki', apiWiki)
+app.use('/api/comment', apiComment)
 
 // catch 404 error
 app.use((err, req, res, next) => {

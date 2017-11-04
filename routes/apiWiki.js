@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const Wiki = require('../models/Wiki.js')
+const Wiki = require('../models/wiki.js')
 
 router.get('/show', (req,res) => {
   Wiki.find().toArray((err,docs) => {
@@ -26,22 +26,22 @@ router.get('/get/:wikiname', (req,res) => {
   })
 })
 
-router.post('/post/:wikiname', (req,res) => {
-  const wikiname = req.params.wikiname
-  let body
-  Wiki.findOne({ name: wikiname }, (err,doc) => {
-    if (err) {
-      res.json({ status: false, msg: err })
-      return
-    }
-    body = req.body.body
-    if (!doc) {
-      Wiki.insertOne({ name: wikiname, body })
-    } else {
-      Wiki.update({ name: wikiname }, {$set: { body: body } }, { upsert: true }) 
-    }
-    res.json({ status: true })
-  })
-})
-
-module.exports = router
+// router.post('/post/:wikiname', (req,res) => {
+//   const wikiname = req.params.wikiname
+//   let body
+//   Wiki.findOne({ name: wikiname }, (err,doc) => {
+//     if (err) {
+//       res.json({ status: false, msg: err })
+//       return
+//     }
+//     body = req.body.body
+//     if (!doc) {
+//       Wiki.insertOne({ name: wikiname, body })
+//     } else {
+//       Wiki.update({ name: wikiname }, {$set: { body: body } }, { upsert: true }) 
+//     }
+//     res.json({ status: true })
+//   })
+// })
+//
+// module.exports = router

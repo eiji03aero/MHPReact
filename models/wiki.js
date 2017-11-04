@@ -6,4 +6,6 @@ const wikiSchema = new Schema({
   body: { type: String, require: true }
 })
 
-module.exports = mongoose.model('Wiki', wikiSchema)
+const Wiki = mongoose.model('Wiki', wikiSchema)
+
+module.exports = Wiki
