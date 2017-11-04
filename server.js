@@ -1,29 +1,69 @@
 const express    = require('express')
+const http       = require('http')
+const mongoose   = require('mongoose')
 const path       = require('path')
 const bodyParser = require('body-parser')
+const logger     = require('morgan')
 
 const app        = express()
-const portNo     = 3000
+const { mongodb } = require('./config/config.js')
 
+const apiApp  = require('./routes/apiApp.js')
 const apiWiki = require('./routes/apiWiki.js')
+const apiComment = require('./routes/apiComment.js')
+
+// Port setting
+app.set('port', process.env.port || 3000)
+
+// Some basics
+app.set('view engine', 'pug')
+app.set('views', path.join(__dirname, 'public', 'views'))
 
 // Middlewares
+app.use(logger('dev'))
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.urlencoded({ extended: true }))
 
 // Automatically respond to serve public dir
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'))
-})
+app.get('/', (req, res) => { res.sendFile(path.join(__dirname, 'public', 'index.html')) })
 
 // Routings
+app.use('/api/app', apiApp)
 app.use('/api/wiki', apiWiki)
+app.use('/api/comment', apiComment)
 
-// Error Handling
+// catch 404 error
 app.use((err, req, res, next) => {
-  console.log(err.stack)
-  res.status(500).send('something went wrong...')
+  var err = new Error('Not found')
+  err.status = 404
+  next(err)
+})
+
+// Dev Error Handling
+if (app.get('env') === 'development') {
+  app.use((err, req, res, next) => {
+    res.status(err.status || 500)
+    res.render('error', {
+      message: err.message,
+      error: err
+    })
+  })
+}
+
+// Production Error Handling
+app.use((err, req, res, next) => {
+  res.status(err.status || 500)
+  res.render('error', {
+    message: err.message,
+    error: {}
+  })
 })
 
 // Start listening
-app.listen(portNo, () => console.log(`started server at http://localhost:${portNo}`))
+http.createServer(app).listen(app.get('port'), () => {
+  console.log(`express server started listening on ${app.get('port')}`)
+  mongoose.connect(mongodb.url, mongodb.options, (err) => {
+    if (err) return console.log(err)
+    console.log('mongodb is ready to use now')
+  })
+})

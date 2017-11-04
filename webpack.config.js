@@ -30,5 +30,11 @@ module.exports = {
         loaders: ['file-loader?name=assets/images/[name].[ext]']
       }
     ]
-  }
+  },
+  plugins: [
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jquery:'jquery',
+    })
+  ]
 }

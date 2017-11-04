@@ -6,26 +6,19 @@
 .serviceField {
   width: 100%;
   height: 100%;
-  box-sizing: border-box;
   position: relative;
 }
 
 .serviceLeft {
   height: 100%;
-  width: 80px;
-  box-sizing: border-box;
 }
 
 .serviceMain {
-  flex: 1;
-  height: 100%;
-  box-sizing: border-box;
   .serviceHeader {
     height: 55px;
     padding: .5rem;
     border-bottom: 1px solid #eee;
   }
   .serviceContent {
-    height: calc(100% - 55px);
   }
 }

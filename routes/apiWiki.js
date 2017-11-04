@@ -1,11 +1,10 @@
 const express = require('express')
 const router = express.Router()
 
-const collection = require('../mongoDataBase.js')
-const COL = ('mhp')
+const Wiki = require('../models/wiki.js')
 
 router.get('/show', (req,res) => {
-  collection(COL).find().toArray((err,docs) => {
+  Wiki.find().toArray((err,docs) => {
     if (err) {
       res.json({ status: false, err: err })
       return
@@ -17,7 +16,7 @@ router.get('/show', (req,res) => {
 
 router.get('/get/:wikiname', (req,res) => {
   const wikiname = req.params.wikiname
-  collection(COL).findOne({ name: wikiname }, (err,doc) => {
+  Wiki.findOne({ name: wikiname }, (err,doc) => {
     if (err) {
       res.json({ status: false, msg: err })
       return
@@ -27,22 +26,22 @@ router.get('/get/:wikiname', (req,res) => {
   })
 })
 
-router.post('/post/:wikiname', (req,res) => {
-  const wikiname = req.params.wikiname
-  let body
-  collection(COL).findOne({ name: wikiname }, (err,doc) => {
-    if (err) {
-      res.json({ status: false, msg: err })
-      return
-    }
-    body = req.body.body
-    if (!doc) {
-      collection('mhp').insert({ name: wikiname, body })
-    } else {
-      collection('mhp').update({ name: wikiname }, {$set: { body: body } }, { upsert: true }) 
-    }
-    res.json({ status: true })
-  })
-})
-
-module.exports = router
+// router.post('/post/:wikiname', (req,res) => {
+//   const wikiname = req.params.wikiname
+//   let body
+//   Wiki.findOne({ name: wikiname }, (err,doc) => {
+//     if (err) {
+//       res.json({ status: false, msg: err })
+//       return
+//     }
+//     body = req.body.body
+//     if (!doc) {
+//       Wiki.insertOne({ name: wikiname, body })
+//     } else {
+//       Wiki.update({ name: wikiname }, {$set: { body: body } }, { upsert: true }) 
+//     }
+//     res.json({ status: true })
+//   })
+// })
+//
+// module.exports = router

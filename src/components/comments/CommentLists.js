@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-var $ = require('jquery')
+import React, { Component } from 'react'
+import request from 'superagent'
 
 class CommentLists extends Component {
   constructor (props) {
@@ -10,20 +10,29 @@ class CommentLists extends Component {
   }
 
   componentDidMount () {
-    $.ajax({
-      url: 'http://localhost:3001/comments',
-      type: 'GET',
-      dataType: 'json',
-    }).done((data) => {
-      const data2 = JSON.stringify(data)
-      console.log(data2)
-      this.setState({ comments: data })
-    })
+    request
+      .get('/api/comment/index')
+      .end((err,res) => {
+        if (err) return console.error(err)
+        this.setState( {
+          comments: res.body.data.comments
+        })
+      })
   }
 
   render () {
     if (!this.state.comments) {
-      return <p>osakabe</p>
+      return (
+        <div>
+          <p>osakabe</p>
+          <form method="post" action="/api/comment/create">
+            <button type="submit">
+              submit
+            </button>
+          </form>
+        </div>
+
+      )
     } else {
       return (
       <div>
