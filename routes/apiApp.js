@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const Wiki = require('../models/Wiki.js')
+const Wiki = require('../models/wiki.js')
 
 router.get('/show', (req,res) => {
   const newWiki = new Wiki()
