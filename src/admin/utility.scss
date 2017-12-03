@@ -9,6 +9,25 @@
   width: 100%;
 }
 
+.u-flex--fs {
+  display: flex;
+  justify-content: flex-start;
+  .u-optional-right {
+    margin-left: auto;
+  }
+}
+
+.u-flex--sb {
+  display: flex;
+  justify-content: space-around;
+}
+
+.u-flex--item-table {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
 .u-flex--1 {
   flex: 1;
 }
@@ -38,17 +57,6 @@
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-}
-
-._fs-16 {
-  font-size: 16px;
-}
-
-._fs-20 {
-  font-size: 20px;
-}
-._fs-36 {
-  font-size: 36px;
 }
 
 .loading-wrap {

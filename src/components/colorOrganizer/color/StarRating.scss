@@ -1,0 +1,26 @@
+.star-rating {
+  display: flex;
+  justify-content: center;
+}
+.star {
+  cursor: pointer;
+  height: 30px;
+  width: 30px;
+  margin: 2px;
+  background-color: grey;
+  clip-path: polygon(
+    50% 0%,
+    64% 38%,
+    100% 38%,
+    69% 59%,
+    82% 100%,
+    50% 75%,
+    18% 100%,
+    31% 59%,
+    0% 38%,
+    37% 38%
+  );
+  &.selected {
+    background-color: red;
+  }
+}

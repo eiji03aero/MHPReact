@@ -4,6 +4,7 @@ const webpack = require('webpack')
 module.exports = {
   context: path.resolve(__dirname),
   entry: {
+    // webpackHotMiddleware: 'webpack-hot-middleware/client',
     app: './src/index.js'
   },
   output: {
@@ -33,8 +34,11 @@ module.exports = {
   },
   plugins: [
     new webpack.ProvidePlugin({
+      React: 'react',
+      PropTypes: 'prop-types',
       $: 'jquery',
       jquery:'jquery',
-    })
+    }),
+    new webpack.HotModuleReplacementPlugin()
   ]
 }
