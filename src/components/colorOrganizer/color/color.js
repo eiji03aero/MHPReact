@@ -3,8 +3,8 @@ import { StarRating } from './StarRating.js'
 import './color.scss'
 
 export const Color = ({ colorInfo, starLimit, onRate, onRemove }) => {
-  const { color, id, starSelected, title } = color
-  console.log(color, id, starSelected)
+  const { color, id, starSelected, title } = colorInfo
+
   return (
     <div className="color-container">
       <div className="color-header">
@@ -17,8 +17,15 @@ export const Color = ({ colorInfo, starLimit, onRate, onRemove }) => {
         <StarRating id={id}
           starLimit={starLimit}
           starSelected={starSelected}
-          onRate={() => onRate()} />
+          onRate={(num, id) => onRate(num, id)} />
       </div>
     </div>
   )
+}
+
+Color.propTypes = {
+  colorInfo: PropTypes.object.isRequired,
+  starLimit: PropTypes.number.isRequired,
+  onRate: PropTypes.func.isRequired,
+  onRemove: PropTypes.func.isRequired
 }

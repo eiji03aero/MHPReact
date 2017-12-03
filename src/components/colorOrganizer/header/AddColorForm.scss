@@ -1,0 +1,13 @@
+.add-color-form {
+  display: none;
+  position: absolute;
+  z-index: 10;
+  right: 2rem;
+  width: 300px;
+  padding: 1rem;
+  background-color: #fff;
+  box-shadow: 2px 2px 1px rgba(0,0,0, .5);
+  &.active {
+    display: block;
+  }
+}

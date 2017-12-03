@@ -2,6 +2,11 @@
   "name": "MHPReact",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "start": "node ./server.js & mongod",
+    "build": "webpack",
+    "dev": "node ./server.js & webpack -w"
+  },
   "dependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
@@ -25,12 +30,8 @@
     "serve-favicon": "^2.4.5",
     "superagent": "^3.7.0",
     "url-loader": "^0.6.2",
+    "uuid": "^3.1.0",
     "webpack": "^3.6.0"
-  },
-  "scripts": {
-    "start": "node ./server.js & mongod",
-    "build": "webpack",
-    "dev": "node ./server.js & webpack -w"
   },
   "main": "index.js",
   "repository": {
