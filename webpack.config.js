@@ -4,7 +4,7 @@ const webpack = require('webpack')
 module.exports = {
   context: path.resolve(__dirname),
   entry: {
-    webpackHotMiddleware: 'webpack-hot-middleware/client',
+    // webpackHotMiddleware: 'webpack-hot-middleware/client',
     app: './src/index.js'
   },
   output: {
