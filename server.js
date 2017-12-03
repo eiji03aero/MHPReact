@@ -4,6 +4,7 @@ const mongoose   = require('mongoose')
 const path       = require('path')
 const bodyParser = require('body-parser')
 const logger     = require('morgan')
+const favicon    = require('serve-favicon')
 
 const app        = express()
 const { mongodb } = require('./config/config.js')
@@ -11,6 +12,8 @@ const { mongodb } = require('./config/config.js')
 const apiApp  = require('./routes/apiApp.js')
 const apiWiki = require('./routes/apiWiki.js')
 const apiComment = require('./routes/apiComment.js')
+
+const useWebpackDevServer = require('./scripts/config/webpack-dev-server.js')
 
 // Port setting
 app.set('port', process.env.port || 3000)
@@ -23,9 +26,15 @@ app.set('views', path.join(__dirname, 'public', 'views'))
 app.use(logger('dev'))
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 
 // Automatically respond to serve public dir
 app.get('/', (req, res) => { res.sendFile(path.join(__dirname, 'public', 'index.html')) })
+
+// Custom MiddleWares
+// if (process.env.NODE_ENV !== 'production') {
+//   useWebpackDevServer(app)
+// }
 
 // Routings
 app.use('/api/app', apiApp)
