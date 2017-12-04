@@ -11,7 +11,7 @@ export const AddColorForm = ({ formIsOpen, onAddColor }) => {
       onAddColor(title, color)
     }
     _title.value = ''
-    _color.value = ''
+    _color.value = '#000000'
   }
 
   return (

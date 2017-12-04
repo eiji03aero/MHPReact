@@ -29,7 +29,6 @@ export default class ColorOrganizer extends React.Component {
           id: "2348"
         }
       ],
-      starLimit: 5,
       formIsOpen: false
     }
     this.onAddColor = this.onAddColor.bind(this)
@@ -40,7 +39,7 @@ export default class ColorOrganizer extends React.Component {
 
   onAddColor(title, color) {
     const newColor = {
-      color: { backgroundColor: '#' + color },
+      color: { backgroundColor: color },
       title: title,
       starSelected: 0,
       id: uuidv4()
@@ -83,7 +82,7 @@ export default class ColorOrganizer extends React.Component {
 
   render () {
     const { onAddColor, onClickForm, onRate, onRemove } = this
-    const { colors, starLimit, formIsOpen } = this.state
+    const { colors, formIsOpen } = this.state
 
     return (
       <div className="color-organizer-container">
@@ -91,8 +90,8 @@ export default class ColorOrganizer extends React.Component {
           formIsOpen={formIsOpen}
           onClickForm={onClickForm}
           onAddColor={onAddColor} />
-        <ColorList colors={colors}
-          starLimit={starLimit}
+        <ColorList
+          colors={colors}
           onRate={onRate}
           onRemove={onRemove} />
       </div>

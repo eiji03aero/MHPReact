@@ -15,6 +15,13 @@ import './admin/font-size.scss'
 import './admin/mdi.scss'
 import './App.scss'
 
+// Testing========== 
+import storeFactory from './redux/stores/store.js'
+import { addColor } from './redux/actions/ColorOrganizer/action.js'
+window.storeFactory = storeFactory
+window.addColor = addColor
+// ==========
+
 export default class App extends React.Component {
   constructor (props) {
     super(props)

@@ -2,12 +2,12 @@ import { Color } from './color.js'
 
 import './colorList.scss'
 
-export const ColorList = ({ colors, starLimit, onRate, onRemove }) => {
+export const ColorList = ({ colors, onRate, onRemove }) => {
   const colorList = colors.map((color, i) => {
     return (
-      <Color key={i}
+      <Color
+        key={i}
         colorInfo={color}
-        starLimit={starLimit}
         onRate={(num, id) => onRate(num, id)}
         onRemove={(id) => onRemove(id)} />
     )
@@ -25,7 +25,6 @@ export const ColorList = ({ colors, starLimit, onRate, onRemove }) => {
 
 ColorList.propTypes = {
   colors: PropTypes.array.isRequired,
-  starLimit: PropTypes.number.isRequired,
   onRate: PropTypes.func.isRequired,
   onRemove: PropTypes.func.isRequired,
 }
