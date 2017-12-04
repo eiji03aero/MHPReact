@@ -23,9 +23,6 @@ window.addColor = addColor
 // ==========
 
 export default class App extends React.Component {
-  constructor (props) {
-    super(props)
-  }
   render () {
     return (
       <Router history={ browserHistory }>
