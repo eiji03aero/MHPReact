@@ -1,13 +1,12 @@
-import React, { Component } from 'react'
-import { BrowserRouter as Router, Route, Link, browserHistory } from 'react-router-dom'
-import request from 'superagent'
+import { HashRouter as Router, Route } from 'react-router-dom'
+
 import ServiceSidebar from './shared/ServiceSidebar.js'
 import ServiceHeader from './shared/ServiceHeader.js'
 import WelcomePage from './components/welcome/WelcomePage.js'
 import CommentLists from './components/comments/CommentLists.js'
 import ImageMap from './components/imageMap/ImageMap.js'
 import Wiki from './components/wiki/Wiki.js'
-import ColorOrganizer from './components/colorOrganizer/colorOrganizer.js'
+import ColorOrganizer from './components/ColorOrganizer/ColorOrganizer.js'
 
 import './basicStyles.scss'
 import './admin/utility.scss'
@@ -15,17 +14,27 @@ import './admin/font-size.scss'
 import './admin/mdi.scss'
 import './App.scss'
 
-// Testing========== 
-import storeFactory from './redux/stores/store.js'
-import { addColor } from './redux/actions/ColorOrganizer/action.js'
-window.storeFactory = storeFactory
-window.addColor = addColor
-// ==========
+class App extends React.Component {
 
-export default class App extends React.Component {
+  getChildContext() {
+    return {
+      store: this.props.store
+    }
+  }
+
+  componentWillMount () {
+    this.unsubscribe = this.props.store.subscribe(
+      () => this.forceUpdate()
+    )
+  }
+
+  componentWillUnmount () {
+    this.unsubscribe()
+  }
+
   render () {
     return (
-      <Router history={ browserHistory }>
+      <Router >
         <div className="serviceField _flx">
           <div className="serviceLeft">
             <ServiceSidebar />
@@ -48,3 +57,12 @@ export default class App extends React.Component {
   }
 }
 
+App.propTypes = {
+  store: PropTypes.object.isRequired
+}
+
+App.childContextTypes = {
+  store: PropTypes.object.isRequired
+}
+
+export default App

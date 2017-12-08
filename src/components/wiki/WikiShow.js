@@ -42,7 +42,6 @@ export default class WikiShow extends React.Component {
         e.tag, { key: `node${i}`}, e.label
       )
     })
-    console.log(lines)
     return lines
   }
 }

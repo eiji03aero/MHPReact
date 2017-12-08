@@ -1,25 +1,27 @@
 const initialState = {
   colors: [
     { 
-      color: { backgroundColor: '#004080' },
+      color: '#004080',
       title: "favorite blue",
-      starSelected: 3,
+      rating: 3,
       id: "2345"
     },
     { 
-      color: { backgroundColor: '#eee' },
+      color: '#eee',
       title: "geeky grey",
-      starSelected: 5,
+      rating: 5,
       id: "2347"
     },
     { 
-      color: { backgroundColor: '#0096ce' },
+      color: '#0096ce',
       title: "great blue",
-      starSelected: 5,
+      rating: 5,
       id: "2348"
     }
   ],
-  formIsOpen: false
+  widgets: {
+    addColorFormIsOpen: false
+  }
 }
 
 export default initialState

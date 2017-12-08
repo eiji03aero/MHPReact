@@ -1,4 +1,4 @@
-import C from '../../constants.js'
+import C from '../constants.js'
 import { v4 } from 'uuid'
 
 export const addColor = (title, color) =>

@@ -1,8 +1,8 @@
 import { AddColorForm } from './AddColorForm.js'
 
-import './color-organizer-header.scss'
+import './ColorOrganizerHeader.scss'
 
-export const ColorOrganizerHeader = ({ formIsOpen, onClickForm, onAddColor }) => {
+export const ColorOrganizerHeader = ({ formIsOpen, onClickForm }) => {
   return (
     <div className="color-organizer-header u-flex--fs">
       <input placeholder="search your color"/>
@@ -10,9 +10,7 @@ export const ColorOrganizerHeader = ({ formIsOpen, onClickForm, onAddColor }) =>
         <button onClick={() => onClickForm()}>
           Add Color
         </button>
-        <AddColorForm
-          formIsOpen={formIsOpen}
-          onAddColor={(title, color) => onAddColor(title, color) }/>
+        <AddColorForm formIsOpen={formIsOpen} />
       </div>
     </div>
   )
@@ -20,5 +18,5 @@ export const ColorOrganizerHeader = ({ formIsOpen, onClickForm, onAddColor }) =>
 
 ColorOrganizerHeader.propTypes = {
   formIsOpen: PropTypes.bool.isRequired,
-  onAddColor: PropTypes.func.isRequired
+  onClickForm: PropTypes.func.isRequired
 }

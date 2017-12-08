@@ -3,7 +3,7 @@ import { StarRating } from './StarRating.js'
 import './color.scss'
 
 export const Color = ({ colorInfo, onRate, onRemove }) => {
-  const { color, id, starSelected, title } = colorInfo
+  const { color, id, rating, title } = colorInfo
 
   return (
     <div className="color-container">
@@ -13,10 +13,10 @@ export const Color = ({ colorInfo, onRate, onRemove }) => {
           X
         </button>
       </div>
-      <div className="color-display" style={ color } />
+      <div className="color-display" style={ { backgroundColor:  color } } />
       <div className="color-description">
         <StarRating id={id}
-          starSelected={starSelected}
+          rating={rating}
           onRate={(num, id) => onRate(num, id)} />
       </div>
     </div>
