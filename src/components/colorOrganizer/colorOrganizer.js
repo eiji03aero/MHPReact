@@ -1,5 +1,7 @@
-import { ColorOrganizerHeader } from './header/ColorOrganizerHeader.js'
-import { ColorList } from './color/colorList.js'
+import { Switch, Route, Link } from 'react-router-dom'
+import ColorOrganizerHeader from './header/ColorOrganizerHeader.js'
+import ColorList from './color/ColorList.js'
+import ColorShow from './color/ColorShow.js'
 import { addColor, rateColor, removeColor } from '../../redux/actions/colors.js'
 import { openAddColorForm } from '../../redux/actions/widgets.js'
 
@@ -34,13 +36,20 @@ class ColorOrganizer extends React.Component {
 
     return (
       <div className="color-organizer-container">
-        <ColorOrganizerHeader
-          formIsOpen={addColorFormIsOpen}
-          onClickForm={onClickForm} />
-        <ColorList
-          colors={colors}
-          onRate={onRate}
-          onRemove={onRemove} />
+        <Switch>
+          <Route path="/color-organizer/:id" component={ ColorShow } />
+          <Route component={() => (
+            <div>
+              <ColorOrganizerHeader
+                addColorFormIsOpen={addColorFormIsOpen}
+                onClickForm={onClickForm} />
+              <ColorList
+                colors={colors}
+                onRate={onRate}
+                onRemove={onRemove} />
+            </div>
+          )} />
+        </Switch>
       </div>
     )
   }

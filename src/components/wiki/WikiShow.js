@@ -17,7 +17,7 @@ export default class WikiShow extends React.Component {
     const body = this.state.body
     const html = this.convertText(body)
     return (
-      <div className="wikiShow _flx-1">
+      <div className="wikiShow u-flex--1">
         { html }
       </div>
     )

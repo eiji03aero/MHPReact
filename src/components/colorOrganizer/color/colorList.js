@@ -1,8 +1,8 @@
 import { Color } from './color.js'
 
-import './colorList.scss'
+import './ColorList.scss'
 
-export const ColorList = ({ colors, onRate, onRemove }) => {
+const ColorList = ({ colors, onRate, onRemove }) => {
   if (colors.length <= 0) {
     return <h1 className="no-color"> you aint got no color here!!</h1>
   }
@@ -26,3 +26,5 @@ ColorList.propTypes = {
   onRate: PropTypes.func.isRequired,
   onRemove: PropTypes.func.isRequired,
 }
+
+export default ColorList
