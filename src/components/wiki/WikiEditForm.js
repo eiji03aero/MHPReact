@@ -22,7 +22,7 @@ export default class WikiEditForm extends React.Component {
   }
   render () {
     return (
-      <div className="wikiEditForm _flx-1">
+      <div className="wikiEditForm u-flex--1">
         <textarea className="editorTextarea _nobdr _fs-16"
           rows={12} cols={60}
           value={this.state.body}

@@ -5,7 +5,8 @@ module.exports = {
   context: path.resolve(__dirname),
   entry: {
     // webpackHotMiddleware: 'webpack-hot-middleware/client',
-    app: './src/index.js'
+    app: './src/index.js',
+    sampleApp: './src/sample/sampleIndex.js'
   },
   output: {
     path: path.resolve(__dirname, 'public'),
@@ -39,6 +40,6 @@ module.exports = {
       $: 'jquery',
       jquery:'jquery',
     }),
-    new webpack.HotModuleReplacementPlugin()
+    // new webpack.HotModuleReplacementPlugin()
   ]
 }

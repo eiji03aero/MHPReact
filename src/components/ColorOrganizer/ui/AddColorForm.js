@@ -1,17 +1,16 @@
-import './AddColorForm.scss'
+import '../stylesheets/AddColorForm.scss'
 
-export const AddColorForm = ({ formIsOpen, onAddColor }) => {
+const AddColorForm = ({ addColorFormIsOpen, onAdd }) => {
+
   let _title, _color
-  const formClass = formIsOpen ? 'add-color-form active' : 'add-color-form'
+  const formClass = addColorFormIsOpen ? 'add-color-form active' : 'add-color-form'
 
   const onSubmit = () => {
     const title = _title.value
     const color = _color.value
-    if (color && title) {
-      onAddColor(title, color)
-    }
+    onAdd(title, color)
     _title.value = ''
-    _color.value = ''
+    _color.value = '#000000'
   }
 
   return (
@@ -34,7 +33,4 @@ export const AddColorForm = ({ formIsOpen, onAddColor }) => {
   )
 }
 
-AddColorForm.propTypes = {
-  formIsOpen: PropTypes.bool.isRequired,
-  onAddColor: PropTypes.func.isRequired
-}
+export default AddColorForm

@@ -1,4 +1,3 @@
-import React from 'react'
 import request from 'superagent'
 import { Redirect } from 'react-router-dom'
 import { nameStore, bodyStore } from './flux/wikiStores.js'
