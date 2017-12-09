@@ -1,6 +1,6 @@
-import './StarRating.scss'
+import '../stylesheets/StarRating.scss'
 
-export const StarRating = ({ id, rating, onRate, totalStars = 5 }) =>
+const StarRating = ({ id, rating, onRate, totalStars }) =>
   <div className="star-rating-container">
     <div className="star-rating">
       { [...new Array(totalStars)].map((star, i) => {
@@ -24,5 +24,8 @@ StarRating.propTypes = {
 }
 
 StarRating.defaultProps = {
+  onRate: f => f,
   totalStars: 5
 }
+
+export default StarRating

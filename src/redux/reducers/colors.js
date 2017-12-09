@@ -13,7 +13,7 @@ const color = (state = {}, action) => {
 
     case C.RATE_COLOR :
       return (state.id !== action.id) ?
-        state:
+        state :
         {
           ...state,
           rating: action.rating

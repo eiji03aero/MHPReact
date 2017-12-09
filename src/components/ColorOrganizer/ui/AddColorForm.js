@@ -1,8 +1,6 @@
-import { addColor } from '../../../redux/actions/colors.js'
-import { closeAddColorForm } from '../../../redux/actions/widgets.js'
-import './AddColorForm.scss'
+import '../stylesheets/AddColorForm.scss'
 
-export const AddColorForm = ({ addColorFormIsOpen }, { store }) => {
+const AddColorForm = ({ addColorFormIsOpen, onAdd }) => {
 
   let _title, _color
   const formClass = addColorFormIsOpen ? 'add-color-form active' : 'add-color-form'
@@ -10,10 +8,7 @@ export const AddColorForm = ({ addColorFormIsOpen }, { store }) => {
   const onSubmit = () => {
     const title = _title.value
     const color = _color.value
-    if (color && title) {
-      store.dispatch(addColor(title, color))
-      store.dispatch(closeAddColorForm())
-    }
+    onAdd(title, color)
     _title.value = ''
     _color.value = '#000000'
   }
@@ -38,10 +33,4 @@ export const AddColorForm = ({ addColorFormIsOpen }, { store }) => {
   )
 }
 
-AddColorForm.propTypes = {
-  addColorFormIsOpen: PropTypes.bool.isRequired,
-}
-
-AddColorForm.contextTypes = {
-  store: PropTypes.object
-}
+export default AddColorForm

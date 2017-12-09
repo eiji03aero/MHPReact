@@ -1,8 +1,8 @@
-import { StarRating } from './StarRating.js'
+import StarRating from './StarRating.js'
 
-import './color.scss'
+import '../stylesheets/Color.scss'
 
-export const Color = ({ colorInfo, onRate, onRemove }) => {
+const Color = ({ colorInfo, onRate, onRemove }) => {
   const { color, id, rating, title } = colorInfo
 
   return (
@@ -17,7 +17,7 @@ export const Color = ({ colorInfo, onRate, onRemove }) => {
       <div className="color-description">
         <StarRating id={id}
           rating={rating}
-          onRate={(num, id) => onRate(num, id)} />
+          onRate={onRate} />
       </div>
     </div>
   )
@@ -28,3 +28,5 @@ Color.propTypes = {
   onRate: PropTypes.func.isRequired,
   onRemove: PropTypes.func.isRequired
 }
+
+export default Color

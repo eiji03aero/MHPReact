@@ -10,7 +10,7 @@ export const addColor = (title, color) =>
     timeStamp: new Date().toString()
   })
 
-export const rateColor = (id, rating) =>
+export const rateColor = (rating, id) =>
   ({
     type: C.RATE_COLOR,
     id,
