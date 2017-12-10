@@ -9,7 +9,7 @@ import './stylesheets/utils/utils.scss'
 import './stylesheets/App.scss'
 
 const App = () =>
-  <div className="serviceField _flx">
+  <div className="serviceField u-flex">
     <div className="serviceLeft">
       <ServiceSidebar />
     </div>

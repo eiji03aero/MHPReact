@@ -9,7 +9,7 @@ module.exports = {
     sampleApp: './src/sample/sampleIndex.js'
   },
   output: {
-    path: path.resolve(__dirname, 'public'),
+    path: path.resolve(__dirname, 'public/build'),
     filename: '[name].js'
   },
   devtool: 'source-map',
