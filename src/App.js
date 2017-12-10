@@ -7,6 +7,7 @@ import CommentLists from './components/comments/CommentLists.js'
 import ImageMap from './components/imageMap/ImageMap.js'
 import Wiki from './components/wiki/Wiki.js'
 import ColorOrganizer from './components/ColorOrganizer/ColorOrganizer.js'
+import Whoops404 from './components/common/Whoops404.js'
 
 import './basicStyles.scss'
 import './admin/utility.scss'
@@ -22,11 +23,14 @@ const App = () =>
     <div className="serviceMain u-flex--col u-flex--1">
       <ServiceHeader />
       <div className="serviceContent u-flex--1">
-        <Route exact path="/" component={ WelcomePage } />
-        <Route path="/comments" component={ CommentLists } />
-        <Route path="/imagemap" component={ ImageMap } />
-        <Route path="/wiki" component={ Wiki } />
-        <Route path="/color-organizer" component={ ColorOrganizer } />
+        <Switch>
+          <Route exact path="/" component={ WelcomePage } />
+          <Route path="/comments" component={ CommentLists } />
+          <Route path="/imagemap" component={ ImageMap } />
+          <Route path="/wiki" component={ Wiki } />
+          <Route path="/color-organizer" component={ ColorOrganizer } />
+          <Route component={ Whoops404 } />
+        </Switch>
       </div>
     </div>
   </div>
