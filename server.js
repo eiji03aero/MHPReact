@@ -6,11 +6,11 @@ const bodyParser = require('body-parser')
 const logger     = require('morgan')
 const favicon    = require('serve-favicon')
 
-const app        = express()
+const app         = express()
 const { mongodb } = require('./config/config.js')
 
-const apiApp  = require('./routes/apiApp.js')
-const apiWiki = require('./routes/apiWiki.js')
+const apiApp     = require('./routes/apiApp.js')
+const apiWiki    = require('./routes/apiWiki.js')
 const apiComment = require('./routes/apiComment.js')
 
 const useWebpackDevServer = require('./scripts/config/webpack-dev-server.js')
@@ -21,15 +21,16 @@ app.set('port', process.env.port || 3000)
 // Some basics
 app.set('view engine', 'pug')
 app.set('views', path.join(__dirname, 'public', 'views'))
+app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, 'public/build')))
 
 // Middlewares
 app.use(logger('dev'))
-app.use(express.static(path.join(__dirname, 'public')))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 
 // Automatically respond to serve public dir
-app.get('/', (req, res) => { res.sendFile(path.join(__dirname, 'public', 'index.html')) })
+app.get('/', (req, res) => { res.sendFile(path.join(__dirname, 'public/index.html')) })
 app.get('/sample', (req, res) => { res.sendFile(path.join(__dirname, 'public/sample-index.html')) })
 
 // Custom MiddleWares
