@@ -1,4 +1,4 @@
-import './ServiceHeader.scss'
+import '../stylesheets/ServiceHeader.scss'
 
 const ServiceHeader = () =>
   <div className="serviceHeader">

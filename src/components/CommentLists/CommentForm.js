@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export default class CommentForm extends {
+class CommentForm extends {
   constructor (props) {
     super(props)
     this.state = {

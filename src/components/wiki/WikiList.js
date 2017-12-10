@@ -1,10 +1,11 @@
 import React from 'react'
 import request from 'superagent'
 import { Link } from 'react-router-dom'
+import WikiItem from './WikiItem.js'
 
 const wikiListUrl ='/api/wiki/show'
 
-export default class WikiList extends React.Component {
+class WikiList extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -28,34 +29,12 @@ export default class WikiList extends React.Component {
     return (
       <div className="wikiList">
         <p><Link to="/wiki/edit/new">Create new</Link></p>
-        { this.renderWikiItems() }
+        { this.state.lists.map((wiki, i) => {
+          return <WikiItem key={i} name={wiki.name} body={wiki.body} />
+        })}
       </div>
     )
   }
-  renderWikiItems () {
-    const wikiLists = this.state.lists.map((wiki) => {
-      return <WikiItem key={wiki._id} name={wiki.name} body={wiki.body} />
-    })
-    return wikiLists
-  }
 }
 
-const WikiItem = (props) => {
-  return (
-    <div className="wikiItem _flx">
-      <div className="itemLeft">
-        <div className="itemThumbnail _bg_cover" />
-      </div>
-      <div className="itemMain">
-        <div className="itemInfo">
-          <h3>{ props.name }</h3>
-          <p>{ props.body }</p>
-        </div>
-        <div className="itemOperational">
-          <Link to={`/wiki/edit/${props.name}`}>edit</Link>
-          <a href="#">del</a>
-        </div>
-      </div>
-    </div>
-  )
-}
+export default WikiList

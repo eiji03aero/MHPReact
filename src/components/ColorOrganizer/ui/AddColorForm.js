@@ -33,4 +33,14 @@ const AddColorForm = ({ addColorFormIsOpen, onAdd }) => {
   )
 }
 
+AddColorForm.propTypes = {
+  addColorFormIsOpen: PropTypes.bool.isRequired,
+  onAdd: PropTypes.func.isRequired
+}
+
+AddColorForm.defaultProps = {
+  addColorFormIsOpen: false,
+  onAdd: f => f
+}
+
 export default AddColorForm

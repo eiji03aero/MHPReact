@@ -1,7 +1,7 @@
 import React from 'react'
 import { Actions } from './flux/wikiActions.js'
 
-export default class WikiEditHeader extends React.Component {
+class WikiEditHeader extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -26,4 +26,8 @@ export default class WikiEditHeader extends React.Component {
       </div>
     )
   }
+}
+
+WikiEditHeader.propTypes = {
+  name: PropTypes.string.isRequired
 }

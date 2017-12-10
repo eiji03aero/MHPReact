@@ -1,8 +1,6 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import SidebarElem from './SidebarElem.js'
 
-import './serviceSidebar.scss'
+import '../stylesheets/ServiceSidebar.scss'
 
 const ServiceSidebar = () =>
   <div className="serviceSidebar">

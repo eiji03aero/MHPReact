@@ -1,4 +1,4 @@
-import './welcome.scss'
+import './Welcome.scss'
 
 const WelcomePage = () =>
   <div className="welcome-container">

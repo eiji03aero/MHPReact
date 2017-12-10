@@ -17,4 +17,10 @@ SidebarElem.propTypes = {
   title: PropTypes.string.isRequired,
 }
 
+SidebarElem.defaultProps = {
+  link: "/",
+  icon: "home",
+  title: "not found"
+}
+
 export default SidebarElem

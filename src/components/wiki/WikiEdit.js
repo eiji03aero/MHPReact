@@ -63,7 +63,7 @@ export default class WikiEdit extends React.Component {
     return (
       <div className="wikiEdit">
         <WikiEditHeader name={propName} />
-        <div className="wikiEditor _flx">
+        <div className="wikiEditor u-flex">
           <WikiEditForm body={propBody} />
           <WikiShow body={propBody} />
         </div>

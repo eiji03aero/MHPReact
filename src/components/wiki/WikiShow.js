@@ -1,11 +1,11 @@
-import React from 'react'
 import WikiParser from './parser/wikiParser.js'
 
-export default class WikiShow extends React.Component {
+class WikiShow extends React.Component {
   constructor (props) {
     super(props)
+    const body = this.props.body
     this.state = {
-      body: this.props.body
+      body
     }
   }
   componentWillReceiveProps (nextProps) {
@@ -46,3 +46,8 @@ export default class WikiShow extends React.Component {
   }
 }
 
+WikiShow.propTypes = {
+  body: PropTypes.string.isRequired
+}
+
+export default WikiShow
