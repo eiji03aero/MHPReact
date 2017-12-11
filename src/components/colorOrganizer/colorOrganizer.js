@@ -1,14 +1,16 @@
 import { Switch, Route, Link } from 'react-router-dom'
-import { Header, List, Show } from './container.js'
+import ColorOrganizerHeader from './ui/ColorOrganizerHeader.js'
+import ColorShow from './ui/ColorShow.js'
+import ColorList from './ui/ColorList.js'
 
 import './stylesheets/ColorOrganizer.scss'
 
 const ColorOrganizer = () =>
   <div className="color-organizer-container">
-    <Header />
+    <ColorOrganizerHeader />
     <Switch>
-      <Route path="/color-organizer/:id" component={ Show } />
-      <Route component={ List } />
+      <Route path="/color-organizer/:id" component={ ColorShow } />
+      <Route component={ ColorList } />
     </Switch>
   </div>
 

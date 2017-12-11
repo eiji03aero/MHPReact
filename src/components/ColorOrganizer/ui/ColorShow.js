@@ -1,6 +1,6 @@
+import { connect } from 'react-redux'
 
-
-const ColorShow = ({ match }) => {
+export const ColorShow = ({ match }) => {
   const { id } = match.params
   return (
     <div>
@@ -10,4 +10,4 @@ const ColorShow = ({ match }) => {
   )
 }
 
-export default ColorShow
+export default connect(null, null)(ColorShow)

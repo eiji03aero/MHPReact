@@ -1,6 +1,19 @@
+import { connect } from 'react-redux'
 import Color from './Color.js'
 
-const ColorList = ({ colors, onRate, onRemove }) => {
+const propTypes = {
+  colors: PropTypes.array.isRequired,
+}
+
+const defaultProps = {
+  colors: [],
+}
+
+const mapStateToProps = state => ({
+  colors: state.colors
+})
+
+export const ColorList = ({ colors }) => {
   return colors.length <= 0 ?
     <h1 style={ styles.noColor}> you aint got no color here!!</h1> :
     <div className="u-flex--item-table" style={ styles.colorList }>
@@ -8,9 +21,7 @@ const ColorList = ({ colors, onRate, onRemove }) => {
         return (
           <Color
             key={i}
-            colorInfo={color}
-            onRate={onRate}
-            onRemove={onRemove} />
+            colorInfo={color} />
         )
       })}
     </div>
@@ -25,16 +36,7 @@ const styles = {
   }
 }
 
-ColorList.propTypes = {
-  colors: PropTypes.array.isRequired,
-  onRate: PropTypes.func.isRequired,
-  onRemove: PropTypes.func.isRequired,
-}
+ColorList.propTypes = propTypes
+ColorList.defaultProps = defaultProps
 
-ColorList.defaultProps = {
-  colors: [],
-  onRate: f => f,
-  onRemove: f => f
-}
-
-export default ColorList
+export default connect(mapStateToProps, null)(ColorList)
