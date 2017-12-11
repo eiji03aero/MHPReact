@@ -1,6 +1,28 @@
+import { connect } from 'react-redux'
 import Color from './Color.js'
+import { rateColor, removeColor } from '../../../redux/actions/colors.js'
 
-const ColorList = ({ colors, onRate, onRemove }) => {
+const propTypes = {
+  colors: PropTypes.array.isRequired,
+  onRemove: PropTypes.func.isRequired,
+}
+
+const defaultProps = {
+  colors: [],
+  onRemove: f => f
+}
+
+const mapStateToProps = state => ({
+  colors: state.colors
+})
+
+const mapDispatchToProps = dispatch => ({
+  onRemove (id) {
+    dispatch(removeColor(id))
+  }
+})
+
+export const ColorList = ({ colors, onRemove }) => {
   return colors.length <= 0 ?
     <h1 style={ styles.noColor}> you aint got no color here!!</h1> :
     <div className="u-flex--item-table" style={ styles.colorList }>
@@ -9,7 +31,6 @@ const ColorList = ({ colors, onRate, onRemove }) => {
           <Color
             key={i}
             colorInfo={color}
-            onRate={onRate}
             onRemove={onRemove} />
         )
       })}
@@ -25,16 +46,7 @@ const styles = {
   }
 }
 
-ColorList.propTypes = {
-  colors: PropTypes.array.isRequired,
-  onRate: PropTypes.func.isRequired,
-  onRemove: PropTypes.func.isRequired,
-}
+ColorList.propTypes = propTypes
+ColorList.defaultProps = defaultProps
 
-ColorList.defaultProps = {
-  colors: [],
-  onRate: f => f,
-  onRemove: f => f
-}
-
-export default ColorList
+export default connect(mapStateToProps, mapDispatchToProps)(ColorList)

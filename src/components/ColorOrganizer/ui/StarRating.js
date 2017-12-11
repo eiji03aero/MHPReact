@@ -1,6 +1,27 @@
+import { connect } from 'react-redux'
+import { rateColor } from '../../../redux/actions/colors.js'
+
 import '../stylesheets/StarRating.scss'
 
-const StarRating = ({ id, rating, onRate, totalStars }) =>
+const propTypes = {
+  id: PropTypes.string.isRequired,
+  totalStars: PropTypes.number.isRequired,
+  rating: PropTypes.number.isRequired,
+  onRate: PropTypes.func.isRequired
+}
+
+const defaultProps = {
+  onRate: f => f,
+  totalStars: 5
+}
+
+const mapDispatchToProps = dispatch => ({
+  onRate (rating, id) {
+    dispatch(rateColor(rating, id))
+  }
+})
+
+export const StarRating = ({ id, rating, onRate, totalStars }) =>
   <div className="star-rating-container">
     <div className="star-rating">
       { [...new Array(totalStars)].map((star, i) => {
@@ -16,16 +37,7 @@ const StarRating = ({ id, rating, onRate, totalStars }) =>
     <p className="_fs-20">{rating} / {totalStars}</p>
   </div>
 
-StarRating.propTypes = {
-  id: PropTypes.string.isRequired,
-  totalStars: PropTypes.number.isRequired,
-  rating: PropTypes.number.isRequired,
-  onRate: PropTypes.func.isRequired
-}
+StarRating.propTypes = propTypes
+StarRating.defaultProps = defaultProps
 
-StarRating.defaultProps = {
-  onRate: f => f,
-  totalStars: 5
-}
-
-export default StarRating
+export default connect(null, mapDispatchToProps)(StarRating)
