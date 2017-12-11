@@ -19,6 +19,13 @@ const initialState = {
       id: "2348"
     }
   ],
+  wikis: [
+    {
+      name: 'osakabe',
+      body: 'koreha iine',
+      id: "098765"
+    }
+  ],
   widgets: {
     addColorFormIsOpen: false
   }
