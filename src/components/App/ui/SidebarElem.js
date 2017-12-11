@@ -1,5 +1,17 @@
 import { Link } from 'react-router-dom'
 
+const propTypes = {
+  link: PropTypes.string.isRequired,
+  icon: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+}
+
+const defaultProps = {
+  link: "/",
+  icon: "alert-circle-outline",
+  title: "not found"
+}
+
 const SidebarElem = ({ link, icon, title }) => {
   return (
     <Link to={link}>
@@ -11,16 +23,7 @@ const SidebarElem = ({ link, icon, title }) => {
   )
 }
 
-SidebarElem.propTypes = {
-  link: PropTypes.string.isRequired,
-  icon: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-}
-
-SidebarElem.defaultProps = {
-  link: "/",
-  icon: "home",
-  title: "not found"
-}
+SidebarElem.propTypes = propTypes
+SidebarElem.defaultProps = defaultProps
 
 export default SidebarElem
