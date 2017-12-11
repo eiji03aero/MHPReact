@@ -1,25 +1,16 @@
 import { connect } from 'react-redux'
 import Color from './Color.js'
-import { rateColor, removeColor } from '../../../redux/actions/colors.js'
 
 const propTypes = {
   colors: PropTypes.array.isRequired,
-  onRemove: PropTypes.func.isRequired,
 }
 
 const defaultProps = {
   colors: [],
-  onRemove: f => f
 }
 
 const mapStateToProps = state => ({
   colors: state.colors
-})
-
-const mapDispatchToProps = dispatch => ({
-  onRemove (id) {
-    dispatch(removeColor(id))
-  }
 })
 
 export const ColorList = ({ colors, onRemove }) => {
@@ -30,8 +21,7 @@ export const ColorList = ({ colors, onRemove }) => {
         return (
           <Color
             key={i}
-            colorInfo={color}
-            onRemove={onRemove} />
+            colorInfo={color} />
         )
       })}
     </div>
@@ -49,4 +39,4 @@ const styles = {
 ColorList.propTypes = propTypes
 ColorList.defaultProps = defaultProps
 
-export default connect(mapStateToProps, mapDispatchToProps)(ColorList)
+export default connect(mapStateToProps, null)(ColorList)

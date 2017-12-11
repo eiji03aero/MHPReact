@@ -1,4 +1,6 @@
+import { connect } from 'react-redux'
 import StarRating from './StarRating.js'
+import { removeColor } from '../../../redux/actions/colors.js'
 
 import '../stylesheets/Color.scss'
 
@@ -12,7 +14,13 @@ const defaultProps = {
   onRemove: f => f
 }
 
-const Color = ({ colorInfo, onRemove }) => {
+const mapDispatchToProps = dispatch => ({
+  onRemove (id) {
+    dispatch(removeColor(id))
+  }
+})
+
+export const Color = ({ colorInfo, onRemove }) => {
   const { color, id, rating, title } = colorInfo
 
   return (
@@ -35,4 +43,4 @@ const Color = ({ colorInfo, onRemove }) => {
 Color.propTypes = propTypes
 Color.defaultProps = defaultProps
 
-export default Color
+export default connect(null, mapDispatchToProps)(Color)
