@@ -13,7 +13,7 @@ const mapStateToProps = state => ({
   colors: state.colors
 })
 
-export const ColorList = ({ colors, onRemove }) => {
+export const ColorList = ({ colors }) => {
   return colors.length <= 0 ?
     <h1 style={ styles.noColor}> you aint got no color here!!</h1> :
     <div className="u-flex--item-table" style={ styles.colorList }>

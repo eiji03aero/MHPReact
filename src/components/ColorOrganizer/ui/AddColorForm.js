@@ -1,7 +1,31 @@
+import { connect } from 'react-redux'
+import { addColor } from '../../../redux/actions/colors.js'
+import { toggleAddColorForm } from '../../../redux/actions/widgets.js'
+
 import '../stylesheets/AddColorForm.scss'
 
-const AddColorForm = ({ addColorFormIsOpen, onAdd }) => {
+const propTypes = {
+  addColorFormIsOpen: PropTypes.bool.isRequired,
+  onAdd: PropTypes.func.isRequired
+}
 
+const defaultProps = {
+  addColorFormIsOpen: false,
+  onAdd: f => f
+}
+
+const mapStateToProps = state => ({
+  addColorFormIsOpen: state.widgets.addColorFormIsOpen
+})
+
+const mapDispatchToProps = dispatch => ({
+  onAdd (title, color) {
+    dispatch(addColor(title, color))
+    dispatch(toggleAddColorForm('close'))
+  }
+})
+
+const AddColorForm = ({ addColorFormIsOpen, onAdd }) => {
   let _title, _color
   const formClass = addColorFormIsOpen ? 'add-color-form active' : 'add-color-form'
 
@@ -33,14 +57,7 @@ const AddColorForm = ({ addColorFormIsOpen, onAdd }) => {
   )
 }
 
-AddColorForm.propTypes = {
-  addColorFormIsOpen: PropTypes.bool.isRequired,
-  onAdd: PropTypes.func.isRequired
-}
+AddColorForm.propTypes = propTypes
+AddColorForm.defaultProps = defaultProps
 
-AddColorForm.defaultProps = {
-  addColorFormIsOpen: false,
-  onAdd: f => f
-}
-
-export default AddColorForm
+export default connect(mapStateToProps, mapDispatchToProps)(AddColorForm)
