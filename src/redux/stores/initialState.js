@@ -21,7 +21,7 @@ const initialState = {
   ],
   wikis: [
     {
-      name: 'osakabe',
+      title: 'osakabe',
       body: 'koreha iine',
       id: "098765"
     }

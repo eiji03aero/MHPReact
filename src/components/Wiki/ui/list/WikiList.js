@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import WikiItem from './WikiItem.js'
+import ListItem from './ListItem.js'
 
 const propTypes = {
   wikis: PropTypes.array
@@ -23,7 +23,7 @@ const WikiList = ({ wikis }) => {
     <div className="wikiList">
       <p><Link to="/wiki/edit/new">Create new</Link></p>
       { wikis.map((wiki, i) => {
-        return <WikiItem key={i} wiki={wiki} />
+        return <ListItem key={i} wiki={wiki} />
       })}
     </div>
   )

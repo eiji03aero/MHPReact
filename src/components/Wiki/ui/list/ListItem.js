@@ -8,7 +8,7 @@ const defaultProps = {
   wiki: {}
 }
 
-const WikiItem = ({ wiki }) => {
+const ListItem = ({ wiki }) => {
   const { name, body } = wiki
 
   return (

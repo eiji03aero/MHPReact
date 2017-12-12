@@ -1,5 +1,5 @@
 import { Route } from 'react-router-dom'
-import WikiList from './ui/WikiList.js'
+import WikiList from './ui/list/WikiList.js'
 // import WikiShow from './WikiShow.js'
 // import WikiEdit from './WikiEdit.js'
 

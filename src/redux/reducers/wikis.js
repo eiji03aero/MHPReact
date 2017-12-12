@@ -5,7 +5,7 @@ const wiki = (state = {}, action) => {
     case C.ADD_WIKI :
       return {
         id: action.id,
-        name: action.name,
+        title: action.name,
         body: action.body
       }
 

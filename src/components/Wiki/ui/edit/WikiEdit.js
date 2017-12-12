@@ -1,8 +1,8 @@
 import request from 'superagent'
 import { Redirect } from 'react-router-dom'
 import { nameStore, bodyStore } from './flux/wikiStores.js'
-import WikiEditHeader from './WikiEditHeader.js'
-import WikiEditForm from './WikiEditForm.js'
+import EditHeader from './EditHeader.js'
+import EditForm from './EditForm.js'
 import WikiShow from './WikiShow.js'
 
 export default class WikiEdit extends React.Component {
@@ -54,6 +54,7 @@ export default class WikiEdit extends React.Component {
         this.setState({ jump: '/wiki' })
       })
   }
+
   render () {
     if (this.state.jump !== '') {
       return <Redirect to={this.state.jump} />

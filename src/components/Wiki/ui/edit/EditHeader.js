@@ -1,4 +1,3 @@
-import React from 'react'
 import { Actions } from './flux/wikiActions.js'
 
 class WikiEditHeader extends React.Component {
