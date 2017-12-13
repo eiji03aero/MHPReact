@@ -7,7 +7,7 @@ const constants = {
   TOGGLE_ADD_COLOR_FORM: 'TOGGLE_ADD_COLOR_FORM',
 
   // Wikis
-  ADD_WIKI: 'ADD_WIKI',
+  CREATE_WIKI: 'CREATE_WIKI',
   REMOVE_WIKI: 'REMOVE_WIKI'
 }
 

@@ -9,7 +9,7 @@ const defaultProps = {
 }
 
 const ListItem = ({ wiki }) => {
-  const { name, body } = wiki
+  const { title, body, id } = wiki
 
   return (
     <div className="wikiItem u-flex">
@@ -18,11 +18,11 @@ const ListItem = ({ wiki }) => {
       </div>
       <div className="itemMain">
         <div className="itemInfo">
-          <h3>{ name }</h3>
+          <h3>{ title }</h3>
           <p>{ body }</p>
         </div>
         <div className="itemOperational">
-          <Link to={`/wiki/edit/${name}`}>edit</Link>
+          <Link to={`/wiki/edit/${id}`}>edit</Link>
           <a href="#">del</a>
         </div>
       </div>
@@ -30,7 +30,7 @@ const ListItem = ({ wiki }) => {
   )
 }
 
-WikiItem.propTypes = propTypes
-WikiItem.defaultProps = defaultProps
+ListItem.propTypes = propTypes
+ListItem.defaultProps = defaultProps
 
-export default WikiItem
+export default ListItem

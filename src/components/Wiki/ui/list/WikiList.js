@@ -21,7 +21,7 @@ const WikiList = ({ wikis }) => {
 
   return (
     <div className="wikiList">
-      <p><Link to="/wiki/edit/new">Create new</Link></p>
+      <p><Link to="/wiki/new">Create new</Link></p>
       { wikis.map((wiki, i) => {
         return <ListItem key={i} wiki={wiki} />
       })}

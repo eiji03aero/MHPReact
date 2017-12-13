@@ -2,7 +2,7 @@ import C from '../constants.js'
 
 const wiki = (state = {}, action) => {
   switch (action.type) {
-    case C.ADD_WIKI :
+    case C.CREATE_WIKI :
       return {
         id: action.id,
         title: action.name,
@@ -16,7 +16,7 @@ const wiki = (state = {}, action) => {
 
 const wikis = (state = [], action) => {
   switch (action.type) {
-    case C.ADD_WIKI :
+    case C.CREATE_WIKI :
       return [
         ...state,
         wiki({}, action)

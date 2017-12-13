@@ -1,12 +1,12 @@
 import C from '../constants.js'
 import { v4 } from 'uuid'
 
-export const addWiki = (title, body) =>
+export const createWiki = (title, body) =>
   ({
-    type: C.ADD_WIKI,
-    id: v4()
-    title,
-    body,
+    type: C.CREATE_WIKI,
+    id: v4(),
+    title: title,
+    body: body,
     timeStamp: new Date().toString()
   })
 

@@ -1,11 +1,12 @@
 const propTypes = {
   title: PropTypes.string,
-  onChange: PropTypes.func
+  onTitleChange: PropTypes.func
 }
-const EditHeader = ({ title, onChange }) => {
 
-  const handleChange () => {
-    onChange(title)
+const EditHeader = ({ title, onTitleChange }) => {
+
+  const handleChange = (e) => {
+    onTitleChange(e.target.value)
   }
 
   return (
@@ -13,7 +14,7 @@ const EditHeader = ({ title, onChange }) => {
       <p>Title</p>
       <input className="editorTitle _fs-36"
         value={title}
-        onChange={() => handleChange()} />
+        onChange={e => handleChange(e)} />
     </div>
   )
 }
