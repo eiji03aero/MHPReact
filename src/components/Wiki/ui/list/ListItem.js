@@ -10,6 +10,7 @@ const defaultProps = {
 
 const ListItem = ({ wiki }) => {
   const { title, body, id } = wiki
+  const wikiUrl = `/wiki/${id}`
 
   return (
     <div className="wikiItem u-flex">
@@ -17,10 +18,12 @@ const ListItem = ({ wiki }) => {
         <div className="itemThumbnail _bg_cover" />
       </div>
       <div className="itemMain">
-        <div className="itemInfo">
-          <h3>{ title }</h3>
-          <p>{ body }</p>
-        </div>
+        <Link to={wikiUrl}>
+          <div className="itemInfo">
+            <h3>{ title }</h3>
+            <p>{ body }</p>
+          </div>
+        </Link>
         <div className="itemOperational">
           <Link to={`/wiki/edit/${id}`}>edit</Link>
           <a href="#">del</a>

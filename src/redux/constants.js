@@ -12,6 +12,7 @@ const constants = {
 
   // Wikis
   CREATE_WIKI: 'CREATE_WIKI',
+  UPDATE_WIKI: 'UPDATE_WIKI',
   REMOVE_WIKI: 'REMOVE_WIKI'
 }
 

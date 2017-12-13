@@ -24,9 +24,9 @@ const initialState = {
   ],
   wikis: [
     {
+      id: '098765',
       title: 'osakabe',
-      body: 'koreha iine',
-      id: "098765"
+      body: 'koreha iine'
     }
   ],
   widgets: {

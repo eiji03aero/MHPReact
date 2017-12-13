@@ -5,7 +5,14 @@ const wiki = (state = {}, action) => {
     case C.CREATE_WIKI :
       return {
         id: action.id,
-        title: action.name,
+        title: action.title,
+        body: action.body
+      }
+
+    case C.UPDATE_WIKI :
+      return {
+        ...state,
+        title: action.title,
         body: action.body
       }
 
@@ -21,6 +28,13 @@ const wikis = (state = [], action) => {
         ...state,
         wiki({}, action)
       ]
+
+    case C.UPDATE_WIKI :
+      return state.map(wiki => {
+        return wiki.id === action.id ?
+          wiki({}, action) :
+          wiki
+      })
 
     case C.REMOVE_WIKI :
       return state.filter(

@@ -38,7 +38,6 @@ class NewWiki extends React.Component {
 
   render () {
     const { title, body } = this.state
-    const { onTitleChange } = this
     return (
       <WikiForm title={title}
         body={body}
