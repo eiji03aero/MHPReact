@@ -1,4 +1,7 @@
 const initialState = {
+  app: {
+    redirectPath: ''
+  },
   colors: [
     { 
       color: '#004080',
@@ -17,6 +20,13 @@ const initialState = {
       title: "great blue",
       rating: 5,
       id: "2348"
+    }
+  ],
+  wikis: [
+    {
+      id: '098765',
+      title: 'osakabe',
+      body: 'koreha iine'
     }
   ],
   widgets: {
