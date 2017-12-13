@@ -1,4 +1,7 @@
 const initialState = {
+  app: {
+    redirectPath: ''
+  },
   colors: [
     { 
       color: '#004080',

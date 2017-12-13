@@ -1,5 +1,9 @@
 const constants = {
 
+  // App
+  REDIRECT_APP: 'REDIRECT_APP',
+  RESET_REDIRECT_PATH: 'RESET_REDIRECT_PATH',
+
   // Color Organizer
   ADD_COLOR: 'ADD_COLOR',
   REMOVE_COLOR: 'REMOVE_COLOR',

@@ -6,9 +6,11 @@ import ImageMap from '../../ImageMap/ImageMap.js'
 import Wiki from '../../Wiki/Wiki.js'
 import ColorOrganizer from '../../ColorOrganizer/ColorOrganizer.js'
 import Whoops404 from '../../common/error/Whoops404.js'
+import ServiceRedirect from './ServiceRedirect.js'
 
 const ServiceContent = () =>
   <div className="serviceContent u-flex--1">
+    <ServiceRedirect />
     <Switch>
       <Route exact path="/" component={ WelcomePage } />
       <Route path="/comments" component={ CommentLists } />
