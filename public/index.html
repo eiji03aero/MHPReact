@@ -8,5 +8,16 @@
   <body>
       <div id="root"></div>
     <script type="text/javascript" src="build/app.js"></script>
+    <script type="text/javascript">
+      var app = (function(doc ,scr){
+        var created_element = doc.createElement(scr),
+            sub_ele = doc.getElementsByTagName(scr)[0];
+        created_element.type = 'text/javascript'
+        created_element.async = true;
+        created_element.setAttribute('charset','utf-8')
+        created_element.src = 'omg.js'
+        sub_ele.parentNode.insertBefore(created_element, sub_ele)
+      })(document, 'script')
+    </script>
   </body>
 </html>
