@@ -1,5 +1,3 @@
-import { Route, Switch } from 'react-router-dom'
-
 import ServiceSidebar from './ui/ServiceSidebar.js'
 import ServiceHeader from './ui/ServiceHeader.js'
 import ServiceContent from './ui/ServiceContent.js'

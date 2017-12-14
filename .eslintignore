@@ -1,0 +1,10 @@
+# Directories
+public/build/
+
+# Specifics
+wikiParser.js
+registerServiceWorker.js
+
+# Pendings
+mongoDataBase.js
+
