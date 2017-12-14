@@ -4,6 +4,9 @@ const constants = {
   REDIRECT_APP: 'REDIRECT_APP',
   RESET_REDIRECT_PATH: 'RESET_REDIRECT_PATH',
 
+  // Welcome Page
+  GET_TEST: 'GET_TEST',
+
   // Color Organizer
   ADD_COLOR: 'ADD_COLOR',
   REMOVE_COLOR: 'REMOVE_COLOR',

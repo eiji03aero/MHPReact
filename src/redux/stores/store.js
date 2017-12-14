@@ -1,8 +1,10 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
+import promiseMiddleware from 'redux-promise'
 import app from '../reducers/app.js'
 import colors from '../reducers/colors.js'
 import wikis from '../reducers/wikis.js'
 import widgets from '../reducers/widgets.js'
+import welcome_page from '../reducers/welcome_page.js'
 import stateData from './initialState.js'
 
 const logger = store => next => action => {
@@ -22,8 +24,8 @@ const saver = store => next => action => {
 }
 
 const storeFactory = (initialState = stateData) =>
-  applyMiddleware(logger, saver)(createStore)(
-    combineReducers({ app, colors, wikis, widgets }),
+  applyMiddleware(saver, promiseMiddleware)(createStore)(
+    combineReducers({ app, colors, wikis, widgets, welcome_page }),
     (localStorage && localStorage['redux-store']) ?
       JSON.parse(localStorage['redux-store']) :
       stateData

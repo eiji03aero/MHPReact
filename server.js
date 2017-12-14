@@ -13,7 +13,7 @@ const apiApp     = require('./routes/apiApp.js')
 const apiWiki    = require('./routes/apiWiki.js')
 const apiComment = require('./routes/apiComment.js')
 
-const useWebpackDevServer = require('./scripts/config/webpack-dev-server.js')
+// const useWebpackDevServer = require('./scripts/config/webpack-dev-server.js')
 
 // Port setting
 app.set('port', process.env.port || 3000)
@@ -42,6 +42,10 @@ app.get('/sample', (req, res) => { res.sendFile(path.join(__dirname, 'public/sam
 app.use('/api/app', apiApp)
 app.use('/api/wiki', apiWiki)
 app.use('/api/comment', apiComment)
+
+app.get('/get_test', (req, res) => {
+  res.json({ status: true, data: 'osakabe'})
+})
 
 // catch 404 error
 app.use((err, req, res, next) => {
