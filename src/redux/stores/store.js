@@ -1,5 +1,5 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
-import promiseMiddleware from 'redux-promise'
+import thunkMiddleware from 'redux-thunk'
 import app from '../reducers/app.js'
 import colors from '../reducers/colors.js'
 import wikis from '../reducers/wikis.js'
@@ -24,7 +24,7 @@ const saver = store => next => action => {
 }
 
 const storeFactory = (initialState = stateData) =>
-  applyMiddleware(saver, promiseMiddleware)(createStore)(
+  applyMiddleware(saver, thunkMiddleware)(createStore)(
     combineReducers({ app, colors, wikis, widgets, welcome_page }),
     (localStorage && localStorage['redux-store']) ?
       JSON.parse(localStorage['redux-store']) :

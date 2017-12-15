@@ -1,14 +1,25 @@
 import C from '../constants.js'
 import { v4 } from 'uuid'
+import request from 'superagent'
 
-export const createWiki = (title, body) =>
-  ({
-    type: C.CREATE_WIKI,
-    id: v4(),
-    title: title,
-    body: body,
-    timeStamp: new Date().toString()
-  })
+export const createWiki = (title, body) => {
+  return dispatch => {
+    request.post('/api/v1/wiki/')
+      .set('Content-Type', 'application/json')
+      .send({ title: title, body: body})
+      .end((err, res) => {
+        if (err || !res.ok) return console.log(err)
+        const { _id, title, body } = res.body
+        return dispatch({
+          type: C.CREATE_WIKI,
+          id: _id,
+          title,
+          body,
+          timeStamp: new Date().toString()
+        })
+      })
+  }
+}
 
 export const updateWiki = (id, title, body) =>
   ({

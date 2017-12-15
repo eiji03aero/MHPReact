@@ -18,6 +18,9 @@ const render = () => {
   )
 }
 
+// for debug
+window.store = store
+
 store.subscribe(render)
 render()
 registerServiceWorker()
