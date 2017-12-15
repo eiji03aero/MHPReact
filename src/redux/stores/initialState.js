@@ -5,21 +5,21 @@ const initialState = {
   colors: [
     { 
       color: '#004080',
-      title: "favorite blue",
+      title: 'favorite blue',
       rating: 3,
       id: "2345"
     },
     { 
       color: '#eee',
-      title: "geeky grey",
+      title: 'geeky grey',
       rating: 5,
-      id: "2347"
+      id: '2347'
     },
     { 
       color: '#0096ce',
-      title: "great blue",
+      title: 'great blue',
       rating: 5,
-      id: "2348"
+      id: '2348'
     }
   ],
   wikis: [

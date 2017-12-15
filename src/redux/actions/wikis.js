@@ -1,5 +1,4 @@
 import C from '../constants.js'
-import { v4 } from 'uuid'
 import request from 'superagent'
 
 export const createWiki = (title, body) => {
