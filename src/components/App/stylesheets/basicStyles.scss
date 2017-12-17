@@ -21,6 +21,7 @@ h1,h2,h3,h4,h5,h6,p,span,a,input[type="text"],textarea {
 a {
   color: #80d8f7;
   text-decoration: none;
+  cursor: pointer;
   &:visited {
     color: #80d8f7;
   }

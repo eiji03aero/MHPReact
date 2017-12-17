@@ -24,10 +24,10 @@ const saver = store => next => action => {
 }
 
 const storeFactory = (initialState = stateData) =>
-  applyMiddleware(saver, thunkMiddleware)(createStore)(
+  applyMiddleware(logger, saver, thunkMiddleware)(createStore)(
     combineReducers({ app, colors, wikis, widgets, welcome_page }),
-    (localStorage && localStorage['redux-store']) ?
-      JSON.parse(localStorage['redux-store']) :
+    (localStorage && localStorage['redux-storage']) ?
+      JSON.parse(localStorage['redux-storage']) :
       stateData
   )
 

@@ -11,8 +11,8 @@ const Wiki = () =>
     <Switch>
       <Route exact path="/wiki" component={ WikiList } />
       <Route path="/wiki/new" component={ NewWiki } />
-      <Route path="/wiki/edit/:id" component={ EditWiki } />
-      <Route path="/wiki/:id" component={ ShowWiki } />
+      <Route path="/wiki/edit/:_id" component={ EditWiki } />
+      <Route path="/wiki/show/:_id" component={ ShowWiki } />
     </Switch>
   </div>
 

@@ -34,7 +34,7 @@ export const StarRating = ({ id, rating, onRate, totalStars }) =>
         )
       }) }
     </div>
-    <p className="_fs-20">{rating} / {totalStars}</p>
+    <p className="u-fs--20">{rating} / {totalStars}</p>
   </div>
 
 StarRating.propTypes = propTypes

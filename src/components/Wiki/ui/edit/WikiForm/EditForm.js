@@ -6,7 +6,7 @@ const EditForm = ({ body, onBodyChange }) => {
 
   return (
     <div className="wikiEditForm u-flex--1">
-      <textarea className="editorTextarea _nobdr _fs-16"
+      <textarea className="editorTextarea _nobdr u-fs--16"
         rows={12} cols={60}
         value={body}
         onChange={(e) => handleChange(e)} /><br />

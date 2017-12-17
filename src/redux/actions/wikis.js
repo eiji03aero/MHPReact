@@ -5,7 +5,6 @@ export const getAllWikis = () => {
   return dispatch => {
     request.get('/api/v1/wiki/index')
       .end((err, res) => {
-        console.log('request ended')
         if (err || !res.ok) return console.log(err)
         const { wikis } = res.body
         return dispatch({

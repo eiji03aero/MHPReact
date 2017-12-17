@@ -12,8 +12,13 @@
 .u-flex--fs {
   display: flex;
   justify-content: flex-start;
+  align-items: center;
   .u-optional-right {
     margin-left: auto;
+    a {
+      display: inline-block;
+      margin-left: .5rem;
+    }
   }
 }
 

@@ -12,7 +12,7 @@ const EditHeader = ({ title, onTitleChange }) => {
   return (
     <div className="wikiEditHeader">
       <p>Title</p>
-      <input className="editorTitle _fs-36"
+      <input className="editorTitle u-fs--36"
         value={title}
         onChange={e => handleChange(e)} />
     </div>

@@ -12,39 +12,30 @@ const defaultProps = {
   wiki: {}
 }
 
-const mapDispatchToProps = dispatch =>
-  ({
-    onRemove (_id) {
-      dispatch(removeWiki(_id))
-    }
-  })
-
-const ListItem = ({ wiki, onRemove }) => {
+const ListItem = ({ wiki }) => {
   const { title, body, _id } = wiki
-  const wikiUrl = `/wiki/${_id}`
-  console.log(wikiUrl)
+  const wikiUrl = `/wiki/show/${_id}`
 
   return (
-    <div className="wikiItem u-flex">
-      <div className="itemLeft">
-        <div className="itemThumbnail _bg_cover" />
-      </div>
-      <div className="itemMain">
-        <Link to={wikiUrl}>
+    <Link to={ wikiUrl }>
+      <div className="wikiItem u-flex">
+        <div className="itemLeft">
+          <div className="itemThumbnail _bg_cover" />
+        </div>
+        <div className="itemMain">
           <div className="itemInfo">
             <h3>{ title }</h3>
             <p>{ body }</p>
           </div>
-        </Link>
-        <div className="itemOperational">
-          <a onClick={() => onRemove(_id)}>del</a>
+          <div className="itemOperational">
+          </div>
         </div>
       </div>
-    </div>
+    </Link>
   )
 }
 
 ListItem.propTypes = propTypes
 ListItem.defaultProps = defaultProps
 
-export default connect(null, mapDispatchToProps)(ListItem)
+export default connect(null, null)(ListItem)
