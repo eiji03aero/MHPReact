@@ -35,10 +35,10 @@ class CommentLists extends Component {
       )
     } else {
       return (
-      <div>
-        <p>here are your comments</p>
-        { this.renderComments() }
-      </div>
+        <div>
+          <p>here are your comments</p>
+          { this.renderComments() }
+        </div>
       )
     }
   }
@@ -46,14 +46,14 @@ class CommentLists extends Component {
   renderComments () {
     const comments = this.state.comments.map((x) => {
       return (
-      <div>
-         <h3>{x.author}</h3>
-         <p>{x.text}</p>
-      </div>
+        <div>
+           <h3>{x.author}</h3>
+           <p>{x.text}</p>
+        </div>
       )
     })
     return comments
   }
 }
 
-export default CommentLists;
+export default CommentLists

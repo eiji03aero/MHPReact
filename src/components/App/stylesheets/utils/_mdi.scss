@@ -25,10 +25,17 @@
   text-rendering:          optimizeLegibility; /* for Chrome、Safari */
   -moz-osx-font-smoothing: grayscale;          /* for Firefox */
   font-feature-settings:   'liga';             /* for IE */
+  &:hover {
+    opacity: .7;
+  }
 }
 
 .mdi.mdi-onDark {
   color: #eee;
+}
+
+.mdi.mdi-grey {
+  color: #777;
 }
 
 .mdi.mdi-18 { font-size: 18px; }

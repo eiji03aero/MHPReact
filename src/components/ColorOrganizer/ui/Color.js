@@ -26,7 +26,7 @@ export const Color = ({ colorInfo, onRemove }) => {
   return (
     <div className="color-container">
       <div className="color-header">
-        <p className="_fs-36">{ title }</p>
+        <p className="u-fs--36">{ title }</p>
         <button className="remove-color" onClick={() => onRemove(id)} >
           X
         </button>

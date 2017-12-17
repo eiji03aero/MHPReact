@@ -1,0 +1,37 @@
+.c-button {
+  display: inline-block;
+  padding: .5rem 1rem;
+  background-color: $button-color--default;
+  border: 1px solid $border-color--default;
+  border-radius: .25rem;
+  color: $font-color--black;
+  font-size: .8rem;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  transition: all 0.3s 0s ease;
+  &:hover {
+    background-color: tint($button-color--default-hovered, 30%);
+  }
+}
+
+.c-button--primary {
+  @extend .c-button;
+  background-color: $button-color--primary;
+  border: none;
+  color: $font-color--trueWhite;
+  &:hover {
+    background-color: tint($button-color--primary, 40%);
+  }
+}
+
+.c-button-size--smallX {
+  padding: .05rem .25rem;
+  font-size: .5rem;
+}
+
+.c-button-size--small {
+  padding: .2rem .4rem;
+  font-size: .75rem;
+}

@@ -9,12 +9,16 @@ parserOptions:
     experimentalObjectRestSpread: true
     jsx: true
   sourceType: module
+globals:
+  React: true
+  PropTypes: true
 plugins:
   - react
 rules:
   indent:
     - error
     - 2
+    - SwitchCase: 1
   linebreak-style:
     - error
     - unix
