@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import LinkIconBubble from './LinkIconBubble.js'
 
 import './stylesheets/LinkIcon.scss'
 
@@ -11,8 +12,8 @@ const propTypes = {
 }
 
 const defaultProps = {
-  to: 'dummy',
   icon: 'link',
+  to: 'dummy',
   func: f => f,
   size: 'small'
 }
@@ -23,48 +24,38 @@ class LinkIcon extends React.Component {
     this.state = {
       show: false
     }
-    this.onHover = this.onHover.bind(this)
+    this.handleMouseEnter = this.handleMouseEnter.bind(this)
+    this.handleMouseLeave = this.handleMouseLeave.bind(this)
   }
 
-  onHover () {
-    this.setState({
-      show: !this.state.show
-    })
+  handleMouseEnter () {
+    this.setState({ show: true })
+  }
+
+  handleMouseLeave () {
+    this.setState({ show: false })
   }
 
   render () {
     const { title, icon, to, func, size } = this.props
     if (to !== 'dummy') {
       return (
-        <Link to={ to } onMouseEnter={ this.onHover } onMouseLeave={ this.onHover }>
+        <Link to={ to } onMouseEnter={ this.handleMouseEnter } onMouseLeave={ this.handleMouseLeave }>
           <div className="LinkIcon">
           <i className="mdi mdi-grey mdi-24">{ icon }</i>
-          { this.renderBubble(title) }
+          <LinkIconBubble title={ title } show={ this.state.show } />
           </div>
         </Link>
       )
     } else {
       return (
-        <a onClick={ func } onMouseEnter={ this.onHover } onMouseLeave={ this.onHover }>
+        <a onClick={ func } onMouseEnter={ this.handleMouseEnter } onMouseLeave={ this.handleMouseLeave }>
           <div className="LinkIcon">
           <i className="mdi mdi-grey mdi-24">{ icon }</i>
-          { this.renderBubble(title) }
+          <LinkIconBubble title={ title } show={ this.state.show } />
           </div>
         </a>
       )
-    }
-  }
-  renderBubble (title) {
-    if (this.state.show) {
-      return (
-        <div className="icon-bubble-container">
-          <div className="icon-bubble-title">
-            <span>{ title }</span>
-          </div>
-        </div>
-      )
-    } else {
-      return null
     }
   }
 }

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import LinkIcon from '../../../common/util/LinkIcon.js'
+import LinkIcon from '../../../common/util/LinkIcon/LinkIcon.js'
 import convertText from '../../parser/convertText.js'
 import { removeWiki } from '../../../../redux/actions/wikis.js'
 import { redirectApp } from '../../../../redux/actions/app.js'
@@ -49,7 +49,7 @@ const ShowWiki = ({ wiki, match, onRemove }) => {
             func={() => onRemove(_id)} />
         </div>
       </div>
-      <div className="u-flex--1">
+      <div className="WikiShowBody u-flex--1">
         { html }
       </div>
     </div>
