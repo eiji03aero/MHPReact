@@ -1,6 +1,6 @@
 import C from '../constants.js'
 
-const welcome_page = (state = {}, action) => {
+const welcomePage = (state = {}, action) => {
   switch (action.type) {
     case (C.GET_TEST) :
       console.log('gets called')
@@ -14,4 +14,4 @@ const welcome_page = (state = {}, action) => {
   }
 }
 
-export default welcome_page
+export default welcomePage
