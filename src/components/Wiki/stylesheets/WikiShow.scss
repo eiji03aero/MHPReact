@@ -3,7 +3,9 @@
   padding: 1rem;
   border-left: 1px solid #eee;
   text-align: left;
-  .WikiShowHeader {
+  .WikiShowHeader, .WikiShowBody {
     padding: 0 2rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #ddd;
   }
 }
