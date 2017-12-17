@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "node ./server.js & mongod",
+    "start": "node ./server/server.js & mongod",
     "build": "webpack",
-    "dev": "node ./server.js & webpack -w",
+    "dev": "node ./server/server.js & webpack -w",
     "lint": "./node_modules/.bin/eslint ."
   },
   "dependencies": {
