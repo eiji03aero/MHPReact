@@ -5,7 +5,7 @@ import WelcomePage from '../../WelcomePage/WelcomePage.js'
 import CommentLists from '../../CommentLists/CommentLists.js'
 import ImageMap from '../../ImageMap/ImageMap.js'
 import Wiki from '../../Wikidesu/Wiki.js'
-import ColorOrganizer from '../../ColorOrganizer/ColorOrganizer.js'
+import ColorOrganizer from '../../ColorOrganizerdesu/ColorOrganizer.js'
 import Whoops404 from '../../common/error/Whoops404.js'
 import ServiceRedirect from './ServiceRedirect.js'
 
