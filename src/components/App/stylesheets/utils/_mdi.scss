@@ -32,6 +32,9 @@
 
 .mdi.mdi-onDark {
   color: #eee;
+  &:hover {
+    opacity: 1;
+  }
 }
 
 .mdi.mdi-grey {
