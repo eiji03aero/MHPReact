@@ -32,7 +32,7 @@ const initialState = {
   widgets: {
     addColorFormIsOpen: false
   },
-  welcome_page: {
+  welcomePage: {
     message: ''
   }
 }

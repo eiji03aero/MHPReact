@@ -1,10 +1,10 @@
 import { connect } from 'react-redux'
-import { getTest } from '../../redux/actions/welcome_page.js'
+import { getTest } from '../../redux/actions/welcomePage.js'
 import './Welcome.scss'
 
 const mapStateToProps = state =>
   ({
-    message: state.welcome_page.message
+    message: state.welcomePage.message
   })
 
 const mapDispatchToProps = dispatch =>
