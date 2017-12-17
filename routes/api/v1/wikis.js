@@ -1,13 +1,11 @@
-// GET /api/v1/wiki/ => index
-// POST /api/v1/wiki/ => create
-// GET /api/v1/wiki/:id => show
-// POST /api/v1/wiki/:id => update
-// DELETE /api/v1/wiki/:id/delete => delete
+// GET /api/v1/wiki/index => index
+// POST /api/v1/wiki/create => create
+// GET /api/v1/wiki/show=> show
+// POST /api/v1/wiki/update => update
+// POST /api/v1/wiki/destroy => delete
 
 const express = require('express')
 const router = express.Router()
-const uuidv4 = require('uuid/v4')
-const ObjectID = require('mongodb').ObjectID
 
 const Wiki = require('../../../models/wiki.js')
 
@@ -36,7 +34,7 @@ router.post('/create', (req,res) => {
 })
 
 router.get('/show', (req,res) => {
-  Wiki.findOneById( req.body._id, (err,wiki) => {
+  Wiki.findById( req.body._id, (err,wiki) => {
     if (err) {
       return res.json({ status: false, msg: err })
     }
@@ -45,9 +43,9 @@ router.get('/show', (req,res) => {
 })
 
 router.post('/update', (req,res) => {
-  const { id, title, body } = req.body
-  Wiki.findOneById( id, (err, wiki) => {
-    if (err) throw new Error(err)
+  const { _id, title, body } = req.body
+  Wiki.findById(_id, (err, wiki) => {
+    if (err) return console.log(err)
     wiki.title = title
     wiki.body = body
 

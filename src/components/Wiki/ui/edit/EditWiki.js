@@ -5,13 +5,13 @@ import { redirectApp } from '../../../../redux/actions/app.js'
 
 const mapStateToProps = ({ wikis }, { match }) =>
   ({
-    wiki: wikis.filter(x => x.id === match.params.id)[0]
+    wiki: wikis.filter(x => x._id === match.params._id)[0]
   })
 
 const mapDispatchToProps = dispatch =>
   ({
-    onSave (id, title, body) {
-      dispatch(updateWiki(id, title, body))
+    onSave (_id, title, body) {
+      dispatch(updateWiki(_id, title, body))
       dispatch(redirectApp('/wiki'))
     }
   })
@@ -19,9 +19,9 @@ const mapDispatchToProps = dispatch =>
 class EditWiki extends React.Component {
   constructor (props) {
     super(props)
-    const { id, title, body } = this.props.wiki
+    const { _id, title, body } = this.props.wiki
     this.state = {
-      id,
+      _id,
       title,
       body
     }
@@ -39,8 +39,8 @@ class EditWiki extends React.Component {
   }
 
   onSave () {
-    const { id, title, body } = this.state
-    this.props.onSave(id, title, body)
+    const { _id, title, body } = this.state
+    this.props.onSave(_id, title, body)
   }
 
   render () {

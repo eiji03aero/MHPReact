@@ -26,7 +26,7 @@ const WikiForm = ({ title, body, onTitleChange, onBodyChange, onSave }) =>
       <EditShow body={body} />
     </div>
     <div className="wikiEditFooter">
-      <button onClick={onSave}>Save</button>
+      <button className="c-button--primary" onClick={onSave}>Save</button>
     </div>
   </div>
 

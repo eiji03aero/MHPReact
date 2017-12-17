@@ -25,7 +25,7 @@ export const createWiki = (title, body) => {
         const { _id, title, body } = res.body
         return dispatch({
           type: C.CREATE_WIKI,
-          id: _id,
+          _id,
           title,
           body,
           timeStamp: new Date().toString()
@@ -34,13 +34,24 @@ export const createWiki = (title, body) => {
   }
 }
 
-export const updateWiki = (_id, title, body) =>
-  ({
-    type: C.UPDATE_WIKI,
-    _id,
-    title,
-    body
-  })
+export const updateWiki = (_id, title, body) => {
+  return dispatch => {
+    request.post('/api/v1/wiki/update')
+      .set('Content-Type', 'application/json')
+      .send({ _id, title, body })
+      .end((err, res) => {
+        if (err || !res.ok) return console.log(err)
+        const { _id, title, body } = res.body
+        return dispatch({
+          type: C.UPDATE_WIKI,
+          _id,
+          title,
+          body,
+          timeStamp: new Date().toString()
+        })
+      })
+  }
+}
 
 export const removeWiki = (_id) => {
   return dispatch => {
