@@ -1,4 +1,8 @@
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { removeWiki } from '../../../../redux/actions/wikis.js'
+
+import '../../stylesheets/WikiItem.scss'
 
 const propTypes = {
   wiki: PropTypes.object.isRequired
@@ -9,31 +13,29 @@ const defaultProps = {
 }
 
 const ListItem = ({ wiki }) => {
-  const { title, body, id } = wiki
-  const wikiUrl = `/wiki/${id}`
+  const { title, body, _id } = wiki
+  const wikiUrl = `/wiki/show/${_id}`
 
   return (
-    <div className="wikiItem u-flex">
-      <div className="itemLeft">
-        <div className="itemThumbnail _bg_cover" />
-      </div>
-      <div className="itemMain">
-        <Link to={wikiUrl}>
+    <Link to={ wikiUrl }>
+      <div className="wikiItem u-flex">
+        <div className="itemLeft">
+          <div className="itemThumbnail _bg_cover" />
+        </div>
+        <div className="itemMain">
           <div className="itemInfo">
             <h3>{ title }</h3>
             <p>{ body }</p>
           </div>
-        </Link>
-        <div className="itemOperational">
-          <Link to={`/wiki/edit/${id}`}>edit</Link>
-          <a href="#">del</a>
+          <div className="itemOperational">
+          </div>
         </div>
       </div>
-    </div>
+    </Link>
   )
 }
 
 ListItem.propTypes = propTypes
 ListItem.defaultProps = defaultProps
 
-export default ListItem
+export default connect(null, null)(ListItem)
