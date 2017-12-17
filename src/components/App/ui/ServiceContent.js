@@ -3,9 +3,9 @@ import { AnimatedSwitch } from 'react-router-transition'
 
 import WelcomePage from '../../WelcomePage/WelcomePage.js'
 import CommentLists from '../../CommentLists/CommentLists.js'
-import ImageMap from '../../ImageMapdesu/ImageMap.js'
-import Wiki from '../../Wikidesu/Wiki.js'
-import ColorOrganizer from '../../ColorOrganizerdesu/ColorOrganizer.js'
+import ImageMap from '../../ImageMap/ImageMap.js'
+import Wiki from '../../Wiki/Wiki.js'
+import ColorOrganizer from '../../ColorOrganizer/ColorOrganizer.js'
 import Whoops404 from '../../common/error/Whoops404.js'
 import ServiceRedirect from './ServiceRedirect.js'
 
