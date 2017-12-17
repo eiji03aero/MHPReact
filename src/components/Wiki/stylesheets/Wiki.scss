@@ -2,28 +2,6 @@
   height: 100%;
 }
 
-.wikiItem {
-  .itemLeft {
-    width: 100px;
-    height: 100px;
-    .itemThumbnail {
-      width: 100px;
-      height: 100px;
-      background: url(../images/defaultArticleImage.png);
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: center;
-    }
-  }
-  .itemMain {
-    .itemOperational {
-      a {
-        margin-right: .5rem;
-      }
-    }
-  }
-}
-
 .wikiEdit {
   position: relative;
   height: 100%;

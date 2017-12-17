@@ -4,7 +4,7 @@ const wiki = (state = {}, action) => {
   switch (action.type) {
     case C.CREATE_WIKI :
       return {
-        id: action.id,
+        _id: action._id,
         title: action.title,
         body: action.body
       }
@@ -23,6 +23,11 @@ const wiki = (state = {}, action) => {
 
 const wikis = (state = [], action) => {
   switch (action.type) {
+    case C.GET_ALL_WIKI :
+      return [
+        ...action.wikis
+      ]
+
     case C.CREATE_WIKI :
       return [
         ...state,
@@ -31,14 +36,14 @@ const wikis = (state = [], action) => {
 
     case C.UPDATE_WIKI :
       return state.map(wiki => {
-        return wiki.id === action.id ?
+        return wiki._id === action._id ?
           wiki({}, action) :
           wiki
       })
 
     case C.REMOVE_WIKI :
       return state.filter(
-        c => c.id !== action.id
+        c => c._id !== action._id
       )
 
     default :

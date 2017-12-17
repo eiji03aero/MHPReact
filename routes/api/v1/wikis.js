@@ -2,28 +2,29 @@
 // POST /api/v1/wiki/ => create
 // GET /api/v1/wiki/:id => show
 // POST /api/v1/wiki/:id => update
+// DELETE /api/v1/wiki/:id/delete => delete
 
 const express = require('express')
 const router = express.Router()
-const v4 = require('uuid/v4')
+const uuidv4 = require('uuid/v4')
+const ObjectID = require('mongodb').ObjectID
 
 const Wiki = require('../../../models/wiki.js')
 
-router.get('/', (req,res) => {
-  Wiki.find().toArray((err,docs) => {
+router.get('/index', (req,res) => {
+  Wiki.find({}, (err,docs) => {
     if (err) {
+      console.log(err)
       res.json({ status: false, err: err })
       return
     }
-    if (!docs) return res.send('naiyade')
-    res.json({ status: true, data: docs })
+    res.json({ status: true, wikis: docs })
   })
 })
 
-router.post('/', (req,res) => {
+router.post('/create', (req,res) => {
   const { title, body } = req.body
   const newWiki = new Wiki({
-    id: v4(),
     title: title,
     body: body
   })
@@ -34,21 +35,18 @@ router.post('/', (req,res) => {
   })
 })
 
-router.get('/:id', (req,res) => {
-  const { id } = req.params
-  Wiki.findOne({ id: id }, (err,wiki) => {
+router.get('/show', (req,res) => {
+  Wiki.findOneById( req.body._id, (err,wiki) => {
     if (err) {
-      res.json({ status: false, msg: err })
-      return
+      return res.json({ status: false, msg: err })
     }
-    if (!doc) return res.send('dameda')
     res.json({ status: true, data: wiki})
   })
 })
 
-router.post('/:id', (req,res) => {
+router.post('/update', (req,res) => {
   const { id, title, body } = req.body
-  Wiki.findById(id, (err, wiki) => {
+  Wiki.findOneById( id, (err, wiki) => {
     if (err) throw new Error(err)
     wiki.title = title
     wiki.body = body
@@ -57,6 +55,14 @@ router.post('/:id', (req,res) => {
       if (err) throw new Error(err)
       res.json(updatedWiki)
     })
+  })
+})
+
+router.post('/destroy', (req, res) => {
+  Wiki.findByIdAndRemove( req.body._id, (err, deletedWiki) => {
+    return err ?
+      res.json({ status: false, message: 'failed'}) :
+      res.json({ status: true, message: 'successfully deleted'})
   })
 })
 

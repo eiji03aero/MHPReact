@@ -1,4 +1,8 @@
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { removeWiki } from '../../../../redux/actions/wikis.js'
+
+import '../../stylesheets/WikiItem.scss'
 
 const propTypes = {
   wiki: PropTypes.object.isRequired
@@ -8,9 +12,17 @@ const defaultProps = {
   wiki: {}
 }
 
-const ListItem = ({ wiki }) => {
-  const { title, body, id } = wiki
-  const wikiUrl = `/wiki/${id}`
+const mapDispatchToProps = dispatch =>
+  ({
+    onRemove (_id) {
+      dispatch(removeWiki(_id))
+    }
+  })
+
+const ListItem = ({ wiki, onRemove }) => {
+  const { title, body, _id } = wiki
+  const wikiUrl = `/wiki/${_id}`
+  console.log(wikiUrl)
 
   return (
     <div className="wikiItem u-flex">
@@ -25,8 +37,7 @@ const ListItem = ({ wiki }) => {
           </div>
         </Link>
         <div className="itemOperational">
-          <Link to={`/wiki/edit/${id}`}>edit</Link>
-          <a href="#">del</a>
+          <a onClick={() => onRemove(_id)}>del</a>
         </div>
       </div>
     </div>
@@ -36,4 +47,4 @@ const ListItem = ({ wiki }) => {
 ListItem.propTypes = propTypes
 ListItem.defaultProps = defaultProps
 
-export default ListItem
+export default connect(null, mapDispatchToProps)(ListItem)
