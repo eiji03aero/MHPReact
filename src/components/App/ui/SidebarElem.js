@@ -17,7 +17,7 @@ const SidebarElem = ({ link, icon, title }) => {
     <Link to={link}>
       <div className="sidebarElem">
         <i className="mdi mdi-onDark mdi-36">{icon}</i>
-        <p>{title}</p>
+        <p className="u-fs--12">{title}</p>
       </div>
     </Link>
   )

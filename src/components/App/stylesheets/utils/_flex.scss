@@ -1,0 +1,38 @@
+.u-flex {
+  display: flex;
+  width: 100%;
+}
+
+.u-flex--col {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.u-flex--fs {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  .u-optional-right {
+    margin-left: auto;
+    a {
+      display: inline-block;
+      margin-left: .5rem;
+    }
+  }
+}
+
+.u-flex--sb {
+  display: flex;
+  justify-content: space-around;
+}
+
+.u-flex--item-table {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.u-flex--1 {
+  flex: 1;
+}
