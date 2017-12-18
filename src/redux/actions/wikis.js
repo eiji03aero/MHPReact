@@ -1,5 +1,6 @@
 import C from '../constants.js'
 import request from 'superagent'
+import { startLoading, finishLoading } from './app.js'
 
 export const getAllWikis = () => {
   return dispatch => {
@@ -55,11 +56,13 @@ export const updateWiki = (_id, title, body) => {
 
 export const removeWiki = (_id) => {
   return dispatch => {
+    dispatch(startLoading())
     request.post('/api/v1/wiki/destroy')
       .set('Content-Type', 'application/json')
       .send({ _id })
       .end((err, res) => {
         if (err || !res.ok) return console.log(err, res)
+        dispatch(finishLoading())
         return dispatch({
           type: C.REMOVE_WIKI,
           _id

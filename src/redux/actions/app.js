@@ -10,3 +10,13 @@ export const resetRedirectPath = () =>
   ({
     type: C.RESET_REDIRECT_PATH
   })
+
+export const startLoading = () =>
+  ({
+    type: C.START_LOADING
+  })
+
+export const finishLoading = () =>
+  ({
+    type: C.FINISH_LOADING
+  })

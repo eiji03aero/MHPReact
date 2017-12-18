@@ -35,18 +35,9 @@ const ShowWiki = ({ wiki, match, onRemove }) => {
       <div className="WikiShowHeader u-flex--fs">
         <span className="u-fs--36">{ title }</span>
         <div className="u-optional-right">
-          <LinkIcon
-            title='Back'
-            icon='chevron_left'
-            to='/wiki' />
-          <LinkIcon
-            title='Edit'
-            icon='create'
-            to={`/wiki/edit/${_id}`} />
-          <LinkIcon
-            title='Delete'
-            icon='delete'
-            func={() => onRemove(_id)} />
+          <LinkIcon title='Back' icon='chevron_left' to='/wiki' />
+          <LinkIcon title='Edit' icon='create' to={`/wiki/edit/${_id}`} />
+          <LinkIcon title='Delete' icon='delete' func={() => onRemove(_id)} />
         </div>
       </div>
       <div className="WikiShowBody u-flex--1">

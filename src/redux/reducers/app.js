@@ -14,6 +14,18 @@ const app = (state = {}, action) => {
         redirectPath: ''
       }
 
+    case C.START_LOADING :
+      return {
+        ...state,
+        loading: true
+      }
+
+    case C.FINISH_LOADING :
+      return {
+        ...state,
+        loading: false
+      }
+
     default :
       return state
   }
