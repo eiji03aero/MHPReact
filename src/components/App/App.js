@@ -1,6 +1,7 @@
 import ServiceSidebar from './ui/ServiceSidebar.js'
 import ServiceHeader from './ui/ServiceHeader.js'
 import ServiceContent from './ui/ServiceContent.js'
+import LoadingSpinner from '../common/util/LoadingSpinner/LoadingSpinner.js'
 
 import './stylesheets/basicStyles.scss'
 import './stylesheets/utils/utils.scss'
@@ -14,6 +15,7 @@ const App = () =>
     <div className="serviceMain u-flex--col u-flex--1">
       <ServiceHeader />
       <ServiceContent />
+      <LoadingSpinner />
     </div>
   </div>
 

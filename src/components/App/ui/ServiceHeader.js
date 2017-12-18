@@ -7,10 +7,7 @@ const ServiceHeader = () =>
   <div className="ServiceHeader u-flex--fs">
     <span className="u-fs--24">MHPReact</span>
     <div className="u-optional-right">
-      <LinkIcon
-        title="Home"
-        icon="home"
-        to="/" />
+      <LinkIcon title="Home" icon="home" to="/" />
     </div>
   </div>
 

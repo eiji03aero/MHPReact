@@ -1,0 +1,34 @@
+$loader-ring-size: 60px;
+$loader-ring-border-size: 2px;
+
+.loader-ring {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  margin: $loader-ring-size/-2 0 0 $loader-ring-size/-2;
+  width: $loader-ring-size;
+  height: $loader-ring-size;
+}
+
+.loader-ring-light {
+  width: $loader-ring-size;
+  height: $loader-ring-size;
+  border-radius: $loader-ring-size;
+  box-shadow: 0 $loader-ring-border-size 0 lighten(#0087bf, 10%) inset;
+  animation: rotate-360 1s linear infinite;
+}
+
+
+.loader-ring-track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: $loader-ring-size;
+  height: $loader-ring-size;
+  border-radius: $loader-ring-size;
+}
+
+@keyframes rotate-360 {
+  from { transform: rotate(0); }
+  to { transform: rotate(360deg); }
+}
