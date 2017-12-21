@@ -8,6 +8,7 @@ const favicon    = require('serve-favicon')
 
 const app         = express()
 const { mongodb } = require('./config/config.js')
+const statusMessage = require('./config/message.js')
 
 const apiApp     = require('./routes/apiApp.js')
 const apiWiki    = require('./routes/api/v1/wikis.js')
@@ -86,9 +87,9 @@ app.use((err, req, res, next) => {
 
 // Start listening
 http.createServer(app).listen(app.get('port'), () => {
-  console.log(`express server started listening on ${app.get('port')}`)
+  console.log(statusMessage.startExpress(app.get('port')))
   mongoose.connect(mongodb.url, mongodb.options, (err) => {
     if (err) return console.log(err)
-    console.log('mongodb is ready to use now')
+    console.log(statusMessage.startMongo)
   })
 })

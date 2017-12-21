@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 import StarRating from './StarRating.js'
+import LinkIcon from '../../common/util/LinkIcon/LinkIcon.js'
 import { removeColor } from '../../../redux/actions/colors.js'
 
 import '../stylesheets/Color.scss'
@@ -27,9 +28,10 @@ export const Color = ({ colorInfo, onRemove }) => {
     <div className="color-container">
       <div className="color-header">
         <p className="u-fs--36">{ title }</p>
-        <button className="remove-color" onClick={() => onRemove(id)} >
-          X
-        </button>
+        <div className='remove-color'>
+          <LinkIcon title='Delete' icon='delete' func={() => onRemove(id)} />
+      </div>
+
       </div>
       <div className="color-display" style={ { backgroundColor:  color } } />
       <div className="color-description">
