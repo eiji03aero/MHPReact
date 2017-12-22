@@ -10,9 +10,9 @@
   white-space: nowrap;
   vertical-align: middle;
   cursor: pointer;
-  transition: all 0.3s 0s ease;
+  transition: all .2s 0s ease;
   &:hover {
-    background-color: tint($mhp-color--light-grey--hovered, 30%);
+    background-color: tint($mhp-color--light-grey--hovered, 20%);
   }
 }
 
@@ -22,7 +22,7 @@
   border: none;
   color: $mhp-color--white;
   &:hover {
-    background-color: tint($mhp-color--primary, 40%);
+    background-color: tint($mhp-color--primary, 20%);
   }
 }
 
@@ -32,7 +32,7 @@
   border: none;
   color: $mhp-color--white;
   &:hover {
-    background-color: tint($mhp-color--secondary, 70%);
+    background-color: tint($mhp-color--secondary, 20%);
   }
 }
 
