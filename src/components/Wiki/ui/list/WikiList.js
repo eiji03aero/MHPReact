@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import ListItem from './ListItem.js'
+import ListsHeader from './ListsHeader.js'
 import { getAllWikis } from '../../../../redux/actions/wikis.js'
 
 import '../../stylesheets/WikiList.scss'
@@ -37,9 +38,9 @@ class  WikiList extends React.Component {
   render () {
     const { wikis } = this.props
     return wikis.length <= 0 ?
-      <p><Link to="/wiki/new">Create new</Link></p> :
+      <ListsHeader /> :
       <div className="WikiList">
-        <p><Link to="/wiki/new">Create new</Link></p>
+        <ListsHeader />
         { wikis.map((wiki, i) => {
           return <ListItem key={i} wiki={wiki} />
         })}

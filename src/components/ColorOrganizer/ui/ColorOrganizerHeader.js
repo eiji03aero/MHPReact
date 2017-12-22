@@ -20,7 +20,7 @@ export const ColorOrganizerHeader = ({ onClickForm }) =>
   <div className="u-flex--fs" style={ styles.header }>
     <input placeholder="search your color"/>
     <div className="u-optional-right">
-      <button onClick={ onClickForm }> Add Color </button>
+      <button className="c-button--primary" onClick={ onClickForm }> Add Color </button>
       <AddColorForm />
     </div>
   </div>

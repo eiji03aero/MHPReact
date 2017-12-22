@@ -52,7 +52,7 @@ const AddColorForm = ({ addColorFormIsOpen, onAdd }) => {
           type='color'
           ref={(input) => _color = input} />
       </p>
-      <button onClick={onSubmit}>Submit</button>
+      <button className="c-button--secondary" onClick={onSubmit}>Submit</button>
     </div>
   )
 }
