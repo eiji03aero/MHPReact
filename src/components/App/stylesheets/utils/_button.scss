@@ -1,28 +1,38 @@
 .c-button {
   display: inline-block;
   padding: .5rem 1rem;
-  background-color: $button-color--default;
-  border: 1px solid $border-color--default;
+  background-color: $mhp-color--light-grey;
+  border: 1px solid $mhp-color--light-grey;
   border-radius: .25rem;
-  color: $font-color--black;
+  color: $mhp-font-color--black;
   font-size: .8rem;
   text-align: center;
   white-space: nowrap;
   vertical-align: middle;
   cursor: pointer;
-  transition: all 0.3s 0s ease;
+  transition: all .2s 0s ease;
   &:hover {
-    background-color: tint($button-color--default-hovered, 30%);
+    background-color: tint($mhp-color--light-grey--hovered, 20%);
   }
 }
 
 .c-button--primary {
   @extend .c-button;
-  background-color: $button-color--primary;
+  background-color: $mhp-color--primary;
   border: none;
-  color: $font-color--trueWhite;
+  color: $mhp-color--white;
   &:hover {
-    background-color: tint($button-color--primary, 40%);
+    background-color: tint($mhp-color--primary, 20%);
+  }
+}
+
+.c-button--secondary {
+  @extend .c-button;
+  background-color: $mhp-color--secondary;
+  border: none;
+  color: $mhp-color--white;
+  &:hover {
+    background-color: tint($mhp-color--secondary, 20%);
   }
 }
 

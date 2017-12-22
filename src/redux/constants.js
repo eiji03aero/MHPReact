@@ -6,9 +6,6 @@ const constants = {
   START_LOADING: 'START_LOADING',
   FINISH_LOADING: 'FINISH_LOADING',
 
-  // Welcome Page
-  GET_TEST: 'GET_TEST',
-
   // Color Organizer
   ADD_COLOR: 'ADD_COLOR',
   REMOVE_COLOR: 'REMOVE_COLOR',

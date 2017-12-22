@@ -33,9 +33,6 @@ const initialState = {
   widgets: {
     addColorFormIsOpen: false
   },
-  welcomePage: {
-    message: ''
-  }
 }
 
 export default initialState

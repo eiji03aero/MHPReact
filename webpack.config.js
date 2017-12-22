@@ -1,5 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
+const bourbonPath = require('bourbon').includePaths
+const neatPath = require('bourbon-neat').includePaths
 
 module.exports = {
   context: path.resolve(__dirname),
@@ -25,7 +27,20 @@ module.exports = {
       },
       {
         test: /\.s?css$/,
-        loaders: ['style-loader', 'css-loader', 'sass-loader']
+        use: [
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader'
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              includePaths: bourbonPath.concat(neatPath)
+            }
+          }
+        ]
       },
       {
         test: /\.(jpe?g|png)$/,

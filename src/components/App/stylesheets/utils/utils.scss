@@ -1,8 +1,11 @@
+// Third party modules
+@import "bourbon";
+
 // include first
 @import "./_variables.scss";
 
-@import "./_button.scss";
+@import "./button.scss";
 @import "./utility.scss";
 @import "./font-size.scss";
 @import "./mdi.scss";
-@import "./_flex.scss";
+@import "./flex.scss";
