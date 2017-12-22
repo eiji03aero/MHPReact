@@ -4,11 +4,13 @@ import { startLoading, finishLoading } from './app.js'
 
 export const getAllWikis = () => {
   return dispatch => {
+    dispatch(startLoading())
     request.get('/api/v1/wiki/index')
       .end((err, res) => {
         if (err || !res.ok) return console.log(err)
         const { wikis } = res.body
-        return dispatch({
+        dispatch(finishLoading())
+        dispatch({
           type: C.GET_ALL_WIKI,
           wikis
         })
@@ -18,13 +20,15 @@ export const getAllWikis = () => {
 
 export const createWiki = (title, body) => {
   return dispatch => {
+    dispatch(startLoading())
     request.post('/api/v1/wiki/create')
       .set('Content-Type', 'application/json')
       .send({ title: title, body: body})
       .end((err, res) => {
         if (err || !res.ok) return console.log(err)
         const { _id, title, body } = res.body
-        return dispatch({
+        dispatch(finishLoading())
+        dispatch({
           type: C.CREATE_WIKI,
           _id,
           title,
@@ -37,13 +41,15 @@ export const createWiki = (title, body) => {
 
 export const updateWiki = (_id, title, body) => {
   return dispatch => {
+    dispatch(startLoading())
     request.post('/api/v1/wiki/update')
       .set('Content-Type', 'application/json')
       .send({ _id, title, body })
       .end((err, res) => {
         if (err || !res.ok) return console.log(err)
         const { _id, title, body } = res.body
-        return dispatch({
+        dispatch(finishLoading())
+        dispatch({
           type: C.UPDATE_WIKI,
           _id,
           title,
