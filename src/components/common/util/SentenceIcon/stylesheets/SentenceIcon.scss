@@ -1,0 +1,15 @@
+.SentenceIcon {
+  padding: 1rem .5rem;
+  position: relative;
+  align-items: center;
+  i, span {
+    color: #fafafa;
+  }
+  &:hover {
+    opacity: .8;
+  }
+}
+
+.SentenceIcon-wrapper {
+  display: inline-block;
+}
