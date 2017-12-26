@@ -11,7 +11,7 @@ const { mongodb } = require('./config/config.js')
 const statusMessage = require('./config/message.js')
 
 const apiApp     = require('./routes/apiApp.js')
-const apiWiki    = require('./routes/api/v1/wikis.js')
+const apiWiki    = require('./routes/api/v1/wiki.js')
 const apiComment = require('./routes/apiComment.js')
 
 // const useWebpackDevServer = require('./scripts/config/webpack-dev-server.js')
@@ -22,14 +22,6 @@ app.set('port', process.env.port || 3000)
 // Some basics
 app.set('view engine', 'pug')
 app.set('views', path.join(__dirname, '../public/views'))
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*")
-  res.header("Access-Control-Request-Headers", "*")
-  res.header('Access-Control-Allow-Methods', 'GET, POST, DELETE, OPTIONS')
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization")
-  res.header("Access-Control-Allow-Credentials", "true")
-  next()
-})
 app.use(express.static(path.join(__dirname, '../public')))
 app.use(express.static(path.join(__dirname, '../public/build')))
 
@@ -39,10 +31,17 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(favicon(path.join(__dirname, '../public/favicon.ico')))
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*")
+  res.header("Access-Control-Request-Headers", "*")
+  res.header('Access-Control-Allow-Methods', 'GET, POST, DELETE, OPTIONS')
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization")
+  res.header("Access-Control-Allow-Credentials", "true")
+  next()
+})
+
 // Automatically respond to serve public dir
-// app.get('/', (req, res) => { res.sendFile(path.join(__dirname, 'public/index.html')) })
 app.use('/', express.static('public'))
-app.get('/sample', (req, res) => { res.sendFile(path.join(__dirname, 'public/sample-index.html')) })
 
 // Custom MiddleWares
 // if (process.env.NODE_ENV !== 'production') {
@@ -53,10 +52,6 @@ app.get('/sample', (req, res) => { res.sendFile(path.join(__dirname, 'public/sam
 app.use('/api/app', apiApp)
 app.use('/api/v1/wiki', apiWiki)
 app.use('/api/comment', apiComment)
-
-app.get('/get_test', (req, res) => {
-  res.json({ status: true, data: 'osakabe'})
-})
 
 // catch 404 error
 app.use((err, req, res, next) => {

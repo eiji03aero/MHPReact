@@ -16,7 +16,7 @@ const mapStateToProps = state => ({
 export const ColorList = ({ colors }) => {
   return colors.length <= 0 ?
     <h1 style={ styles.noColor}> you aint got no color here!!</h1> :
-    <div className="u-flex--item-table" style={ styles.colorList }>
+    <div className="u-flex--item-table u-flex--1" style={ styles.colorList }>
       { colors.map((color, i) => {
         return (
           <Color
@@ -29,7 +29,7 @@ export const ColorList = ({ colors }) => {
 
 const styles = {
   colorList: {
-    margin: '2rem'
+    padding: '2rem'
   },
   noColor: {
     textAlign: 'center'
