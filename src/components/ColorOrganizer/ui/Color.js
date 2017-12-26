@@ -1,4 +1,5 @@
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import StarRating from './StarRating.js'
 import LinkIcon from '../../common/util/LinkIcon/LinkIcon.js'
 import { removeColor } from '../../../redux/actions/colors.js'
@@ -23,6 +24,7 @@ const mapDispatchToProps = dispatch => ({
 
 export const Color = ({ colorInfo, onRemove }) => {
   const { color, id, rating, title } = colorInfo
+  const showUrl = `/color-organizer/${id}`
 
   return (
     <div className="color-container">
@@ -33,7 +35,9 @@ export const Color = ({ colorInfo, onRemove }) => {
       </div>
 
       </div>
-      <div className="color-display" style={ { backgroundColor:  color } } />
+      <Link to={ showUrl }>
+        <div className="color-display" style={ { backgroundColor:  color } } />
+      </Link>
       <div className="color-description">
         <StarRating id={id}
           rating={rating} />
