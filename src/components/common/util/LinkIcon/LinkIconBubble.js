@@ -1,16 +1,20 @@
+import FadeInOut from '../Fade/FadeInOut.js'
+
 const propTypes = {
   title: PropTypes.string,
   show: PropTypes.bool
 }
 
 const LinkIconBubble = ({ title, show }) => {
-  return show ?
-    <div className="icon-bubble-container">
-      <div className="icon-bubble-title">
-        <span>{ title }</span>
+  return (
+    <FadeInOut in={ show }>
+      <div className="icon-bubble-container">
+        <div className="icon-bubble-title">
+          <span>{ title }</span>
+        </div>
       </div>
-    </div> :
-    null
+    </FadeInOut>
+  )
 }
 
 LinkIconBubble.propTypes = propTypes
