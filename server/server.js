@@ -12,7 +12,6 @@ const statusMessage = require('./config/message.js')
 
 const apiApp     = require('./routes/apiApp.js')
 const apiWiki    = require('./routes/api/v1/wiki.js')
-const apiComment = require('./routes/apiComment.js')
 
 // const useWebpackDevServer = require('./scripts/config/webpack-dev-server.js')
 
@@ -51,7 +50,6 @@ app.use('/', express.static('public'))
 // Routings
 app.use('/api/app', apiApp)
 app.use('/api/v1/wiki', apiWiki)
-app.use('/api/comment', apiComment)
 
 // catch 404 error
 app.use((err, req, res, next) => {

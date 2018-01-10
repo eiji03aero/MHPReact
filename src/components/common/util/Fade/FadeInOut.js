@@ -16,7 +16,6 @@ const transitionStyles = {
 }
 
 const FadeInOut =({ in: inProp, children }) => {
-  console.log(inProp)
   return (
     <Transition in={ inProp } timeout={ duration }>
       {(state) =>(

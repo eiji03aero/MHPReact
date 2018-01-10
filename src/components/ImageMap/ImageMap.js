@@ -21,7 +21,6 @@ export default class extends React.Component {
   }
   componentDidMount () {
     const field = this.refs.imageMapField
-    console.log(field.offsetTop)
     this.setState({
       fieldX: field.offsetTop,
       fieldY: field.offsetLeft
