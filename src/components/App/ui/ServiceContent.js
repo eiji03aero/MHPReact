@@ -2,7 +2,6 @@ import { Route, Switch } from 'react-router-dom'
 import { AnimatedSwitch } from 'react-router-transition'
 
 import WelcomePage from '../../WelcomePage/WelcomePage.js'
-import CommentLists from '../../CommentLists/CommentLists.js'
 import ImageMap from '../../ImageMap/ImageMap.js'
 import Wiki from '../../Wiki/Wiki.js'
 import ColorOrganizer from '../../ColorOrganizer/ColorOrganizer.js'
@@ -42,7 +41,6 @@ const ServiceContent = () =>
       className="switch-wrapper" >
 
       <Route exact path="/" component={ WelcomePage } />
-      <Route path="/comments" component={ CommentLists } />
       <Route path="/imagemap" component={ ImageMap } />
       <Route path="/wiki" component={ Wiki } />
       <Route path="/color-organizer" component={ ColorOrganizer } />

@@ -21,7 +21,6 @@ class ServiceRedirect extends React.Component {
 
   render () {
     const { path } = this.props
-    console.log('current path: ', path)
     return path === '' ?
       null :
       <Redirect to={ path } />
