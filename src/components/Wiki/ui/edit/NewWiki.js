@@ -1,13 +1,13 @@
 import { connect } from 'react-redux'
 import WikiForm from './WikiForm/WikiForm.js'
 import { createWiki } from '../../../../redux/actions/wikis.js'
-import { redirectApp } from '../../../../redux/actions/app.js'
+import actions from '../../../../redux/actions/app.js'
 
 const mapDispatchToProps = dispatch =>
   ({
     onSave (title, body) {
       dispatch(createWiki(title, body))
-      dispatch(redirectApp('/wiki'))
+      dispatch(actions.redirectApp('/wiki'))
     }
   })
 

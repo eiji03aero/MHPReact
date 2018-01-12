@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import StarRating from './StarRating.js'
 import LinkIcon from '../../common/util/LinkIcon/LinkIcon.js'
-import { removeColor } from '../../../redux/actions/colors.js'
+import colorActions from '../../../redux/actions/colors.js'
 
 import '../stylesheets/Color.scss'
 
@@ -18,7 +18,7 @@ const defaultProps = {
 
 const mapDispatchToProps = dispatch => ({
   onRemove (id) {
-    dispatch(removeColor(id))
+    dispatch(colorActions.removeColor(id))
   }
 })
 

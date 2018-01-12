@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import LinkIcon from '../../../common/util/LinkIcon/LinkIcon.js'
 import convertText from '../../parser/convertText.js'
 import { removeWiki } from '../../../../redux/actions/wikis.js'
-import { redirectApp } from '../../../../redux/actions/app.js'
+import actions from '../../../../redux/actions/app.js'
 
 import '../../stylesheets/WikiShow.scss'
 
@@ -22,7 +22,7 @@ const mapDispatchToProps = dispatch =>
   ({
     onRemove (_id) {
       dispatch(removeWiki(_id))
-      dispatch(redirectApp('/wiki'))
+      dispatch(actions.redirectApp('/wiki'))
     }
   })
 

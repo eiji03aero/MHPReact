@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import WikiForm from './WikiForm/WikiForm.js'
 import { updateWiki } from '../../../../redux/actions/wikis.js'
-import { redirectApp } from '../../../../redux/actions/app.js'
+import actions from '../../../../redux/actions/app.js'
 
 const mapStateToProps = ({ wikis }, { match }) =>
   ({
@@ -12,7 +12,7 @@ const mapDispatchToProps = dispatch =>
   ({
     onSave (_id, title, body) {
       dispatch(updateWiki(_id, title, body))
-      dispatch(redirectApp('/wiki'))
+      dispatch(actions.redirectApp('/wiki'))
     }
   })
 

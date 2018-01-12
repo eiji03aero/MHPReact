@@ -1,24 +1,23 @@
 import C from '../constants.js'
+import { createActions } from 'redux-actions'
 import { v4 } from 'uuid'
 
-export const addColor = (title, color) =>
-  ({
-    type: C.ADD_COLOR,
+const actions = createActions({
+  [C.ADD_COLOR]: (title, color) => ({
     id: v4(),
     title,
     color,
     timeStamp: new Date().toString()
-  })
+  }),
 
-export const rateColor = (rating, id) =>
-  ({
-    type: C.RATE_COLOR,
-    id,
-    rating
-  })
+  [C.RATE_COLOR]: (rating, id) => ({
+    rating,
+    id
+  }),
 
-export const removeColor = (id) =>
-  ({
-    type: C.REMOVE_COLOR,
+  [C.REMOVE_COLOR]: (id) => ({
     id
   })
+})
+
+export default actions
