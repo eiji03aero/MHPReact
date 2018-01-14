@@ -8,42 +8,29 @@ const API_ROOT = 'localhost://3000/api/v1'
 
 const responseBody = res => res.body
 
-export const requests = {
-  get: (dispatch, url) => {
-    console.log('started calling get')
-    dispatch(actions.startLoading())
+const requests = {
+  get: (url) =>
     superagent
-      .get(`${url}`)
-      .then(res => {
-        dispatch(actions.finishLoading())
-        return res.body
-      }, err => {
-        dispatch(actions.finishLoading())
-        console.log(error)
-        action.error = true
-        action.payload = error
-        return action
-      })
-  },
-  post: (url, body) => {
+      .get(url)
+      .then(responseBody),
+
+  post: (url, body) =>
     superagent
-      .post(`${API_ROOT}${url}`, body)
+      .post(url, body)
       .set('Content-Type', 'application/json')
-      .then(responseBody)
-      .catch(err => console.log('error in post'))
-  },
-  put: url => {
+      .then(responseBody),
+
+  put: (url, body) =>
     superagent
-      .put(`${API_ROOT}${url}`, body)
+      .put(url, body)
       .set('Content-Type', 'application/json')
-      .then(responseBody)
-      .catch(err => console.log('error in put'))
-  },
-  del: url => {
+      .then(responseBody),
+
+  del: url =>
     superagent
-      .get(`${API_ROOT}${url}`)
+      .del(url)
       .set('Content-Type', 'application/json')
-      .then(responseBody)
-      .catch(err => console.log('error in put'))
-  }
+      .then(responseBody),
 }
+
+export default requests

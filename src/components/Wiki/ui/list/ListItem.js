@@ -1,6 +1,5 @@
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { removeWiki } from '../../../../redux/actions/wikis.js'
 
 import '../../stylesheets/WikiItem.scss'
 
