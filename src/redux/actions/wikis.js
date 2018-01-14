@@ -3,33 +3,35 @@ import { createActions } from 'redux-actions'
 import request from 'superagent'
 import actions from './app.js'
 
-const getAgent = (url, action) => {
-  return dispatch => {
-    request.get(url)
-      .end((err,res) => {
-        dispatch(actions.finishLoading())
-        if (err || !res.ok) {
-          console.log(err)
-        } else {
-          dispatch(action())
-        }
-      })
-  }
-}
+import { requests } from '../helper/agent.js'
+
+// export const getAllWikis = () => {
+//   return dispatch => {
+//     dispatch(actions.startLoading())
+//     request.get('/api/v1/wiki/index')
+//       .end((err, res) => {
+//         if (err || !res.ok) return console.log(err)
+//         const { wikis } = res.body
+//         dispatch(actions.finishLoading())
+//         dispatch({
+//           type: C.GET_ALL_WIKI,
+//           wikis
+//         })
+//       })
+//   }
+// }
+
+const wikiActions = createActions(
+  {
+
+  },
+  C.GET_ALL_WIKI
+)
 
 export const getAllWikis = () => {
-  return dispatch => {
-    dispatch(actions.startLoading())
-    request.get('/api/v1/wiki/index')
-      .end((err, res) => {
-        if (err || !res.ok) return console.log(err)
-        const { wikis } = res.body
-        dispatch(actions.finishLoading())
-        dispatch({
-          type: C.GET_ALL_WIKI,
-          wikis
-        })
-      })
+  return async dispatch => {
+    const action = await requests.get(dispatch, '/api/v1/wiki/index')
+    dispatch(actions.getAllWiki, action)
   }
 }
 
@@ -92,6 +94,3 @@ export const removeWiki = (_id) => {
   }
 }
 
-const wikis = createActions({
-  [C.]
-})
