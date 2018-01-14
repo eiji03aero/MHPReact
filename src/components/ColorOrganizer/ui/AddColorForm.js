@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
-import { addColor } from '../../../redux/actions/colors.js'
-import { toggleAddColorForm } from '../../../redux/actions/widgets.js'
+import colorActions from '../../../redux/actions/colors.js'
+import widgetsActions from '../../../redux/actions/widgets.js'
 
 import '../stylesheets/AddColorForm.scss'
 
@@ -20,8 +20,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   onAdd (title, color) {
-    dispatch(addColor(title, color))
-    dispatch(toggleAddColorForm('close'))
+    dispatch(colorActions.addColor(title, color))
+    dispatch(widgetsActions.toggleAddColorForm('close'))
   }
 })
 

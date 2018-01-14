@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { rateColor } from '../../../redux/actions/colors.js'
+import actions from '../../../redux/actions/colors.js'
 
 import '../stylesheets/StarRating.scss'
 
@@ -17,7 +17,7 @@ const defaultProps = {
 
 const mapDispatchToProps = dispatch => ({
   onRate (rating, id) {
-    dispatch(rateColor(rating, id))
+    dispatch(actions.rateColor(rating, id))
   }
 })
 

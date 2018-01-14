@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import ListItem from './ListItem.js'
 import ListsHeader from './ListsHeader.js'
-import { getAllWikis } from '../../../../redux/actions/wikis.js'
+import wikiActions from '../../../../redux/actions/wikis.js'
 
 import '../../stylesheets/WikiList.scss'
 
@@ -24,11 +24,11 @@ const mapStateToProps = state =>
 const mapDispatchToProps = dispatch =>
   ({
     getWikis () {
-      dispatch(getAllWikis())
+      dispatch(wikiActions.getAllWiki())
     }
   })
 
-class  WikiList extends React.Component {
+class WikiList extends React.Component {
 
   componentWillMount () {
     const { getWikis } = this.props

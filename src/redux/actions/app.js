@@ -1,22 +1,16 @@
 import C from '../constants.js'
+import { createActions } from 'redux-actions'
 
-export const redirectApp = path =>
-  ({
-    type: C.REDIRECT_APP,
-    redirectPath: path
-  })
+const appActions = createActions(
+  {
+    [C.REDIRECT_APP]: redirectPath => ({ redirectPath }),
+    [C.MAKE_ERROR_MESSAGE]: errorMessage => ({ errorMessage })
+  },
 
-export const resetRedirectPath = () =>
-  ({
-    type: C.RESET_REDIRECT_PATH
-  })
+  C.RESET_REDIRECT_PATH,
+  C.ASYNC_START,
+  C.ASYNC_FINISH,
+  C.DELETE_ERROR_MESSAGE
+)
 
-export const startLoading = () =>
-  ({
-    type: C.START_LOADING
-  })
-
-export const finishLoading = () =>
-  ({
-    type: C.FINISH_LOADING
-  })
+export default appActions

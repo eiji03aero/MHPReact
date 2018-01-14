@@ -1,34 +1,38 @@
 import C from '../constants.js'
+import { handleActions } from 'redux-actions'
 
-const app = (state = {}, action) => {
-  switch (action.type) {
-    case C.REDIRECT_APP :
-      return {
-        ...state,
-        redirectPath: action.redirectPath
-      }
+const app = handleActions({
+  [C.REDIRECT_APP]: (state, action) => ({
+    ...state,
+    redirectPath: action.payload.redirectPath
+  }),
 
-    case C.RESET_REDIRECT_PATH :
-      return {
-        ...state,
-        redirectPath: ''
-      }
+  [C.RESET_REDIRECT_PATH]: (state, action) => ({
+    ...state,
+    redirectPath: ''
+  }),
 
-    case C.START_LOADING :
-      return {
-        ...state,
-        loading: true
-      }
+  [C.ASYNC_START]: (state, action) => ({
+    ...state,
+    loading: true
+  }),
 
-    case C.FINISH_LOADING :
-      return {
-        ...state,
-        loading: false
-      }
+  [C.ASYNC_FINISH]: (state, action) => ({
+    ...state,
+    loading: false
+  }),
 
-    default :
-      return state
-  }
-}
+  [C.MAKE_ERROR_MESSAGE]: (state, action) => ({
+    ...state,
+    errorMessage: action.payload.errorMessage
+  }),
+
+  [C.DELETE_ERROR_MESSAGE]: (state, action) => ({
+    ...state,
+    errorMessage: ''
+  })
+
+
+}, {})
 
 export default app

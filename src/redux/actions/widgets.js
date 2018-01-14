@@ -1,18 +1,22 @@
 import C from '../constants.js'
+import { createActions } from 'redux-actions'
 
-export const toggleAddColorForm = (arg) => {
-  let reqState
-  switch (arg) {
-    case 'open' :
-      reqState = true
-      break
-    case 'close' :
-      reqState = false
-    default :
-      reqState = 'toggle'
-  }
-  return ({
-    type: C.TOGGLE_ADD_COLOR_FORM,
-    reqState: reqState
-  })
-}
+const widgets =  createActions({
+  [C.TOGGLE_ADD_COLOR_FORM]: (arg) => {
+    let requestState
+
+    switch (arg) {
+      case 'open' :
+        requestState = true
+        break
+      case 'close' :
+        requestState = false
+      default :
+        requestState = 'toggle'
+    }
+
+    return ({ requestState })
+  },
+})
+
+export default widgets

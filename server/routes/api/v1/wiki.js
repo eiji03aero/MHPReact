@@ -10,7 +10,7 @@ const router = express.Router()
 const Wiki = require('../../../models/wiki.js')
 
 router.get('/index', (req,res) => {
-  Wiki.find({}, (err,docs) => {
+  Wiki.find({}, (err, docs) => {
     if (err) {
       console.log(err)
       res.json({ status: false, err: err })
@@ -29,20 +29,20 @@ router.post('/create', (req,res) => {
 
   newWiki.save((err, createdWiki) => {
     if (err) throw new Error(err)
-    res.json(createdWiki)
+    res.json({ status: true, wiki: createdWiki })
   })
 })
 
-router.get('/show', (req,res) => {
-  Wiki.findById( req.body._id, (err,wiki) => {
-    if (err) {
-      return res.json({ status: false, msg: err })
-    }
-    res.json({ status: true, data: wiki})
-  })
-})
+// router.get('/show', (req,res) => {
+//   Wiki.findById( req.body._id, (err,wiki) => {
+//     if (err) {
+//       return res.json({ status: false, msg: err })
+//     }
+//     res.json({ status: true, data: wiki})
+//   })
+// })
 
-router.post('/update', (req,res) => {
+router.put('/:id', (req,res) => {
   const { _id, title, body } = req.body
   Wiki.findById(_id, (err, wiki) => {
     if (err) return console.log(err)
@@ -51,16 +51,16 @@ router.post('/update', (req,res) => {
 
     wiki.save((err, updatedWiki) => {
       if (err) throw new Error(err)
-      res.json(updatedWiki)
+      res.json({ status: true, wiki: updatedWiki })
     })
   })
 })
 
-router.post('/destroy', (req, res) => {
-  Wiki.findByIdAndRemove( req.body._id, (err, deletedWiki) => {
+router.delete('/:id', (req, res) => {
+  Wiki.findByIdAndRemove( req.params.id, (err, deletedWiki) => {
     return err ?
-      res.json({ status: false, message: 'failed'}) :
-      res.json({ status: true, message: 'successfully deleted'})
+      res.json({ status: false }) :
+      res.json({ status: true, _id: deletedWiki._id })
   })
 })
 

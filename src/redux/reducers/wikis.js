@@ -1,54 +1,43 @@
 import C from '../constants.js'
+import { handleActions } from 'redux-actions'
 
-const wiki = (state = {}, action) => {
-  switch (action.type) {
-    case C.CREATE_WIKI :
-      return {
-        _id: action._id,
-        title: action.title,
-        body: action.body
-      }
 
-    case C.UPDATE_WIKI :
-      return {
-        ...state,
-        title: action.title,
-        body: action.body
-      }
+const wikiReducer = handleActions({
+  [C.CREATE_WIKI]: (state, action) => {
+    const { _id, title, body } = action.payload.wiki
+    return {
+      _id,
+      title,
+      body
+    }
+  },
 
-    default :
-      return state
-  }
-}
+  [C.UPDATE_WIKI]: (state, action) => {
+    const { title, body } = action.payload.wiki
+    return {
+      ...state,
+      title,
+      body
+    }
+  },
+}, {})
 
-const wikis = (state = [], action) => {
-  switch (action.type) {
-    case C.GET_ALL_WIKI :
-      return [
-        ...action.wikis
-      ]
+const wikisReducer = handleActions({
+  [C.GET_ALL_WIKI]: (state, action) =>
+    [...action.payload.wikis],
 
-    case C.CREATE_WIKI :
-      return [
-        ...state,
-        wiki({}, action)
-      ]
+  [C.CREATE_WIKI]: (state, action) =>
+    state.concat(wikiReducer(state, action)),
 
-    case C.UPDATE_WIKI :
-      return state.map(wiki => {
-        return wiki._id === action._id ?
-          wiki({}, action) :
-          wiki
-      })
+  [C.UPDATE_WIKI]: (state, action) =>
+    state.map(wiki =>
+      wiki._id === action.payload.wiki._id ?
+        wikiReducer({}, action) :
+        wiki
+    ),
 
-    case C.REMOVE_WIKI :
-      return state.filter(
-        c => c._id !== action._id
-      )
+  [C.DELETE_WIKI]: (state, action) =>
+    state.filter(wiki => wiki._id !== action.payload._id)
+}, [])
 
-    default :
-      return state
-  }
-}
-
-export default wikis
+export default wikisReducer

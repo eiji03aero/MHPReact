@@ -3,6 +3,7 @@ const http       = require('http')
 const mongoose   = require('mongoose')
 const path       = require('path')
 const bodyParser = require('body-parser')
+const methodOverride = require('method-override')
 const logger     = require('morgan')
 const favicon    = require('serve-favicon')
 
@@ -28,6 +29,7 @@ app.use(express.static(path.join(__dirname, '../public/build')))
 app.use(logger('dev'))
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+app.use(methodOverride())
 app.use(favicon(path.join(__dirname, '../public/favicon.ico')))
 
 app.use(function(req, res, next) {

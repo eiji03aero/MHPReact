@@ -1,6 +1,6 @@
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { resetRedirectPath } from '../../../redux/actions/app.js'
+import actions from '../../../redux/actions/app.js'
 
 const mapStateToProps = state =>
   ({
@@ -10,7 +10,7 @@ const mapStateToProps = state =>
 const mapDispatchToProps = dispatch =>
   ({
     onRedirect () {
-      dispatch(resetRedirectPath())
+      dispatch(actions.resetRedirectPath())
     }
   })
 
