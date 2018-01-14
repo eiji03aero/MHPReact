@@ -2,6 +2,7 @@ import ServiceSidebar from './ui/ServiceSidebar.js'
 import ServiceHeader from './ui/ServiceHeader.js'
 import ServiceContent from './ui/ServiceContent.js'
 import LoadingSpinner from '../common/util/LoadingSpinner/LoadingSpinner.js'
+import DevTools from './ui/DevTools.js'
 
 import './stylesheets/basicStyles.scss'
 import './stylesheets/utils/utils.scss'
@@ -16,6 +17,7 @@ const App = () =>
       <ServiceHeader />
       <ServiceContent />
       <LoadingSpinner />
+      <DevTools />
     </div>
   </div>
 
