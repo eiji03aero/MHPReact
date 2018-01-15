@@ -1,6 +1,7 @@
 import ServiceSidebar from './ui/ServiceSidebar.js'
 import ServiceHeader from './ui/ServiceHeader.js'
 import ServiceContent from './ui/ServiceContent.js'
+import ServicePopup from './ui/ServicePopup.js'
 import LoadingSpinner from '../common/util/LoadingSpinner/LoadingSpinner.js'
 import DevTools from './ui/DevTools.js'
 
@@ -19,6 +20,7 @@ const App = () =>
       <LoadingSpinner />
       <DevTools />
     </div>
+    <ServicePopup />
   </div>
 
 export default App

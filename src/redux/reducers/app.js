@@ -22,15 +22,11 @@ const app = handleActions({
     loading: false
   }),
 
-  [C.MAKE_ERROR_MESSAGE]: (state, action) => ({
+  [C.ASYNC_ERROR]: (state, action) => ({
     ...state,
-    errorMessage: action.payload.errorMessage
+    currentError: action.payload.error,
+    showError: true
   }),
-
-  [C.DELETE_ERROR_MESSAGE]: (state, action) => ({
-    ...state,
-    errorMessage: ''
-  })
 
 
 }, {})

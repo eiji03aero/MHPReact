@@ -4,7 +4,7 @@ import { createActions } from 'redux-actions'
 const appActions = createActions(
   {
     [C.REDIRECT_APP]: redirectPath => ({ redirectPath }),
-    [C.MAKE_ERROR_MESSAGE]: errorMessage => ({ errorMessage })
+    [C.ASYNC_ERROR]: error => ({ error })
   },
 
   C.RESET_REDIRECT_PATH,

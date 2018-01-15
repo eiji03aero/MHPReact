@@ -13,10 +13,9 @@ const asyncMiddleware = store => next => action => {
       },
       err => {
         console.log('error: ', err)
-        const errMsg = JSON.stringify(err)
 
         store.dispatch(appActions.asyncFinish())
-        store.dispatch(appActions.makeErrorMessage(errMsg))
+        store.dispatch(appActions.makeErrorMessage(err))
       }
     )
     return
