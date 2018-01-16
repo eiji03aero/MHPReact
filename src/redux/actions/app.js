@@ -10,7 +10,7 @@ const appActions = createActions(
   C.RESET_REDIRECT_PATH,
   C.ASYNC_START,
   C.ASYNC_FINISH,
-  C.DELETE_ERROR_MESSAGE
+  C.HIDE_POPUP,
 )
 
 export default appActions

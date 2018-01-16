@@ -6,6 +6,7 @@ const constants = {
   ASYNC_START: 'ASYNC_START',
   ASYNC_FINISH: 'ASYNC_FINISH',
   ASYNC_ERROR: 'ASYNC_ERROR',
+  HIDE_POPUP: 'HIDE_POPUP',
 
   // Color Organizer
   ADD_COLOR: 'ADD_COLOR',

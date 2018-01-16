@@ -1,7 +1,7 @@
 import C from '../constants.js'
 import { handleActions } from 'redux-actions'
 
-const app = handleActions({
+const appActions = handleActions({
   [C.REDIRECT_APP]: (state, action) => ({
     ...state,
     redirectPath: action.payload.redirectPath
@@ -22,13 +22,27 @@ const app = handleActions({
     loading: false
   }),
 
-  [C.ASYNC_ERROR]: (state, action) => ({
-    ...state,
-    currentError: action.payload.error,
-    showError: true
-  }),
+  [C.ASYNC_ERROR]: (state, action) => {
+    const errors = Object.assign({}, state.errors, {
+      currentError: action.payload.error,
+      showError: true
+    })
+    return {
+      ...state,
+      errors
+    }
+  },
 
+  [C.HIDE_POPUP]: (state, action) => {
+    const errors = Object.assign({}, state.errors, {
+      showError: false
+    })
+    return {
+      ...state,
+      errors
+    }
+  }
 
 }, {})
 
-export default app
+export default appActions
