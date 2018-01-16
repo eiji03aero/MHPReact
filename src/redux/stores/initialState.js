@@ -1,7 +1,11 @@
 const initialState = {
   app: {
     redirectPath: '',
-    loading: false
+    loading: false,
+    errors: {
+      currentError: {},
+      showError: false
+    }
   },
   colors: [
     { 

@@ -1,7 +1,8 @@
 // Main Colors
 $mhp-color--primary: #0096CE;
-$mhp-color--secondary: #0022D5;
+$mhp-color--secondary: #0c33ff;
 $mhp-color--alternative: #FFB600;
+$mhp-color--caution: #FF8500;
 
 
 // Sub Colors
@@ -14,47 +15,5 @@ $mhp-color--light-grey--hovered: #ECF2FE;
 $mhp-font-color--black: #333333;
 
 
-//font-colors
-$font-color--blue: #33457b;
-$font-color--black: #333333;
-$font-color--gray: #555555;
-$font-color--ashen: #777777;
-$font-color--trueWhite: #ffffff;
-$font-color--white: #eeeeee;
-$font-color--anchor: #0091AE;
-
-//background-colors
-$background-color: #ffffff;
-$bgHL: #f5fcff;
-$background-color__header: #2e2e2e;
-$bgTOheader: #f0f6fa;
-$background-color__todo-field: #f5f8fa;
-$background-color__kanban: #fefefe;
-$background-color__card__header: #f5f7fa;
-$background-color-ashen: #eeeeee;
-
-//buttons
-$button-color--default: #ffffff;
-$button-color--default-hovered: #ecf2fe;
-$button-color--primary: #0096CE;
-
-//border-colors
-$border-color--default: #cbd6e2;
-$border-color--blue: #33457b;
-$border-color--gray: #dee1e5;
-$border-color--gray--lit1: #fafbfb;
-$bdrF: #9DB0C5;
-
-//outline
-$outline-color--default: #85BFFD;
-
-//transparent colors
-$transparent-white--10: rgba(255,255,255,0.1);
-$transparent-black--10: rgba(0,0,0,.1);
-$transparent-black--20: rgba(0,0,0,.2);
-$transparent-black--40: rgba(0,0,0,.4);
-$trsBlack: rgba(0,0,0,0.1);
-$transparent-blue--30: rgba(0,60,120,0.3);
-
-//box-shadows
-$box-shadow--gray: 1px 1px 2px rgba(110,110,110,0.5);
+// border-colors
+$mhp-border-color--grey: #ccc;
