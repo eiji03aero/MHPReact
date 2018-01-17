@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import ShowBackground from './ShowBackground.js'
 import ShowInfo from './ShowInfo.js'
-import SentenceIcon from '../../../common/util/SentenceIcon/SentenceIcon.js'
+import SentenceIcon from '../../../common/util/SentenceIcon'
 
 import '../../stylesheets/ColorShow.scss'
 

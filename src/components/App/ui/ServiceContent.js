@@ -1,11 +1,11 @@
 import { Route, Switch } from 'react-router-dom'
 import { AnimatedSwitch } from 'react-router-transition'
 
-import WelcomePage from '../../WelcomePage/WelcomePage.js'
-import ImageMap from '../../ImageMap/ImageMap.js'
-import Wiki from '../../Wiki/Wiki.js'
-import ColorOrganizer from '../../ColorOrganizer/ColorOrganizer.js'
-import Whoops404 from '../../common/error/Whoops404.js'
+import WelcomePage from '../../WelcomePage'
+import ImageMap from '../../ImageMap'
+import Wiki from '../../Wiki'
+import ColorOrganizer from '../../ColorOrganizer'
+import Whoops404 from '../../common/error/Whoops404'
 import ServiceRedirect from './ServiceRedirect.js'
 
 import '../stylesheets/ServiceContent.scss'

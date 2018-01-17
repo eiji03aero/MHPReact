@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import WikiForm from './WikiForm/WikiForm.js'
+import WikiForm from '../WikiForm'
 import wikiActions from '../../../../redux/actions/wikis.js'
 import appActions from '../../../../redux/actions/app.js'
 

@@ -1,4 +1,4 @@
-import convertText from '../../../parser/convertText.js'
+import convertText from '../../parser/convertText.js'
 
 const propTypes = {
   body: PropTypes.string

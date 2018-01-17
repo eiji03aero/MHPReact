@@ -2,8 +2,8 @@ import 'babel-polyfill'
 import ReactDOM from 'react-dom'
 import { HashRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
-import App from './components/App/App.js'
-import storeFactory from './redux/stores/store.js'
+import App from './components/App'
+import storeFactory from './redux/store'
 import registerServiceWorker from './registerServiceWorker'
 
 const store = storeFactory()

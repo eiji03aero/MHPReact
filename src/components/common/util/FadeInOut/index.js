@@ -1,6 +1,6 @@
 import { Transition } from 'react-transition-group'
 
-const duration = 200
+const duration = 100
 
 const defaultStyles = {
   display: 'inline-block',

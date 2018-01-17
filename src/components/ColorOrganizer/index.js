@@ -1,6 +1,6 @@
 import { Switch, Route, Link } from 'react-router-dom'
 import ColorOrganizerHeader from './ui/ColorOrganizerHeader.js'
-import ColorShow from './ui/ColorShow/ColorShow.js'
+import ColorShow from './ui/ColorShow'
 import ColorList from './ui/ColorList.js'
 
 import './stylesheets/ColorOrganizer.scss'

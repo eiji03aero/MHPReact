@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import LinkIcon from '../../common/util/LinkIcon/LinkIcon.js'
+import LinkIcon from '../../common/util/LinkIcon'
 
 import '../stylesheets/ServiceHeader.scss'
 

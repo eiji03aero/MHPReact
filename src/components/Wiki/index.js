@@ -1,8 +1,8 @@
 import { Route, Link } from 'react-router-dom'
-import WikiList from './ui/list/WikiList.js'
-import NewWiki from './ui/edit/NewWiki.js'
-import EditWiki from './ui/edit/EditWiki.js'
-import ShowWiki from './ui/show/ShowWiki.js'
+import WikiList from './ui/WikiList'
+import NewWiki from './ui/NewWiki'
+import EditWiki from './ui/EditWiki'
+import ShowWiki from './ui/ShowWiki'
 
 import './stylesheets/Wiki.scss'
 
