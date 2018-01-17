@@ -1,6 +1,5 @@
 import C from '../constants.js'
 import { createActions } from 'redux-actions'
-import request from 'superagent'
 import appActions from './app.js'
 
 import requests from '../helper/agent.js'
