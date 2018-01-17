@@ -1,4 +1,5 @@
 import { connect } from 'react-redux'
+import FadeInOut from '../../common/util/Fade/FadeInOut.js'
 import appActions from '../../../redux/actions/app.js'
 
 import '../stylesheets/ServicePopup.scss'
@@ -46,12 +47,11 @@ class ServicePopup extends React.Component {
   }
 
   setPopupTimeout () {
-    const { onHidePopup } = this.props
+    const { show, onHidePopup } = this.props
 
-    const popupTimeoutId = setTimeout(
-      onHidePopup,
-      4000
-    )
+    if (!show) return
+
+    const popupTimeoutId = setTimeout(onHidePopup, 4000)
 
     this.setState({ popupTimeoutId })
   }
@@ -65,24 +65,26 @@ class ServicePopup extends React.Component {
     const { currentError, show } = this.props
     const errorMessage = JSON.stringify(currentError)
 
-    return show ?
-      <div
-        className="popupWrapper"
-        onMouseEnter={clearPopupTimeout}
-        onMouseLeave={setPopupTimeout} >
-        <div className="popupContainer">
-          <div className="popupTopBorder" />
-          <div className="popupBody">
-            <p className="u-fs--20 u-border-b--grey">
-              Error
-            </p>
-            <p className="u-fs--12 u-padding-t--4">
-              { currentError }
-            </p>
+    return (
+      <FadeInOut in={ show }>
+        <div
+          className="popupWrapper"
+          onMouseEnter={clearPopupTimeout}
+          onMouseLeave={setPopupTimeout} >
+          <div className="popupContainer">
+            <div className="popupTopBorder" />
+            <div className="popupBody">
+              <p className="u-fs--20 u-border-b--grey">
+                Error
+              </p>
+              <p className="u-fs--12 u-padding-t--4">
+                { errorMessage }
+              </p>
+            </div>
           </div>
         </div>
-      </div> :
-      null
+      </FadeInOut>
+    )
   }
 }
 
