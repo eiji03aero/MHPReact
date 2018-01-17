@@ -1,4 +1,4 @@
-import FadeInOut from '../Fade/FadeInOut.js'
+import FadeInOut from '../FadeInOut'
 
 const propTypes = {
   title: PropTypes.string,

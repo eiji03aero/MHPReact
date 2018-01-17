@@ -1,6 +1,6 @@
 import SidebarElem from './SidebarElem.js'
 
-import '../stylesheets/ServiceSidebar.scss'
+import '../../stylesheets/ServiceSidebar.scss'
 
 const ServiceSidebar = () =>
   <div className="serviceSidebar">

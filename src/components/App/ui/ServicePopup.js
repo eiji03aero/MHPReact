@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import FadeInOut from '../../common/util/Fade/FadeInOut.js'
+import FadeInOut from '../../common/util/FadeInOut'
 import appActions from '../../../redux/actions/app.js'
 
 import '../stylesheets/ServicePopup.scss'

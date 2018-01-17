@@ -1,8 +1,8 @@
-import ServiceSidebar from './ui/ServiceSidebar.js'
+import ServiceSidebar from './ui/ServiceSidebar'
 import ServiceHeader from './ui/ServiceHeader.js'
 import ServiceContent from './ui/ServiceContent.js'
 import ServicePopup from './ui/ServicePopup.js'
-import LoadingSpinner from '../common/util/LoadingSpinner/LoadingSpinner.js'
+import LoadingSpinner from '../common/util/LoadingSpinner'
 import DevTools from './ui/DevTools.js'
 
 import './stylesheets/basicStyles.scss'

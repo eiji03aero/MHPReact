@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import LinkIcon from '../../../common/util/LinkIcon/LinkIcon.js'
+import LinkIcon from '../../../common/util/LinkIcon'
 import convertText from '../../parser/convertText.js'
 import wikiActions from '../../../../redux/actions/wikis.js'
 import appActions from '../../../../redux/actions/app.js'
