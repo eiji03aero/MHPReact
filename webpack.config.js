@@ -6,15 +6,25 @@ const neatPath = require('bourbon-neat').includePaths
 module.exports = {
   context: path.resolve(__dirname),
   entry: {
-    // webpackHotMiddleware: 'webpack-hot-middleware/client',
-    app: './src/index.js',
-    sampleApp: './src/sample/sampleIndex.js'
+    app: [
+      'webpack-dev-server/client?htpp:localhost:3010',
+      './src/index.js',
+    ]
   },
   output: {
     path: path.resolve(__dirname, 'public/build'),
+    publicPath: 'public/',
     filename: '[name].js'
   },
+  target: 'node',
   devtool: 'source-map',
+  devServer: {
+    contentBase: path.join(__dirname, './public/build'),
+    hot: true,
+    inline: true,
+    port: 3010,
+    watchContentBase: true,
+  },
   module: {
     rules: [
       {
@@ -55,6 +65,6 @@ module.exports = {
       $: 'jquery',
       jquery:'jquery',
     }),
-    // new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin()
   ]
 }
